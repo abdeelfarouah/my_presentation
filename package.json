@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "yarn:clean": "yarn install --silent"
   },
   "dependencies": {
     "framer-motion": "^12.4.2",
@@ -34,11 +38,6 @@
     "typescript-eslint": "^8.3.0",
     "vite": "^5.4.2" 
   },
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "yarn:clean": "yarn install --silent"
   }
-}
+
 
