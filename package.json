@@ -1,3 +1,4 @@
+
 {
   "name": "vite-react-typescript-starter",
   "private": true,
@@ -7,9 +8,6 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "dev": "vite",
-    "build": "vite build",
     "preview": "vite preview",
     "yarn:clean": "yarn install --silent"
   },
@@ -36,8 +34,8 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
-    "vite": "^5.4.2" 
-  },
+    "vite": "^5.4.2"
   }
+}
 
 
