@@ -29,14 +29,18 @@ export default function Contact() {
     <section
       id="contact"
       className="
-        py-10 px-2 sm:py-16 bg-white dark:bg-gray-900
+        flex items-center justify-center
+        h-full w-full min-h-[400px]
+        py-10 px-2 sm:py-16
+        bg-white dark:bg-gray-900
         max-w-[768px] max-h-[1024px]
         sm:max-w-[800px] sm:max-h-[1280px]
         md:max-w-[1280px] md:max-h-[800px]
         mx-auto
+        rounded-lg
       "
     >
-      <div className="w-full max-w-2xl mx-auto">
+      <div className="h-full animate-fade-in flex items-center justify-center">
         <motion.div
           ref={ref}
           variants={containerVariants}

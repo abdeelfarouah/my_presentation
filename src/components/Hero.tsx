@@ -19,12 +19,13 @@ export default function Hero() {
       className="
         h-full
         bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800
-        p-4 py-8 sm:py-12 md:py-16
+        py-8 sm:py-12 md:py-16
+        px-2 sm:px-6 md:px-12
         overflow-y-auto
-        max-w-[768px] max-h-[1024px]   // smartphone portrait par défaut
-        sm:max-w-[800px] sm:max-h-[1280px] // tablette portrait
-        md:max-w-[1280px] md:max-h-[800px] // desktop paysage
+        w-full
+        max-w-full
         mx-auto
+        rounded-lg
       "
     >
       <Container className="flex flex-col justify-between text-center space-y-8">

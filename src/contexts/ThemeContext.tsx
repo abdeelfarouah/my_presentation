@@ -1,14 +1,13 @@
-import { createContext,useContext, useState, useEffect, ReactNode } from 'react';
+// src/contexts/ThemeContext.tsx
+import { createContext, useState, useEffect, ReactNode } from 'react';
 
 export type ThemeContextType = {
   isDark: boolean;
   toggleTheme: () => void;
 };
 
-// Créez le contexte avec un type explicite
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-// Le composant ThemeProvider
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem('theme');
@@ -32,12 +31,4 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       {children}
     </ThemeContext.Provider>
   );
-}
-
-export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme doit être utilisé à l\'intérieur de ThemeProvider');
-  }
-  return context;
 }

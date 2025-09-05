@@ -1,6 +1,7 @@
-import { useTheme } from '../contexts/ThemeContext';
 
-const ThemeToggle = () => {  // No need for 'export default' inside function
+import { useTheme } from './hooks/useTheme';
+
+const ThemeToggle = () => {
   const { isDark, toggleTheme } = useTheme();
 
   return (
@@ -10,4 +11,4 @@ const ThemeToggle = () => {  // No need for 'export default' inside function
   );
 };
 
-export default ThemeToggle;  // Default export for the component
+export default ThemeToggle;
