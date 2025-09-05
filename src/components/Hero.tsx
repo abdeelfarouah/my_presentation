@@ -15,30 +15,41 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4">
+    <section
+      className="
+        h-full
+        bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800
+        p-4 py-8 sm:py-12 md:py-16
+        overflow-y-auto
+        max-w-[768px] max-h-[1024px]   // smartphone portrait par défaut
+        sm:max-w-[800px] sm:max-h-[1280px] // tablette portrait
+        md:max-w-[1280px] md:max-h-[800px] // desktop paysage
+        mx-auto
+      "
+    >
       <Container className="flex flex-col justify-between text-center space-y-8">
-<div className="flex justify-center items-center">
-  <img
-    src={PROFILE_IMAGE}
-    alt="Abderrahmane El Farouah"
-    className="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-lg"
-  />
-</div>
-        
+        <div className="flex justify-center items-center">
+          <img
+            src={PROFILE_IMAGE}
+            alt="Abderrahmane El Farouah"
+            className="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-lg"
+          />
+        </div>
+
         <div className="space-y-3">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             Abderrahmane El Farouah
           </h1>
-          
+
           <p className="text-md sm:text-lg text-gray-600 dark:text-gray-300">
             Développeur Web & AS 400
           </p>
         </div>
         <p className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
-            Passionné par le développement web et les systèmes legacy, 
-            je crée des solutions innovantes qui allient technologie moderne et fiabilité.
-          </p>
-        <div  className="flex flex-wrap justify-center gap-4">
+          Passionné par le développement web et les systèmes legacy,
+          je crée des solutions innovantes qui allient technologie moderne et fiabilité.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
           <a
             href={SOCIAL_LINKS.GITHUB}
             target="_blank"

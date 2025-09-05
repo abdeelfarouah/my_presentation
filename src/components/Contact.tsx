@@ -26,81 +26,76 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="contact"
+      className="
+        py-10 px-2 sm:py-16 bg-white dark:bg-gray-900
+        max-w-[768px] max-h-[1024px]
+        sm:max-w-[800px] sm:max-h-[1280px]
+        md:max-w-[1280px] md:max-h-[800px]
+        mx-auto
+      "
+    >
+      <div className="w-full max-w-2xl mx-auto">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="max-w-3xl mx-auto"
+          className="w-full"
         >
-          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
             Contactez-moi
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <motion.div variants={itemVariants} className="space-y-6">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Informations de contact
+          <div className="flex flex-col md:flex-row gap-8 mb-8">
+            <motion.div variants={itemVariants} className="flex-1 space-y-5">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                Informations
               </h3>
-              
-              <div className="flex items-start space-x-4">
-                <MapPin className="text-blue-600 dark:text-blue-400 mt-1" />
-                <div>
-                  <p className="font-medium text-gray-900 dark:text-white">Localisation</p>
-                  <p className="text-gray-600 dark:text-gray-300">France</p>
-                </div>
+              <div className="flex items-center gap-3">
+                <MapPin className="text-blue-600 dark:text-blue-400" />
+                <span className="text-gray-700 dark:text-gray-300">France</span>
               </div>
-
-              <div className="flex items-start space-x-4">
-                <Mail className="text-blue-600 dark:text-blue-400 mt-1" />
-                <div>
-                  <p className="font-medium text-gray-900 dark:text-white">Email</p>
-                  <a href="mailto:abderrahmane.elfarouah@laposte.net" 
-                     className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-                    abderrahmane.elfarouah@laposte.net
-                  </a>
-                </div>
+              <div className="flex items-center gap-3">
+                <Mail className="text-blue-600 dark:text-blue-400" />
+                <a
+                  href="mailto:A.elfarouahDEV@outlook.fr"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 underline"
+                >
+                  A.elfarouahDEV@outlook.fr
+                </a>
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="space-y-6">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Réseaux sociaux
+            <motion.div variants={itemVariants} className="flex-1 space-y-5">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                Réseaux
               </h3>
-              
               <a
-                href="https://github.com/Abdeelf902/"
+                href="https://github.com/Abdeelfarouah/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
               >
                 <Github className="text-gray-900 dark:text-white" />
-                <div>
-                  <p className="font-medium text-gray-900 dark:text-white">GitHub</p>
-                  <p className="text-gray-600 dark:text-gray-300">@Abdeelf902</p>
-                </div>
+                <span className="text-gray-700 dark:text-gray-300">@Abdeelfarouah</span>
               </a>
-
               <a
                 href="https://fr.linkedin.com/in/abderrahmaneelfarouah"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
               >
                 <Linkedin className="text-blue-600" />
-                <div>
-                  <p className="font-medium text-gray-900 dark:text-white">LinkedIn</p>
-                  <p className="text-gray-600 dark:text-gray-300">Abderrahmane El Farouah</p>
-                </div>
+                <span className="text-gray-700 dark:text-gray-300">Abderrahmane El Farouah</span>
               </a>
             </motion.div>
           </div>
 
           <motion.div
             variants={itemVariants}
-            className="text-center text-gray-600 dark:text-gray-300"
+            className="text-center text-gray-600 dark:text-gray-400 text-base sm:text-lg"
           >
             <p>
               N'hésitez pas à me contacter pour discuter de vos projets ou opportunités de collaboration.

@@ -32,14 +32,23 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <div className="h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors overflow-hidden">
+      <div
+        className="
+          h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors
+          overflow-y-auto
+          max-w-[768px] max-h-[1024px]   // smartphone portrait par défaut
+          sm:max-w-[800px] sm:max-h-[1280px] // tablette portrait
+          md:max-w-[1280px] md:max-h-[800px] // desktop paysage
+          mx-auto
+        "
+        style={{ minHeight: '100vh' }}
+      >
         <Navbar activeTab={activeTab} onTabChange={setActiveTab} />
-        <main className="flex-1 overflow-hidden">
-          <div className="h-full animate-fade-in">
+        <main className="flex-1 overflow-y-auto px-2 py-6 sm:py-8 md:py-10">
+          <div className="h-full animate-fade-in flex items-center justify-center">
             {renderContent()}
           </div>
         </main>
-        
         <footer className="bg-gray-900 dark:bg-gray-950 text-white py-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p>&copy; {new Date().getFullYear()} Abderrahmane El Farouah</p>

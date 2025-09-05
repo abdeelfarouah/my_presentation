@@ -10,7 +10,13 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ title, description, link, github, image }: ProjectCardProps) {
   return (
-    <div className="group bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1">
+    <div
+      className="
+        group bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1
+        w-full
+        mx-auto
+      "
+    >
       <div className="relative overflow-hidden aspect-video">
         <img
           src={image}
