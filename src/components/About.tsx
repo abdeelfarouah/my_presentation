@@ -14,10 +14,6 @@ export default function About() {
             des systèmes legacy avec l'innovation des technologies actuelles.
           </p>
           
-          <p className="mb-6">
-            Actuellement en formation START ZUP, je me spécialise dans le développement web avec React.js
-            et les technologies modernes du web, tout en maintenant mon expertise en AS400.
-          </p>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
