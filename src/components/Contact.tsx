@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -104,6 +104,16 @@ export default function Contact() {
             <p>
               N'hésitez pas à me contacter pour discuter de vos projets ou opportunités de collaboration.
             </p>
+            <a
+              href="https://outlook.live.com/calendar/0/deeplink/compose?subject=Rendez-vous%20avec%20Abderrahmane%20El%20Farouah&body=Merci%20de%20me%20contacter%20pour%20planifier%20un%20rendez-vous.&to=A.elfarouahDEV@outlook.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-6 px-5 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition font-semibold"
+              title="Prendre rendez-vous (Outlook)"
+            >
+              <Calendar className="w-5 h-5" />
+              Prendre rendez-vous
+            </a>
           </motion.div>
         </motion.div>
       </div>
