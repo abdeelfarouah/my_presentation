@@ -13,6 +13,9 @@ interface Appointment {
   date: string;
 }
 
+// Base URL pour l'API
+const API_BASE = import.meta.env.DEV ? 'http://localhost:5173/api' : '/api';
+
 export default function Contact() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -35,7 +38,7 @@ export default function Contact() {
   // --- Fetch appointments si back-office visible
   const fetchAppointments = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/appointments', { credentials: 'include' });
+      const res = await fetch(`${API_BASE}/appointments`);
       if (res.ok) {
         const data = await res.json();
         setAppointments(data);
@@ -44,6 +47,7 @@ export default function Contact() {
       }
     } catch (err) {
       console.error(err);
+      setAppointments([]);
     }
   };
 
@@ -70,10 +74,9 @@ export default function Contact() {
     if (!code) return;
 
     try {
-      const res = await fetch('http://localhost:4000/api/check-digicode', {
+      const res = await fetch(`${API_BASE}/check-digicode`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
         body: JSON.stringify({ code }),
       });
       const data = await res.json();
@@ -84,6 +87,7 @@ export default function Contact() {
       }
     } catch (err) {
       console.error(err);
+      alert("Erreur lors de la vérification du digicode");
     }
   };
 
@@ -94,10 +98,9 @@ export default function Contact() {
     if (error) { alert(error); return; }
 
     try {
-      const res = await fetch('http://localhost:4000/api/appointments', {
+      const res = await fetch(`${API_BASE}/appointments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
         body: JSON.stringify({
           name: formState.name,
           email: formState.email,
@@ -108,7 +111,7 @@ export default function Contact() {
         setSent(true);
         setTimeout(() => setSent(false), 4000);
         setFormState({ name: '', email: '', date: null });
-        alert("Rendez-vous enregistré côté serveur !");
+        alert("Rendez-vous enregistré !");
       }
     } catch (err) {
       console.error(err);
