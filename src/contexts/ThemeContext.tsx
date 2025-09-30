@@ -1,17 +1,10 @@
 // src/contexts/ThemeContext.tsx
-import { createContext, useState, useEffect, ReactNode } from 'react';
-
-export type ThemeContextType = {
-  isDark: boolean;
-  toggleTheme: () => void;
-};
-
-export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
+import { useState, useEffect, ReactNode } from 'react';
+import ThemeContext from './themeContext';
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('theme');
-    return saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('theme') : null;
+    return saved === 'dark' || (!saved && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
 
   useEffect(() => {
@@ -24,7 +17,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, [isDark]);
 
-  const toggleTheme = () => setIsDark(!isDark);
+  const toggleTheme = () => setIsDark((prev) => !prev);
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
@@ -32,3 +25,4 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     </ThemeContext.Provider>
   );
 }
+

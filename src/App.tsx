@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ThemeProvider } from './contexts/ThemeContext';
+import { ThemeProvider } from './contexts/theme';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
