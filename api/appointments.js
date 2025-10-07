@@ -14,6 +14,7 @@ async function sendNotificationEmail(appointment) {
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   });
   const when = new Date(appointment.date).toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' });
+  await transporter.verify();
   const info = await transporter.sendMail({
     from: `RDV Bot <${SMTP_USER}>`,
     to: NOTIFY_TO,
@@ -35,11 +36,11 @@ export default async function handler(req, res) {
     const appointment = { id: appointments.length + 1, name, email, date };
     appointments.push(appointment);
     try {
-      await sendNotificationEmail(appointment);
-    } catch (_) {
-      // ne bloque pas la création en cas d'échec d'email
+      const info = await sendNotificationEmail(appointment);
+      res.status(200).json({ success: true, appointment, notification: info ? info.messageId : null });
+    } catch (e) {
+      res.status(200).json({ success: true, appointment, notification: null, emailError: (e && e.message) || 'SMTP error' });
     }
-    res.status(200).json({ success: true, appointment });
   } else {
     res.setHeader('Allow', ['GET', 'POST']);
     res.status(405).end(`Méthode ${req.method} non autorisée`);

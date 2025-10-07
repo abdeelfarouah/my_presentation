@@ -51,13 +51,19 @@ app.post('/api/appointments', (req, res) => {
       auth: { user: SMTP_USER, pass: SMTP_PASS },
     });
     const when = new Date(appointment.date).toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' });
-    transporter.sendMail({
-      from: `RDV Bot <${SMTP_USER}>`,
-      to: NOTIFY_TO,
-      subject: `Nouveau rendez-vous: ${appointment.name}`,
-      text: `Nom: ${appointment.name}\nEmail: ${appointment.email}\nDate: ${when}`,
-      html: `<p><strong>Nom:</strong> ${appointment.name}</p><p><strong>Email:</strong> ${appointment.email}</p><p><strong>Date:</strong> ${when}</p>`,
-    }).catch(() => {});
+    transporter.verify().then(() => {
+      return transporter.sendMail({
+        from: `RDV Bot <${SMTP_USER}>`,
+        to: NOTIFY_TO,
+        subject: `Nouveau rendez-vous: ${appointment.name}`,
+        text: `Nom: ${appointment.name}\nEmail: ${appointment.email}\nDate: ${when}`,
+        html: `<p><strong>Nom:</strong> ${appointment.name}</p><p><strong>Email:</strong> ${appointment.email}</p><p><strong>Date:</strong> ${when}</p>`,
+      });
+    }).then((info) => {
+      console.log('Notification email sent:', info && info.messageId);
+    }).catch((err) => {
+      console.error('SMTP notification error:', err && err.message);
+    });
   }
   res.json({ success: true, appointment });
 });
