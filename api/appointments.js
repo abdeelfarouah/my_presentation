@@ -1,48 +1,81 @@
 import nodemailer from 'nodemailer';
 
-let appointments = []; // mémoire temporaire (sera réinitialisée à chaque déploiement)
+let appointments = []; // stockage temporaire
 
 async function sendNotificationEmail(appointment) {
   const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, NOTIFY_TO } = process.env;
   if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !NOTIFY_TO) {
-    return; // si non configuré, on ignore silencieusement
+    console.warn('⚠️ Variables SMTP manquantes, notification ignorée.');
+    return;
   }
+
   const transporter = nodemailer.createTransport({
     host: SMTP_HOST,
-    port: parseInt(SMTP_PORT, 10),
-    secure: parseInt(SMTP_PORT, 10) === 465,
+    port: Number(SMTP_PORT),
+    secure: Number(SMTP_PORT) === 465, // false pour 587
     auth: { user: SMTP_USER, pass: SMTP_PASS },
+    requireTLS: true,       // ✅ STARTTLS forcé pour Outlook
+    logger: true,           // ✅ pour voir les logs SMTP
+    debug: true             // ✅ détails de connexion
   });
-  const when = new Date(appointment.date).toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' });
+
+  console.log('→ Vérification de la connexion SMTP...');
   await transporter.verify();
+  console.log('✅ SMTP vérifié, envoi en cours...');
+
+  const when = new Date(appointment.date).toLocaleString('fr-FR', {
+    dateStyle: 'full',
+    timeStyle: 'short'
+  });
+
   const info = await transporter.sendMail({
-    from: `RDV Bot <${SMTP_USER}>`,
+    from: SMTP_USER, // ✅ Outlook exige "from" = adresse authentifiée
     to: NOTIFY_TO,
     subject: `Nouveau rendez-vous: ${appointment.name}`,
     text: `Nom: ${appointment.name}\nEmail: ${appointment.email}\nDate: ${when}`,
-    html: `<p><strong>Nom:</strong> ${appointment.name}</p><p><strong>Email:</strong> ${appointment.email}</p><p><strong>Date:</strong> ${when}</p>`,
+    html: `
+      <p><strong>Nom:</strong> ${appointment.name}</p>
+      <p><strong>Email:</strong> ${appointment.email}</p>
+      <p><strong>Date:</strong> ${when}</p>
+    `,
   });
+
+  console.log('✉️ Notification email envoyée:', info.messageId);
   return info;
 }
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    res.status(200).json(appointments);
-  } else if (req.method === 'POST') {
+    return res.status(200).json(appointments);
+  }
+
+  if (req.method === 'POST') {
     const { name, email, date } = req.body;
     if (!name || !email || !date) {
       return res.status(400).json({ error: 'Données manquantes' });
     }
+
     const appointment = { id: appointments.length + 1, name, email, date };
     appointments.push(appointment);
+
     try {
       const info = await sendNotificationEmail(appointment);
-      res.status(200).json({ success: true, appointment, notification: info ? info.messageId : null });
+      return res.status(200).json({
+        success: true,
+        appointment,
+        notification: info ? info.messageId : null,
+      });
     } catch (e) {
-      res.status(200).json({ success: true, appointment, notification: null, emailError: (e && e.message) || 'SMTP error' });
+      console.error('❌ Erreur envoi email:', e);
+      return res.status(200).json({
+        success: true,
+        appointment,
+        notification: null,
+        emailError: e?.message || 'SMTP error',
+      });
     }
-  } else {
-    res.setHeader('Allow', ['GET', 'POST']);
-    res.status(405).end(`Méthode ${req.method} non autorisée`);
   }
+
+  res.setHeader('Allow', ['GET', 'POST']);
+  res.status(405).end(`Méthode ${req.method} non autorisée`);
 }
