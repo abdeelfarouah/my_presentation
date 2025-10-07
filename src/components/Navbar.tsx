@@ -1,5 +1,6 @@
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import { NAV_IMAGE } from '../utils/images';
 interface NavbarProps {
@@ -9,6 +10,7 @@ interface NavbarProps {
 
 export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navItems = [
     { id: 'home', label: 'Accueil' },
@@ -21,6 +23,7 @@ export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
   const handleNavClick = (id: string) => {
     setIsOpen(false);
     onTabChange(id);
+    navigate(id === 'home' ? '/' : `/${id}`);
   };
 
   return (
@@ -36,17 +39,18 @@ export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
           <div className="hidden md:flex md:items-center md:space-x-4">
             <div className="flex items-baseline space-x-4">
               {navItems.map((item) => (
-                <button
+                <NavLink
                   key={item.id}
+                  to={item.id === 'home' ? '/' : `/${item.id}`}
                   onClick={() => handleNavClick(item.id)}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ring-1 ring-transparent
-                    ${activeTab === item.id
+                  className={({ isActive }: { isActive: boolean }) => `px-3 py-2 rounded-lg text-sm font-medium transition-all ring-1 ring-transparent ${
+                    isActive || activeTab === item.id
                       ? 'text-blue-600 dark:text-blue-400 bg-white/70 dark:bg-gray-800 ring-blue-200/40 dark:ring-blue-400/20 shadow-glow'
                       : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-gray-800/70 hover:ring-blue-200/40 dark:hover:ring-blue-400/20'
-                    }`}
+                  }`}
                 >
                   {item.label}
-                </button>
+                </NavLink>
               ))}
             </div>
             <ThemeToggle />

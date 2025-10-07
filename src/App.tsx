@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './contexts/theme';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -9,26 +10,18 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home');
+  const location = useLocation();
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'home':
-        return <Hero />;
-      case 'about':
-        return <About />;
-      case 'projects':
-        return <Projects />;
-      case 'skills':
-        return <Skills />;
-      case 'experience':
-        return <Experience />;
-      case 'contact':
-        return <Contact />;
-      default:
-        return <Hero />;
-    }
+  const routeToTab = (pathname: string) => {
+    const seg = pathname.split('/').filter(Boolean)[0] || 'home';
+    return ['home','about','projects','skills','experience','contact'].includes(seg) ? seg : 'home';
   };
+
+  const [activeTab, setActiveTab] = useState(routeToTab(location.pathname));
+
+  useEffect(() => {
+    setActiveTab(routeToTab(location.pathname));
+  }, [location.pathname]);
 
   return (
     <ThemeProvider>
@@ -52,7 +45,15 @@ export default function App() {
         {/* Contenu principal */}
         <main className="flex-1 overflow-y-auto">
           <div className="h-full flex items-center justify-center">
-            {renderContent()}
+            <Routes>
+              <Route path="/" element={<Hero />} />
+              <Route path="/home" element={<Hero />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/skills" element={<Skills />} />
+              <Route path="/experience" element={<Experience />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
           </div>
         </main>
 
