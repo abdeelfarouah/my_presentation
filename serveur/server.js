@@ -35,6 +35,7 @@ app.post('/api/check-digicode', (req, res) => {
 
 // Rendez-vous
 let appointments = [];
+
 app.get('/api/appointments', (req, res) => {
   res.json(appointments);
 });
@@ -42,30 +43,50 @@ app.get('/api/appointments', (req, res) => {
 app.post('/api/appointments', (req, res) => {
   const appointment = { id: appointments.length + 1, ...req.body };
   appointments.push(appointment);
+
   const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, NOTIFY_TO } = process.env;
+
   if (SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS && NOTIFY_TO) {
     const transporter = nodemailer.createTransport({
       host: SMTP_HOST,
       port: parseInt(SMTP_PORT, 10),
       secure: parseInt(SMTP_PORT, 10) === 465,
-      auth: { user: SMTP_USER, pass: SMTP_PASS },
+      auth: {
+        user: SMTP_USER,
+        pass: SMTP_PASS,
+      },
     });
-    const when = new Date(appointment.date).toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' });
-    transporter.verify().then(() => {
-      return transporter.sendMail({
-        from: `RDV Bot <${SMTP_USER}>`,
-        to: NOTIFY_TO,
-        subject: `Nouveau rendez-vous: ${appointment.name}`,
-        text: `Nom: ${appointment.name}\nEmail: ${appointment.email}\nDate: ${when}`,
-        html: `<p><strong>Nom:</strong> ${appointment.name}</p><p><strong>Email:</strong> ${appointment.email}</p><p><strong>Date:</strong> ${when}</p>`,
+
+    const when = new Date(appointment.date).toLocaleString('fr-FR', {
+      dateStyle: 'full',
+      timeStyle: 'short',
+    });
+
+    transporter
+      .verify()
+      .then(() => {
+        return transporter.sendMail({
+          from: `${appointment.name} <${SMTP_USER}>`, // expéditeur dynamique selon ton compte SMTP
+          to: NOTIFY_TO, // destinataire défini dans .env
+          subject: 'Vous avez une demande de rendez-vous',
+          text: `Nom: ${appointment.name}\nEmail: ${appointment.email}\nDate: ${when}`,
+          html: `
+            <h2>Vous avez une demande de rendez-vous</h2>
+            <p><strong>Nom:</strong> ${appointment.name}</p>
+            <p><strong>Email:</strong> ${appointment.email}</p>
+            <p><strong>Date:</strong> ${when}</p>
+          `,
+        });
+      })
+      .then((info) => {
+        console.log('Notification email envoyée :', info && info.messageId);
+      })
+      .catch((err) => {
+        console.error('Erreur SMTP :', err && err.message);
       });
-    }).then((info) => {
-      console.log('Notification email sent:', info && info.messageId);
-    }).catch((err) => {
-      console.error('SMTP notification error:', err && err.message);
-    });
   }
+
   res.json({ success: true, appointment });
 });
 
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`✅ Serveur en ligne sur http://localhost:${PORT}`));

@@ -1,38 +1,22 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
-let appointments = []; // stockage temporaire
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+let appointments = [];
 
 async function sendNotificationEmail(appointment) {
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, NOTIFY_TO } = process.env;
-  if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !NOTIFY_TO) {
-    console.warn('⚠️ Variables SMTP manquantes, notification ignorée.');
-    return;
-  }
-
-  const transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: Number(SMTP_PORT),
-    secure: Number(SMTP_PORT) === 465, // false pour 587
-    auth: { user: SMTP_USER, pass: SMTP_PASS },
-    requireTLS: true,       // ✅ STARTTLS forcé pour Outlook
-    logger: true,           // ✅ pour voir les logs SMTP
-    debug: true             // ✅ détails de connexion
-  });
-
-  console.log('→ Vérification de la connexion SMTP...');
-  await transporter.verify();
-  console.log('✅ SMTP vérifié, envoi en cours...');
+  const { NOTIFY_TO } = process.env;
+  if (!NOTIFY_TO) return;
 
   const when = new Date(appointment.date).toLocaleString('fr-FR', {
     dateStyle: 'full',
     timeStyle: 'short'
   });
 
-  const info = await transporter.sendMail({
-    from: SMTP_USER, // ✅ Outlook exige "from" = adresse authentifiée
+  const { data, error } = await resend.emails.send({
+    from: 'RDV Bot <onboarding@resend.dev>', // adresse par défaut fournie
     to: NOTIFY_TO,
     subject: `Nouveau rendez-vous: ${appointment.name}`,
-    text: `Nom: ${appointment.name}\nEmail: ${appointment.email}\nDate: ${when}`,
     html: `
       <p><strong>Nom:</strong> ${appointment.name}</p>
       <p><strong>Email:</strong> ${appointment.email}</p>
@@ -40,8 +24,8 @@ async function sendNotificationEmail(appointment) {
     `,
   });
 
-  console.log('✉️ Notification email envoyée:', info.messageId);
-  return info;
+  if (error) throw error;
+  return data;
 }
 
 export default async function handler(req, res) {
@@ -63,15 +47,15 @@ export default async function handler(req, res) {
       return res.status(200).json({
         success: true,
         appointment,
-        notification: info ? info.messageId : null,
+        notification: info?.id || null,
       });
     } catch (e) {
-      console.error('❌ Erreur envoi email:', e);
+      console.error('Erreur email:', e);
       return res.status(200).json({
         success: true,
         appointment,
         notification: null,
-        emailError: e?.message || 'SMTP error',
+        emailError: e?.message || 'Erreur API',
       });
     }
   }
