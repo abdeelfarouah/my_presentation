@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
@@ -41,6 +42,23 @@ app.get('/api/appointments', (req, res) => {
 app.post('/api/appointments', (req, res) => {
   const appointment = { id: appointments.length + 1, ...req.body };
   appointments.push(appointment);
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, NOTIFY_TO } = process.env;
+  if (SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS && NOTIFY_TO) {
+    const transporter = nodemailer.createTransport({
+      host: SMTP_HOST,
+      port: parseInt(SMTP_PORT, 10),
+      secure: parseInt(SMTP_PORT, 10) === 465,
+      auth: { user: SMTP_USER, pass: SMTP_PASS },
+    });
+    const when = new Date(appointment.date).toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' });
+    transporter.sendMail({
+      from: `RDV Bot <${SMTP_USER}>`,
+      to: NOTIFY_TO,
+      subject: `Nouveau rendez-vous: ${appointment.name}`,
+      text: `Nom: ${appointment.name}\nEmail: ${appointment.email}\nDate: ${when}`,
+      html: `<p><strong>Nom:</strong> ${appointment.name}</p><p><strong>Email:</strong> ${appointment.email}</p><p><strong>Date:</strong> ${when}</p>`,
+    }).catch(() => {});
+  }
   res.json({ success: true, appointment });
 });
 
