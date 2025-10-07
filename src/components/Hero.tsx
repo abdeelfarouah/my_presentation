@@ -18,14 +18,14 @@ export default function Hero() {
     <section
       className="
         h-full
-        bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800
+        chrome-surface bg-radial-faint
         py-8 sm:py-12 md:py-16
         px-2 sm:px-6 md:px-12
         overflow-y-auto
         w-full
         max-w-full
         mx-auto
-        rounded-lg
+        rounded-xl ring-chrome
       "
     >
       <Container className="flex flex-col justify-between text-center space-y-8">
@@ -33,7 +33,7 @@ export default function Hero() {
           <img
             src={PROFILE_IMAGE}
             alt="Abderrahmane El Farouah"
-            className="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-lg"
+            className="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover ring-2 ring-white/70 dark:ring-white/10 shadow-lg animate-float"
           />
         </div>
 
@@ -55,7 +55,7 @@ export default function Hero() {
             href={SOCIAL_LINKS.GITHUB}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 sm:p-3 rounded-full bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
+            className="p-2 sm:p-3 rounded-full bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors ring-1 ring-white/20"
             title="GitHub"
           >
             <Github className="w-5 sm:w-[22px]" />
@@ -64,21 +64,21 @@ export default function Hero() {
             href={SOCIAL_LINKS.LINKEDIN}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 sm:p-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            className="p-2 sm:p-3 rounded-full btn-shiny"
             title="LinkedIn"
           >
             <Linkedin className="w-5 sm:w-[22px]" />
           </a>
           <button
             onClick={handleDownloadCV}
-            className="p-2 sm:p-3 rounded-full bg-green-600 text-white hover:bg-green-700 transition-colors"
+            className="p-2 sm:p-3 rounded-full bg-gradient-to-b from-emerald-500 to-emerald-600 text-white hover:from-emerald-500/95 hover:to-emerald-600/95 transition-colors shadow-md"
             title="Télécharger mon CV"
           >
             <FileText className="w-5 sm:w-[22px]" />
           </button>
           <a
             href={`mailto:${SOCIAL_LINKS.EMAIL}`}
-            className="p-2 sm:p-3 rounded-full bg-red-600 text-white hover:bg-red-700 transition-colors"
+            className="p-2 sm:p-3 rounded-full bg-gradient-to-b from-rose-500 to-rose-600 text-white hover:from-rose-500/95 hover:to-rose-600/95 transition-colors shadow-md"
             title="Email"
           >
             <Mail className="w-5 sm:w-[22px]" />

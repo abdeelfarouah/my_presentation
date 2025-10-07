@@ -35,7 +35,7 @@ export default function App() {
       <div
         className="
           min-h-screen flex flex-col
-          bg-gray-50 dark:bg-gray-900 transition-colors
+          bg-radial-faint bg-fixed bg-gray-50 dark:bg-gray-950 transition-colors
           w-full
           max-w-[768px] max-h-[1024px]    // smartphone portrait par défaut
           sm:max-w-[800px] sm:max-h-[1280px] // tablette portrait
@@ -51,13 +51,13 @@ export default function App() {
 
         {/* Contenu principal */}
         <main className="flex-1 overflow-y-auto">
-          <div className="h-full animate-fade-in flex items-center justify-center">
+          <div className="h-full flex items-center justify-center">
             {renderContent()}
           </div>
         </main>
 
         {/* Footer */}
-        <footer className="bg-gray-900 dark:bg-gray-950 text-white py-4 mt-4 rounded-lg">
+        <footer className="glass ring-chrome text-gray-800 dark:text-gray-100 py-4 mt-4 rounded-xl">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p>&copy; {new Date().getFullYear()} Abderrahmane El Farouah</p>
           </div>

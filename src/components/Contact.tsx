@@ -1,9 +1,10 @@
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
+import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { fr } from 'date-fns/locale/fr';
 import { PROFILE_IMAGE } from '../utils/images';
 
 interface Appointment {
@@ -13,10 +14,11 @@ interface Appointment {
   date: string;
 }
 
-// Base URL pour l'API
-const API_BASE = import.meta.env.DEV ? 'http://localhost:5173/api' : '/api';
+// Base URL pour l'API: en dev, proxy Vite renvoie vers 4000; en prod, même origin
+const API_BASE = '/api';
 
 export default function Contact() {
+  registerLocale('fr', fr);
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const containerVariants = {
@@ -30,6 +32,8 @@ export default function Contact() {
     email: '',
     date: null,
   });
+  const [selectedHour, setSelectedHour] = useState<number | null>(null);
+  const HOURS = Array.from({ length: 9 }).map((_, i) => 10 + i); // 10..18 inclus
   const [sent, setSent] = useState(false);
 
   const [showBackOffice, setShowBackOffice] = useState(false);
@@ -58,7 +62,39 @@ export default function Contact() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
-  const handleDateChange = (date: Date | null) => setFormState({ ...formState, date });
+  const roundToNextHour = (d: Date) => {
+    const copy = new Date(d);
+    if (copy.getMinutes() !== 0 || copy.getSeconds() !== 0 || copy.getMilliseconds() !== 0) {
+      copy.setHours(copy.getHours() + 1);
+    }
+    copy.setMinutes(0, 0, 0);
+    return copy;
+  };
+  const handleDateChange = (date: Date | null) => {
+    if (!date) { setFormState({ ...formState, date }); return; }
+    // Si l'utilisateur choisit uniquement la date (00:00), fixer une heure par défaut (prochaine heure pleine)
+    const isMidnight = date.getHours() === 0 && date.getMinutes() === 0;
+    const base = isMidnight ? roundToNextHour(new Date()) : roundToNextHour(date);
+    const hour = selectedHour ?? 10;
+    const withHour = new Date(base);
+    withHour.setHours(hour, 0, 0, 0);
+    setSelectedHour(hour);
+    setFormState({ ...formState, date: withHour });
+  };
+
+  const handleHourChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const hour = parseInt(e.target.value, 10);
+    setSelectedHour(hour);
+    if (!formState.date) {
+      const base = roundToNextHour(new Date());
+      base.setHours(hour, 0, 0, 0);
+      setFormState({ ...formState, date: base });
+      return;
+    }
+    const updated = new Date(formState.date);
+    updated.setHours(hour, 0, 0, 0);
+    setFormState({ ...formState, date: updated });
+  };
 
   const validateForm = () => {
     if (!formState.name.trim()) return "Le nom est obligatoire.";
@@ -79,7 +115,13 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code }),
       });
-      const data = await res.json();
+      type DigicodeResponse = { success: boolean };
+      let data: DigicodeResponse = { success: false };
+      try {
+        data = await res.json() as DigicodeResponse;
+      } catch {
+        data = { success: false };
+      }
       if (data.success) {
         setShowBackOffice(true);
       } else {
@@ -129,67 +171,105 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="flex items-center justify-center h-full w-full min-h-[400px] py-10 px-2 sm:py-16 bg-white dark:bg-gray-900 max-w-[1280px] mx-auto rounded-lg">
-      <div className="h-full animate-fade-in flex flex-col items-center justify-center w-full">
+    <section id="contact" className="h-full w-full min-h-[480px] py-10 px-2 sm:py-16 chrome-surface bg-radial-faint max-w-[1280px] mx-auto rounded-xl ring-chrome">
+      <div className="h-full animate-fade-in flex flex-col w-full">
         <motion.div ref={ref} variants={containerVariants} initial="hidden" animate={inView ? "visible" : "hidden"} className="w-full">
           <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">Contactez-moi</h2>
 
-          {/* Informations & Réseaux */}
-          <div className="flex flex-col md:flex-row gap-8 mb-8">
-            <motion.div variants={itemVariants} className="flex-1 space-y-5">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Informations</h3>
-              <div className="flex items-center gap-3"><MapPin className="text-blue-600 dark:text-blue-400" /><span className="text-gray-700 dark:text-gray-300">France</span></div>
-              <div className="flex items-center gap-3"><Mail className="text-blue-600 dark:text-blue-400" /><a href="mailto:A.elfarouahDEV@outlook.fr" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 underline">A.elfarouahDEV@outlook.fr</a></div>
+          {/* Grille principale: infos + reseaux | formulaire */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
+            {/* Carte informations + reseaux */}
+            <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-5 sm:p-6 space-y-6">
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Informations</h3>
+                <div className="flex items-center gap-3"><MapPin className="text-blue-600 dark:text-blue-400" /><span className="text-gray-700 dark:text-gray-300">France</span></div>
+                <div className="flex items-center gap-3"><Mail className="text-blue-600 dark:text-blue-400" /><a href="mailto:A.elfarouahDEV@outlook.fr" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 underline">A.elfarouahDEV@outlook.fr</a></div>
+              </div>
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Réseaux</h3>
+                <a href="https://github.com/Abdeelfarouah/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-3 py-2 px-3 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/70 transition ring-1 ring-transparent hover:ring-blue-200/40 dark:hover:ring-blue-400/20">
+                  <span className="flex items-center gap-3"><Github className="text-gray-900 dark:text-white" /><span className="text-gray-700 dark:text-gray-300">@Abdeelfarouah</span></span>
+                </a>
+                <a href="https://fr.linkedin.com/in/abderrahmaneelfarouah" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-3 py-2 px-3 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/70 transition ring-1 ring-transparent hover:ring-blue-200/40 dark:hover:ring-blue-400/20">
+                  <span className="flex items-center gap-3"><Linkedin className="text-blue-600" /><span className="text-gray-700 dark:text-gray-300">Abderrahmane El Farouah</span></span>
+                </a>
+              </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="flex-1 space-y-5">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Réseaux</h3>
-              <a href="https://github.com/Abdeelfarouah/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"><Github className="text-gray-900 dark:text-white" /><span className="text-gray-700 dark:text-gray-300">@Abdeelfarouah</span></a>
-              <a href="https://fr.linkedin.com/in/abderrahmaneelfarouah" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"><Linkedin className="text-blue-600" /><span className="text-gray-700 dark:text-gray-300">Abderrahmane El Farouah</span></a>
+            {/* Carte formulaire */}
+            <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-5 sm:p-6">
+              <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">N'hésitez pas à me contacter pour discuter de vos projets ou opportunités de collaboration.</p>
+              <form onSubmit={handleSubmit} className="mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Nom</label>
+                    <input type="text" id="name" name="name" value={formState.name} onChange={handleChange} placeholder="Votre nom" className="appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Email</label>
+                    <input type="email" id="email" name="email" value={formState.email} onChange={handleChange} placeholder="exemple@mail.com" className="appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required />
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Date et heure du rendez-vous</label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="relative">
+                      <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600 dark:text-blue-400">
+                        <Calendar size={18} />
+                      </span>
+                      <DatePicker
+                        selected={formState.date}
+                        onChange={handleDateChange}
+                        dateFormat="dd/MM/yyyy"
+                        locale="fr"
+                        minDate={new Date()}
+                        filterDate={(d: Date) => d.getDay() !== 0 && d.getDay() !== 6}
+                        placeholderText="Choisissez une date"
+                        className="appearance-none border rounded-md w-full py-2.5 pl-10 pr-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70"
+                        calendarClassName="glass"
+                        popperClassName="rdp-popper"
+                        showPopperArrow={false}
+                        todayButton="Aujourd'hui"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <select value={selectedHour ?? (formState.date ? new Date(formState.date).getHours() : '')} onChange={handleHourChange} className="appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required>
+                        <option value="" disabled>Choisissez l'heure</option>
+                        {HOURS.map((h) => (
+                          <option key={h} value={h}>{`${h.toString().padStart(2, '0')}:00`}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" className="mt-6 btn-shiny">Envoyer</motion.button>
+                {sent && <p className="mt-4 text-green-600 dark:text-green-400 font-medium">✅ Votre rendez-vous a été enregistré.</p>}
+              </form>
             </motion.div>
           </div>
 
-          {/* Formulaire */}
-          <motion.div variants={itemVariants} className="text-center text-gray-600 dark:text-gray-400 text-base sm:text-lg">
-            <p>N'hésitez pas à me contacter pour discuter de vos projets ou opportunités de collaboration.</p>
-
-            <form onSubmit={handleSubmit} className="mt-8 max-w-md mx-auto">
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Nom:</label>
-                <input type="text" id="name" name="name" value={formState.name} onChange={handleChange} placeholder="Votre nom" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-800" required />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Email:</label>
-                <input type="email" id="email" name="email" value={formState.email} onChange={handleChange} placeholder="exemple@mail.com" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-800" required />
-              </div>
-              <div className="mb-6">
-                <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Date et heure du rendez-vous:</label>
-                <DatePicker selected={formState.date} onChange={handleDateChange} dateFormat="dd/MM/yyyy HH:mm" showTimeSelect timeFormat="HH:mm" timeIntervals={30} minDate={new Date()} placeholderText="Choisissez une date et une heure" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-800" required />
-              </div>
-              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Envoyer</motion.button>
-              {sent && <p className="mt-4 text-green-600 dark:text-green-400 font-medium">✅ Votre rendez-vous a été enregistré.</p>}
-            </form>
-          </motion.div>
-
           {/* Image pour digicode */}
-          <div className="flex justify-center items-center mt-6">
-            <motion.img src={PROFILE_IMAGE} alt="Abderrahmane El Farouah" className="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-lg cursor-pointer" onClick={handleImageClick} />
+          <div className="flex justify-center">
+            <motion.img src={PROFILE_IMAGE} alt="Abderrahmane El Farouah" className="w-20 h-20 sm:w-28 sm:h-28 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/10 shadow-lg cursor-pointer" onClick={handleImageClick} />
           </div>
 
           {/* Back-office */}
           {showBackOffice && (
-            <div style={{ position: 'fixed', top: 50, right: 50, width: 400, background: '#fff', border: '2px solid #000', padding: 20, zIndex: 9999 }}>
-              <h2>Back-office sécurisé</h2>
-              <p>Voici les demandes de rendez-vous :</p>
-              <ul>
+            <div className="fixed top-16 right-6 w-[380px] glass ring-chrome rounded-xl p-5 shadow-lg z-[60]">
+              <h2 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Back-office sécurisé</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Voici les demandes de rendez-vous :</p>
+              <ul className="max-h-64 overflow-auto pr-1 space-y-2">
                 {appointments.map((appointment: Appointment) => (
-                  <li key={appointment.id} className="mb-2">
-                    {appointment.name} - {appointment.email} - {new Date(appointment.date).toLocaleString()}
-                    <button onClick={() => handleSendConfirmation(appointment)} className="ml-2 px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600">Envoyer confirmation</button>
+                  <li key={appointment.id} className="text-sm text-gray-800 dark:text-gray-200 bg-white/60 dark:bg-gray-800/70 rounded-md px-3 py-2 flex items-center justify-between">
+                    <span className="truncate">{appointment.name} - {appointment.email} - {new Date(appointment.date).toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short' })}</span>
+                    <button onClick={() => handleSendConfirmation(appointment)} className="ml-2 px-2 py-1 rounded-md bg-emerald-600 text-white hover:bg-emerald-700">Envoyer</button>
                   </li>
                 ))}
               </ul>
-              <button onClick={() => setShowBackOffice(false)} className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Fermer</button>
+              <div className="flex justify-end gap-2 mt-4">
+                <button onClick={() => setShowBackOffice(false)} className="px-4 py-2 rounded-md bg-rose-600 text-white hover:bg-rose-700">Fermer</button>
+              </div>
             </div>
           )}
         </motion.div>
