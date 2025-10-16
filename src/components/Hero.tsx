@@ -18,7 +18,7 @@ export default function Hero() {
     <section
       className="
         h-full
-        chrome-surface bg-radial-faint
+        glass metal-surface bg-radial-faint
         py-8 sm:py-12 md:py-16
         px-2 sm:px-6 md:px-12
         overflow-y-auto

@@ -3,7 +3,7 @@ import SectionTitle from './shared/SectionTitle';
 
 export default function About() {
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-900">
+    <section id="about" className="py-20 glass metal-surface">
       <Container>
         <SectionTitle>À propos de moi</SectionTitle>
         
@@ -16,7 +16,7 @@ export default function About() {
           
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <div className="glass metal-surface p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Formations Professionnelles</h3>
               <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                 <li>START ZUP (2023-2024)</li>
@@ -24,7 +24,7 @@ export default function About() {
               </ul>
             </div>
             
-            <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <div className="glass metal-surface p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Certifications</h3>
               <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                 <li>PSC1 (2018)</li>

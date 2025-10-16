@@ -27,7 +27,7 @@ export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
   };
 
   return (
-    <nav className="glass z-50 sticky top-0">
+    <nav className="glass metal-surface z-50 sticky top-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
@@ -43,10 +43,10 @@ export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
                   key={item.id}
                   to={item.id === 'home' ? '/' : `/${item.id}`}
                   onClick={() => handleNavClick(item.id)}
-                  className={({ isActive }: { isActive: boolean }) => `px-3 py-2 rounded-lg text-sm font-medium transition-all ring-1 ring-transparent ${
+                  className={({ isActive }: { isActive: boolean }) => `px-3 py-2 rounded-lg text-sm font-medium transition-all ring-1 ring-transparent backdrop-blur-sm ${
                     isActive || activeTab === item.id
-                      ? 'text-blue-600 dark:text-blue-400 bg-white/70 dark:bg-gray-800 ring-blue-200/40 dark:ring-blue-400/20 shadow-glow'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-gray-800/70 hover:ring-blue-200/40 dark:hover:ring-blue-400/20'
+                      ? 'text-blue-600 dark:text-blue-400 bg-white/60 dark:bg-gray-800/70 ring-blue-200/40 dark:ring-blue-400/20 shadow-glow'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-gray-800/60 hover:ring-blue-200/40 dark:hover:ring-blue-400/20'
                   }`}
                 >
                   {item.label}
@@ -70,7 +70,7 @@ export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden glass ring-chrome">
+        <div className="md:hidden glass metal-surface ring-chrome">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <button

@@ -28,7 +28,7 @@ export default function App() {
       <div
         className="
           min-h-screen flex flex-col
-          bg-radial-faint bg-fixed bg-gray-50 dark:bg-gray-950 transition-colors
+          bg-gray-50 dark:bg-gray-950 bg-radial-faint fluid-bg transition-colors
           w-full
           max-w-[768px] max-h-[1024px]    // smartphone portrait par défaut
           sm:max-w-[800px] sm:max-h-[1280px] // tablette portrait

@@ -20,6 +20,10 @@ blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre {
     @apply bg-gradient-to-b from-white to-chrome-light dark:from-gray-900 dark:to-gray-800 shadow-chrome;
   }
 
+  .metal-surface {
+    @apply bg-gradient-to-b from-white/70 to-metallic-silver/30 dark:from-gray-900/70 dark:to-gray-800/60 shadow-metal rounded-xl border border-white/20 dark:border-white/10;
+  }
+
   .shiny-text {
     background: linear-gradient(90deg, #93C5FD 0%, #60A5FA 20%, #C4B5FD 40%, #60A5FA 60%, #93C5FD 80%);
     background-size: 200% 100%;
@@ -27,6 +31,12 @@ blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre {
     background-clip: text;
     color: transparent;
     animation: shimmer 3s linear infinite;
+  }
+
+  .fluid-bg {
+    background-image: linear-gradient(120deg, rgba(96,165,250,0.20), rgba(167,139,250,0.20), rgba(34,211,238,0.20));
+    background-size: 200% 200%;
+    animation: aurora 18s ease infinite;
   }
 
   .ring-chrome {
