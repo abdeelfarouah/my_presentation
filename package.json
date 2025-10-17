@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run dev",
-    "build": "npm run build",
+    "dev": "npx vite",
+    "build": "npx vite build",
+    "preview": "npx vite preview",
     "lint": "eslint .",
-    "preview": "npm run preview",
     "yarn:clean": "yarn install --silent"
   },
   "dependencies": {
