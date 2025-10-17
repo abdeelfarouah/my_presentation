@@ -1,4 +1,6 @@
+# ======================
 # Logs
+# ======================
 logs
 *.log
 npm-debug.log*
@@ -7,18 +9,66 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# ======================
+# Node modules & build
+# ======================
+node_modules/
+dist/
+dist-ssr/
 *.local
+.cache/
+.vite/
+.vite-test/
 
-# Editor directories and files
+# ======================
+# Environment files
+# ======================
+.env
+.env.local
+.env.*.local
+
+# ======================
+# TypeScript
+# ======================
+*.tsbuildinfo
+
+# ======================
+# Linters / formatters
+# ======================
+.eslintcache
+.stylelintcache
+.prettier.cache
+
+# ======================
+# IDE / Editor
+# ======================
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+*.sw*
+
+# ======================
+# OS generated files
+# ======================
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# ======================
+# PNPM specific
+# ======================
+.pnpm-store/
+.pnpm-debug.log*
+
+# ======================
+# Netlify / Vercel / CI
+# ======================
+.netlify/
+.vercel/
+.vercel_build_output/
+build/
