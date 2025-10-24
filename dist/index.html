@@ -3,6 +3,102 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="A0GaDnxJBsL4P9B1MXlAEMhsAvxiOkDErVH0YZyMmX8" />
+
+    <!-- SEO par défaut (page d'accueil) -->
+    <title>Portfolio | Abderrahmane EL FAROUAH - Développeur Web Angular</title>
+    <meta name="description" content="Portfolio d'Abderrahmane El Farouah — Développeur Web Angular. Découvrez mes projets, compétences et expériences." />
+    <link rel="canonical" href="https://www.abderrahmane-elfarouahfreelance.com/" />
+
+    <!-- Favicon / icônes -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- PWA / thème -->
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Données structurées Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Abderrahmane El Farouah",
+      "url": "https://www.abderrahmane-elfarouahfreelance.com/",
+      "jobTitle": "Développeur Web Fullstack",
+      "description": "Développeur Web Fullstack spécialisé en Angular, Laravel et TypeScript. Découvrez mes projets, compétences et expériences à travers mon portfolio en ligne.",
+      "sameAs": [
+        "https://www.linkedin.com/in/abderrahmaneelfarouah/",
+        "https://github.com/abdeelfarouah"
+      ],
+      "knowsAbout": [
+        "Angular",
+        "Laravel",
+        "TypeScript",
+        "Node.js",
+        "React",
+        "Développement web fullstack",
+        "Applications web performantes"
+      ]
+    }
+    </script>
+
+    <!-- Scripts / assets -->
+    <script type="module" crossorigin src="/assets/index-D-30gaax.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/react-D3F3s8fL.js" />
+    <link rel="stylesheet" crossorigin href="/assets/index-BxQOrTxQ.css" />
+
+    <!-- Script SEO dynamique -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const canonical = document.querySelector("link[rel='canonical']");
+        const metaDesc = document.querySelector("meta[name='description']");
+        const path = window.location.pathname;
+
+        const seoData = {
+          "/": {
+            title: "Portfolio | Abderrahmane EL FAROUAH - Développeur Web Angular",
+            desc: "Portfolio d'Abderrahmane El Farouah — Développeur Web Angular. Découvrez mes projets, compétences et expériences.",
+          },
+          "/about": {
+            title: "À propos | Abderrahmane EL FAROUAH",
+            desc: "Découvrez le parcours et la philosophie d’Abderrahmane El Farouah, développeur web fullstack passionné par Angular et Laravel.",
+          },
+          "/skills": {
+            title: "Compétences | Abderrahmane EL FAROUAH",
+            desc: "Découvrez les compétences techniques d’Abderrahmane El Farouah : Angular, TypeScript, Laravel, Node.js et plus encore.",
+          },
+          "/experience": {
+            title: "Expériences | Abderrahmane EL FAROUAH",
+            desc: "Découvrez les expériences professionnelles d’Abderrahmane El Farouah en développement web et ses réalisations techniques.",
+          },
+          "/projects": {
+            title: "Projets | Abderrahmane EL FAROUAH",
+            desc: "Découvrez les projets web réalisés par Abderrahmane El Farouah : applications modernes Angular, Laravel et fullstack.",
+          },
+          "/contact": {
+            title: "Contact | Abderrahmane EL FAROUAH",
+            desc: "Contactez Abderrahmane El Farouah, développeur web freelance spécialisé en Angular et Laravel. Disponible pour vos projets web sur mesure.",
+          },
+        };
+
+        const current = seoData[path] || seoData["/"];
+        document.title = current.title;
+        metaDesc.setAttribute("content", current.desc);
+        canonical.setAttribute("href", "https://www.abderrahmane-elfarouahfreelance.com" + path);
+      });
+    </script>
+  </head>
+
+  <body class="min-h-screen bg-gray-50 dark:bg-gray-950 bg-radial-faint fluid-bg text-gray-900 dark:text-white antialiased">
+    <div id="root"></div>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-site-verification" content="A0GaDnxJBsL4P9B1MXlAEMhsAvxiOkDErVH0YZyMmX8" />
     <!-- SEO -->
     <title>Mon Portfolio | Abderrahmane EL FAROUAH -Développeur Web  Angular </title> 
@@ -48,6 +144,8 @@
   </head>
 
   <body class="min-h-screen bg-gray-50 dark:bg-gray-950 bg-radial-faint fluid-bg text-gray-900 dark:text-white antialiased">
-    <div id="root"></div>
+    <div id="root"></div>
+
   </body>
 </html>
+
