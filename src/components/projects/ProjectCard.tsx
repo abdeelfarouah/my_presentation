@@ -23,7 +23,7 @@ export default function ProjectCard({ title, description, link, github, image }:
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 bg-white/90 rounded-full text-gray-900 hover:bg-white transition-colors"
+            className="touch-area focus-visible p-2 bg-white/90 rounded-full text-gray-900 hover:bg-white transition-colors"
             aria-label={`Voir la démo de ${title}`}
           >
             <ExternalLink size={20} />
@@ -32,7 +32,7 @@ export default function ProjectCard({ title, description, link, github, image }:
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 bg-white/90 rounded-full text-gray-900 hover:bg-white transition-colors"
+            className="touch-area focus-visible p-2 bg-white/90 rounded-full text-gray-900 hover:bg-white transition-colors"
             aria-label={`Voir le code de ${title}`}
           >
             <Github size={20} />
@@ -50,7 +50,7 @@ export default function ProjectCard({ title, description, link, github, image }:
           href={link}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 flex items-center"
+          className="touch-area focus-visible text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 flex items-center"
         >
           <span className="mr-2">Demo</span>
           <ExternalLink size={16} />
@@ -59,7 +59,7 @@ export default function ProjectCard({ title, description, link, github, image }:
           href={github}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center"
+          className="touch-area focus-visible text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center"
         >
           <span className="mr-2">Code</span>
           <Github size={16} />

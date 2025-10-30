@@ -171,15 +171,15 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="h-full w-full min-h-[480px] py-10 px-2 sm:py-16 chrome-surface bg-radial-faint max-w-[1280px] mx-auto rounded-xl ring-chrome">
+    <section id="contact" className="h-full w-full min-h-[480px] py-6 px-2 sm:py-10 md:py-14 chrome-surface bg-radial-faint max-w-[1280px] mx-auto rounded-xl ring-chrome">
       <div className="h-full animate-fade-in flex flex-col w-full">
         <motion.div ref={ref} variants={containerVariants} initial="hidden" animate={inView ? "visible" : "hidden"} className="w-full">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">Contactez-moi</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-4 sm:mb-8">Contactez-moi</h2>
 
           {/* Grille principale: infos + reseaux | formulaire */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8">
             {/* Carte informations + reseaux */}
-            <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-5 sm:p-6 space-y-6">
+            <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-4 sm:p-6 space-y-6">
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Informations</h3>
                 <div className="flex items-center gap-3"><MapPin className="text-blue-600 dark:text-blue-400" /><span className="text-gray-700 dark:text-gray-300">France</span></div>
@@ -197,17 +197,17 @@ export default function Contact() {
             </motion.div>
 
             {/* Carte formulaire */}
-            <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-5 sm:p-6">
+            <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-4 sm:p-6">
               <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">N'hésitez pas à me contacter pour discuter de vos projets ou opportunités de collaboration.</p>
               <form onSubmit={handleSubmit} className="mt-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Nom</label>
-                    <input type="text" id="name" name="name" value={formState.name} onChange={handleChange} placeholder="Votre nom" className="appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required />
+                    <input type="text" id="name" name="name" value={formState.name} onChange={handleChange} placeholder="Votre nom" className="touch-area focus-visible appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Email</label>
-                    <input type="email" id="email" name="email" value={formState.email} onChange={handleChange} placeholder="exemple@mail.com" className="appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required />
+                    <input type="email" id="email" name="email" value={formState.email} onChange={handleChange} placeholder="exemple@mail.com" className="touch-area focus-visible appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required />
                   </div>
                 </div>
                 <div className="mt-4">
@@ -234,7 +234,7 @@ export default function Contact() {
                       />
                     </div>
                     <div>
-                      <select value={selectedHour ?? (formState.date ? new Date(formState.date).getHours() : '')} onChange={handleHourChange} className="appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required>
+                      <select value={selectedHour ?? (formState.date ? new Date(formState.date).getHours() : '')} onChange={handleHourChange} className="touch-area focus-visible appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required>
                         <option value="" disabled>Choisissez l'heure</option>
                         {HOURS.map((h) => (
                           <option key={h} value={h}>{`${h.toString().padStart(2, '0')}:00`}</option>
@@ -243,7 +243,7 @@ export default function Contact() {
                     </div>
                   </div>
                 </div>
-                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" className="mt-6 btn-shiny">Envoyer</motion.button>
+                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" className="touch-area focus-visible mt-6 btn-shiny">Envoyer</motion.button>
                 {sent && <p className="mt-4 text-green-600 dark:text-green-400 font-medium">✅ Votre rendez-vous a été enregistré.</p>}
               </form>
             </motion.div>
@@ -263,12 +263,12 @@ export default function Contact() {
                 {appointments.map((appointment: Appointment) => (
                   <li key={appointment.id} className="text-sm text-gray-800 dark:text-gray-200 bg-white/60 dark:bg-gray-800/70 rounded-md px-3 py-2 flex items-center justify-between">
                     <span className="truncate">{appointment.name} - {appointment.email} - {new Date(appointment.date).toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short' })}</span>
-                    <button onClick={() => handleSendConfirmation(appointment)} className="ml-2 px-2 py-1 rounded-md bg-emerald-600 text-white hover:bg-emerald-700">Envoyer</button>
+                    <button onClick={() => handleSendConfirmation(appointment)} className="touch-area focus-visible ml-2 px-2 py-1 rounded-md bg-emerald-600 text-white hover:bg-emerald-700">Envoyer</button>
                   </li>
                 ))}
               </ul>
               <div className="flex justify-end gap-2 mt-4">
-                <button onClick={() => setShowBackOffice(false)} className="px-4 py-2 rounded-md bg-rose-600 text-white hover:bg-rose-700">Fermer</button>
+                <button onClick={() => setShowBackOffice(false)} className="touch-area focus-visible px-4 py-2 rounded-md bg-rose-600 text-white hover:bg-rose-700">Fermer</button>
               </div>
             </div>
           )}

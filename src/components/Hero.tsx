@@ -19,8 +19,8 @@ export default function Hero() {
       className="
         h-full
         chrome-surface bg-radial-faint
-        py-8 sm:py-12 md:py-16
-        px-2 sm:px-6 md:px-12
+        py-4 sm:py-8 md:py-14
+        px-2 sm:px-4 md:px-8
         overflow-y-auto
         w-full
         max-w-full
@@ -55,7 +55,7 @@ export default function Hero() {
             href={SOCIAL_LINKS.GITHUB}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 sm:p-3 rounded-full bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors ring-1 ring-white/20"
+            className="touch-area focus-visible p-2 sm:p-3 rounded-full bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors ring-1 ring-white/20"
             title="GitHub"
           >
             <Github className="w-5 sm:w-[22px]" />
@@ -64,21 +64,21 @@ export default function Hero() {
             href={SOCIAL_LINKS.LINKEDIN}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 sm:p-3 rounded-full btn-shiny"
+            className="touch-area focus-visible p-2 sm:p-3 rounded-full btn-shiny"
             title="LinkedIn"
           >
             <Linkedin className="w-5 sm:w-[22px]" />
           </a>
           <button
             onClick={handleDownloadCV}
-            className="p-2 sm:p-3 rounded-full bg-gradient-to-b from-emerald-500 to-emerald-600 text-white hover:from-emerald-500/95 hover:to-emerald-600/95 transition-colors shadow-md"
+            className="touch-area focus-visible p-2 sm:p-3 rounded-full bg-gradient-to-b from-emerald-500 to-emerald-600 text-white hover:from-emerald-500/95 hover:to-emerald-600/95 transition-colors shadow-md"
             title="Télécharger mon CV"
           >
             <FileText className="w-5 sm:w-[22px]" />
           </button>
           <a
             href={`mailto:${SOCIAL_LINKS.EMAIL}`}
-            className="p-2 sm:p-3 rounded-full bg-gradient-to-b from-rose-500 to-rose-600 text-white hover:from-rose-500/95 hover:to-rose-600/95 transition-colors shadow-md"
+            className="touch-area focus-visible p-2 sm:p-3 rounded-full bg-gradient-to-b from-rose-500 to-rose-600 text-white hover:from-rose-500/95 hover:to-rose-600/95 transition-colors shadow-md"
             title="Email"
           >
             <Mail className="w-5 sm:w-[22px]" />

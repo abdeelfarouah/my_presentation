@@ -43,7 +43,7 @@ export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
                   key={item.id}
                   to={item.id === 'home' ? '/' : `/${item.id}`}
                   onClick={() => handleNavClick(item.id)}
-                  className={({ isActive }: { isActive: boolean }) => `px-3 py-2 rounded-lg text-sm font-medium transition-all ring-1 ring-transparent backdrop-blur-sm ${
+                  className={({ isActive }: { isActive: boolean }) => `touch-area focus-visible px-3 py-2 rounded-lg text-sm font-medium transition-all ring-1 ring-transparent backdrop-blur-sm ${
                     isActive || activeTab === item.id
                       ? 'text-blue-600 dark:text-blue-400 bg-white/60 dark:bg-gray-800/70 ring-blue-200/40 dark:ring-blue-400/20 shadow-glow'
                       : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-gray-800/60 hover:ring-blue-200/40 dark:hover:ring-blue-400/20'
@@ -59,8 +59,9 @@ export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
           <div className="md:hidden flex items-center space-x-2">
             <ThemeToggle />
             <button
+              aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-gray-800/70 focus:outline-none ring-1 ring-transparent hover:ring-blue-200/40 dark:hover:ring-blue-400/20"
+              className="touch-area focus-visible inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-gray-800/70 focus:outline-none focus:ring-2 focus:ring-blue-400 ring-1 ring-transparent hover:ring-blue-200/40 dark:hover:ring-blue-400/20"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -76,7 +77,7 @@ export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`block w-full text-left px-3 py-2 rounded-lg text-base font-medium ring-1 ring-transparent
+                className={`touch-area focus-visible block w-full text-left px-3 py-2 rounded-lg text-base font-medium ring-1 ring-transparent
                   ${activeTab === item.id
                     ? 'text-blue-600 dark:text-blue-400 bg-white/70 dark:bg-gray-800 ring-blue-200/40 dark:ring-blue-400/20'
                     : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-gray-800/70 hover:ring-blue-200/40 dark:hover:ring-blue-400/20'

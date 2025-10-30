@@ -36,7 +36,7 @@ export default function App() {
           bg-gradient-to-br from-blue-100/40 via-white/60 to-blue-200/20
           dark:from-blue-900/40 dark:via-slate-900/60 dark:to-blue-950/30
           backdrop-blur-2xl transition-all duration-500 ease-in-out
-          p-3 sm:p-6 md:p-10
+          p-2 sm:p-4 md:p-8 lg:p-12
           shadow-[inset_0_0_80px_rgba(255,255,255,0.1)]
           rounded-none sm:rounded-3xl
         "
@@ -55,7 +55,7 @@ export default function App() {
         />
 
         {/* --- Contenu principal avec animation fluide --- */}
-        <main id="main-content" className="flex-1 overflow-y-auto">
+        <main id="main-content" className="flex-1 min-h-0 overflow-y-auto">
           <div className="h-full flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div

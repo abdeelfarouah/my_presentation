@@ -95,7 +95,8 @@ export default function Projects() {
 		<section
 			className="
 				w-full
-				py-10 px-2 sm:py-16 bg-white dark:bg-gray-900
+				py-6 sm:py-8 md:py-12 px-2 sm:px-4 md:px-8
+				bg-white dark:bg-gray-900
 				max-w-[768px] max-h-[1024px]
 				sm:max-w-[800px] sm:max-h-[1280px]
 				md:max-w-[1280px] md:max-h-[800px]
@@ -103,7 +104,7 @@ export default function Projects() {
 				flex flex-col items-center
 			"
 		>
-			<h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
+			<h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-4 sm:mb-8">
 				Mes Projets
 			</h2>
 			<div className="relative w-full">
@@ -129,7 +130,7 @@ export default function Projects() {
 							key={project.title}
 							className="
 								carousel-card
-								min-w-[90%] sm:min-w-[340px] md:min-w-[350px] max-w-[350px]
+								min-w-[85%] sm:min-w-[340px] md:min-w-[350px] max-w-[350px]
 								flex-shrink-0 snap-center
 							"
 						>
