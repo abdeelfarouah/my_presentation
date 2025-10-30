@@ -21,7 +21,6 @@ export default function Hero() {
         chrome-surface bg-radial-faint
         py-4 sm:py-8 md:py-14
         px-2 sm:px-4 md:px-8
-        overflow-y-auto
         w-full
         max-w-full
         mx-auto

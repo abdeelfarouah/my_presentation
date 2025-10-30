@@ -32,7 +32,7 @@ export default function App() {
     <ThemeProvider>
       <div
         className="
-          flex flex-col min-h-screen w-full mx-auto overflow-y-auto
+          flex flex-col min-h-screen w-full mx-auto
           bg-gradient-to-br from-blue-100/40 via-white/60 to-blue-200/20
           dark:from-blue-900/40 dark:via-slate-900/60 dark:to-blue-950/30
           backdrop-blur-2xl transition-all duration-500 ease-in-out
@@ -55,7 +55,7 @@ export default function App() {
         />
 
         {/* --- Contenu principal avec animation fluide --- */}
-        <main id="main-content" className="flex-1 min-h-0 overflow-y-auto">
+        <main id="main-content" className="flex-1 h-auto">
           <div className="h-full flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div

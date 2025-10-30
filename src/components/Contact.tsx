@@ -14,7 +14,6 @@ interface Appointment {
   date: string;
 }
 
-// Base URL pour l'API: en dev, proxy Vite renvoie vers 4000; en prod, même origin
 const API_BASE = '/api';
 
 export default function Contact() {
@@ -35,11 +34,11 @@ export default function Contact() {
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
   const HOURS = Array.from({ length: 9 }).map((_, i) => 10 + i); // 10..18 inclus
   const [sent, setSent] = useState(false);
+  const [errorEmail, setErrorEmail] = useState<string>('');
 
   const [showBackOffice, setShowBackOffice] = useState(false);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
 
-  // --- Fetch appointments si back-office visible
   const fetchAppointments = async () => {
     try {
       const res = await fetch(`${API_BASE}/appointments`);
@@ -60,8 +59,22 @@ export default function Contact() {
   }, [showBackOffice]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    if (name === 'name' && value.length > 50) return;
+    if (name === 'email' && value.length > 100) return;
+
+    setFormState({ ...formState, [name]: value });
+
+    if (name === 'email') {
+      if (!value.includes('@') || !value.includes('.')) {
+        setErrorEmail("L’adresse email doit contenir '@' et '.'");
+      } else {
+        setErrorEmail('');
+      }
+    }
   };
+
   const roundToNextHour = (d: Date) => {
     const copy = new Date(d);
     if (copy.getMinutes() !== 0 || copy.getSeconds() !== 0 || copy.getMilliseconds() !== 0) {
@@ -70,9 +83,9 @@ export default function Contact() {
     copy.setMinutes(0, 0, 0);
     return copy;
   };
+
   const handleDateChange = (date: Date | null) => {
     if (!date) { setFormState({ ...formState, date }); return; }
-    // Si l'utilisateur choisit uniquement la date (00:00), fixer une heure par défaut (prochaine heure pleine)
     const isMidnight = date.getHours() === 0 && date.getMinutes() === 0;
     const base = isMidnight ? roundToNextHour(new Date()) : roundToNextHour(date);
     const hour = selectedHour ?? 10;
@@ -98,17 +111,16 @@ export default function Contact() {
 
   const validateForm = () => {
     if (!formState.name.trim()) return "Le nom est obligatoire.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) return "Email invalide.";
+    if (!formState.email.includes('@') || !formState.email.includes('.'))
+      return "L’adresse email doit contenir '@' et '.'";
     if (!formState.date) return "Veuillez choisir une date et une heure.";
     if (formState.date < new Date()) return "La date doit être dans le futur.";
     return null;
   };
 
-  // --- Digicode back-office
   const handleImageClick = async () => {
     const code = prompt("Veuillez entrer le digicode pour accéder au back-office :");
     if (!code) return;
-
     try {
       const res = await fetch(`${API_BASE}/check-digicode`, {
         method: 'POST',
@@ -117,23 +129,15 @@ export default function Contact() {
       });
       type DigicodeResponse = { success: boolean };
       let data: DigicodeResponse = { success: false };
-      try {
-        data = await res.json() as DigicodeResponse;
-      } catch {
-        data = { success: false };
-      }
-      if (data.success) {
-        setShowBackOffice(true);
-      } else {
-        alert("Digicode incorrect !");
-      }
+      try { data = await res.json() as DigicodeResponse; } catch { data = { success: false }; }
+      if (data.success) setShowBackOffice(true);
+      else alert("Digicode incorrect !");
     } catch (err) {
       console.error(err);
       alert("Erreur lors de la vérification du digicode");
     }
   };
 
-  // --- Soumission rendez-vous
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const error = validateForm();
@@ -161,7 +165,6 @@ export default function Contact() {
     }
   };
 
-  // --- Envoyer confirmation par mail
   const meetingLink = "https://meet.google.com/xxx-xxxx-xxx";
   const handleSendConfirmation = (appointment: Appointment) => {
     const formattedDate = new Date(appointment.date).toLocaleString("fr-FR", { dateStyle: "full", timeStyle: "short" });
@@ -176,9 +179,7 @@ export default function Contact() {
         <motion.div ref={ref} variants={containerVariants} initial="hidden" animate={inView ? "visible" : "hidden"} className="w-full">
           <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-4 sm:mb-8">Contactez-moi</h2>
 
-          {/* Grille principale: infos + reseaux | formulaire */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8">
-            {/* Carte informations + reseaux */}
             <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-4 sm:p-6 space-y-6">
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Informations</h3>
@@ -196,22 +197,56 @@ export default function Contact() {
               </div>
             </motion.div>
 
-            {/* Carte formulaire */}
+            {/* FORMULAIRE */}
             <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-4 sm:p-6">
-              <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">N'hésitez pas à me contacter pour discuter de vos projets ou opportunités de collaboration.</p>
+              <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">
+                N'hésitez pas à me contacter pour discuter de vos projets ou opportunités de collaboration.
+              </p>
+
               <form onSubmit={handleSubmit} className="mt-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Nom</label>
-                    <input type="text" id="name" name="name" value={formState.name} onChange={handleChange} placeholder="Votre nom" className="touch-area focus-visible appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required />
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formState.name}
+                      onChange={handleChange}
+                      placeholder="Nom"
+                      maxLength={50}
+                      className="touch-area focus-visible appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 bg-white/70 dark:bg-gray-800/80 focus:ring-2 focus:ring-blue-400/30"
+                      required
+                    />
                   </div>
+
                   <div>
                     <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Email</label>
-                    <input type="email" id="email" name="email" value={formState.email} onChange={handleChange} placeholder="exemple@mail.com" className="touch-area focus-visible appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required />
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formState.email}
+                      onChange={handleChange}
+                      placeholder="exemple@domaine.com"
+                      maxLength={100}
+                      className={`touch-area appearance-none border rounded-md w-full py-2.5 px-3 leading-tight focus:outline-none focus:ring-2 ${
+                        errorEmail
+                          ? 'border-red-500 focus:ring-red-400/30'
+                          : 'border-gray-300 focus:ring-blue-400/30'
+                      } text-gray-800 dark:text-gray-100 dark:bg-gray-800/80 bg-white/70`}
+                      required
+                    />
+                    {errorEmail && (
+                      <p className="text-red-500 text-sm mt-1">{errorEmail}</p>
+                    )}
                   </div>
                 </div>
+
                 <div className="mt-4">
-                  <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Date et heure du rendez-vous</label>
+                  <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">
+                    Date et heure du rendez-vous
+                  </label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div className="relative">
                       <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600 dark:text-blue-400">
@@ -224,17 +259,19 @@ export default function Contact() {
                         locale="fr"
                         minDate={new Date()}
                         filterDate={(d: Date) => d.getDay() !== 0 && d.getDay() !== 6}
-                        placeholderText="Choisissez une date"
-                        className="appearance-none border rounded-md w-full py-2.5 pl-10 pr-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70"
-                        calendarClassName="glass"
-                        popperClassName="rdp-popper"
-                        showPopperArrow={false}
+                        placeholderText="Date"
+                        className="appearance-none border rounded-md w-full py-2.5 pl-10 pr-3 text-gray-800 dark:text-gray-100 focus:ring-2 focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70"
                         todayButton="Aujourd'hui"
                         required
                       />
                     </div>
                     <div>
-                      <select value={selectedHour ?? (formState.date ? new Date(formState.date).getHours() : '')} onChange={handleHourChange} className="touch-area focus-visible appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300/60 dark:focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required>
+                      <select
+                        value={selectedHour ?? (formState.date ? new Date(formState.date).getHours() : '')}
+                        onChange={handleHourChange}
+                        className="touch-area focus-visible appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70"
+                        required
+                      >
                         <option value="" disabled>Choisissez l'heure</option>
                         {HOURS.map((h) => (
                           <option key={h} value={h}>{`${h.toString().padStart(2, '0')}:00`}</option>
@@ -243,32 +280,66 @@ export default function Contact() {
                     </div>
                   </div>
                 </div>
-                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" className="touch-area focus-visible mt-6 btn-shiny">Envoyer</motion.button>
-                {sent && <p className="mt-4 text-green-600 dark:text-green-400 font-medium">✅ Votre rendez-vous a été enregistré.</p>}
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="touch-area focus-visible mt-6 btn-shiny"
+                >
+                  Envoyer
+                </motion.button>
+
+                {sent && (
+                  <p className="mt-4 text-green-600 dark:text-green-400 font-medium">
+                    ✅ Votre rendez-vous a été enregistré.
+                  </p>
+                )}
               </form>
             </motion.div>
           </div>
 
-          {/* Image pour digicode */}
+          {/* IMAGE DIGICODE */}
           <div className="flex justify-center">
-            <motion.img src={PROFILE_IMAGE} alt="Abderrahmane El Farouah" className="w-20 h-20 sm:w-28 sm:h-28 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/10 shadow-lg cursor-pointer" onClick={handleImageClick} />
+            <motion.img
+              src={PROFILE_IMAGE}
+              alt="Abderrahmane El Farouah"
+              className="w-20 h-20 sm:w-28 sm:h-28 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/10 shadow-lg cursor-pointer"
+              onClick={handleImageClick}
+            />
           </div>
 
-          {/* Back-office */}
+          {/* BACK OFFICE */}
           {showBackOffice && (
             <div className="fixed top-16 right-6 w-[380px] glass ring-chrome rounded-xl p-5 shadow-lg z-[60]">
               <h2 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Back-office sécurisé</h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Voici les demandes de rendez-vous :</p>
               <ul className="max-h-64 overflow-auto pr-1 space-y-2">
-                {appointments.map((appointment: Appointment) => (
-                  <li key={appointment.id} className="text-sm text-gray-800 dark:text-gray-200 bg-white/60 dark:bg-gray-800/70 rounded-md px-3 py-2 flex items-center justify-between">
-                    <span className="truncate">{appointment.name} - {appointment.email} - {new Date(appointment.date).toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short' })}</span>
-                    <button onClick={() => handleSendConfirmation(appointment)} className="touch-area focus-visible ml-2 px-2 py-1 rounded-md bg-emerald-600 text-white hover:bg-emerald-700">Envoyer</button>
+                {appointments.map((appointment) => (
+                  <li
+                    key={appointment.id}
+                    className="text-sm text-gray-800 dark:text-gray-200 bg-white/60 dark:bg-gray-800/70 rounded-md px-3 py-2 flex items-center justify-between"
+                  >
+                    <span className="truncate">
+                      {appointment.name} - {appointment.email} -{' '}
+                      {new Date(appointment.date).toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short' })}
+                    </span>
+                    <button
+                      onClick={() => handleSendConfirmation(appointment)}
+                      className="touch-area focus-visible ml-2 px-2 py-1 rounded-md bg-emerald-600 text-white hover:bg-emerald-700"
+                    >
+                      Envoyer
+                    </button>
                   </li>
                 ))}
               </ul>
               <div className="flex justify-end gap-2 mt-4">
-                <button onClick={() => setShowBackOffice(false)} className="touch-area focus-visible px-4 py-2 rounded-md bg-rose-600 text-white hover:bg-rose-700">Fermer</button>
+                <button
+                  onClick={() => setShowBackOffice(false)}
+                  className="touch-area focus-visible px-4 py-2 rounded-md bg-rose-600 text-white hover:bg-rose-700"
+                >
+                  Fermer
+                </button>
               </div>
             </div>
           )}
