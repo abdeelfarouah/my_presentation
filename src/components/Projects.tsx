@@ -95,7 +95,7 @@ export default function Projects() {
 		<section
 			className="
 				w-full
-				py-6 sm:py-8 md:py-12 px-2 sm:px-4 md:px-8
+				py-4 sm:py-6 md:py-10 px-2 sm:px-4 md:px-8
 				bg-white dark:bg-gray-900
 				max-w-[768px] max-h-[1024px]
 				sm:max-w-[800px] sm:max-h-[1280px]

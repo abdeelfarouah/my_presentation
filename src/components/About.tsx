@@ -3,20 +3,20 @@ import SectionTitle from './shared/SectionTitle';
 
 export default function About() {
   return (
-    <section id="about" className="py-8 sm:py-12 md:py-16 glass metal-surface">
+    <section id="about" className="py-4 sm:py-8 md:py-12 glass metal-surface">
       <Container>
         <SectionTitle>À propos de moi</SectionTitle>
         
         <div className="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-          <p className="mb-6">
+          <p className="mb-3 sm:mb-4 md:mb-6">
             Développeur passionné avec une double expertise en développement AS400 RPG et technologies web modernes.
             Mon parcours unique me permet d'apporter une perspective précieuse aux projets, combinant la robustesse
             des systèmes legacy avec l'innovation des technologies actuelles.
           </p>
           
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <div className="glass metal-surface p-6 rounded-lg">
+          <div className="mt-4 sm:mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+            <div className="glass metal-surface p-4 sm:p-5 md:p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 md:mb-4">Formations Professionnelles</h3>
               <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                 <li>START ZUP (2023-2024)</li>
@@ -24,7 +24,7 @@ export default function About() {
               </ul>
             </div>
             
-            <div className="glass metal-surface p-6 rounded-lg">
+            <div className="glass metal-surface p-4 sm:p-5 md:p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 md:mb-4">Certifications</h3>
               <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                 <li>PSC1 (2018)</li>

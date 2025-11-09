@@ -174,39 +174,39 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="h-full w-full min-h-[480px] py-6 px-2 sm:py-10 md:py-14 chrome-surface bg-radial-faint max-w-[1280px] mx-auto rounded-xl ring-chrome">
+    <section id="contact" className="h-full w-full min-h-[480px] py-3 px-2 sm:py-4 md:py-6 chrome-surface bg-radial-faint max-w-[1280px] mx-auto rounded-xl ring-chrome">
       <div className="h-full animate-fade-in flex flex-col w-full">
         <motion.div ref={ref} variants={containerVariants} initial="hidden" animate={inView ? "visible" : "hidden"} className="w-full">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-4 sm:mb-8">Contactez-moi</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-900 dark:text-white mb-2 sm:mb-4">Contactez-moi</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8">
-            <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-4 sm:p-6 space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Informations</h3>
-                <div className="flex items-center gap-3"><MapPin className="text-blue-600 dark:text-blue-400" /><span className="text-gray-700 dark:text-gray-300">France</span></div>
-                <div className="flex items-center gap-3"><Mail className="text-blue-600 dark:text-blue-400" /><a href="mailto:A.elfarouahDEV@outlook.fr" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 underline">A.elfarouahDEV@outlook.fr</a></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
+            <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-3 sm:p-4 space-y-3">
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white">Informations</h3>
+                <div className="flex items-center gap-2"><MapPin className="text-blue-600 dark:text-blue-400" size={18} /><span className="text-sm text-gray-700 dark:text-gray-300">France</span></div>
+                <div className="flex items-center gap-2"><Mail className="text-blue-600 dark:text-blue-400" size={18} /><a href="mailto:A.elfarouahDEV@outlook.fr" className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 underline">A.elfarouahDEV@outlook.fr</a></div>
               </div>
-              <div className="space-y-3">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Réseaux</h3>
-                <a href="https://github.com/Abdeelfarouah/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-3 py-2 px-3 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/70 transition ring-1 ring-transparent hover:ring-blue-200/40 dark:hover:ring-blue-400/20">
-                  <span className="flex items-center gap-3"><Github className="text-gray-900 dark:text-white" /><span className="text-gray-700 dark:text-gray-300">@Abdeelfarouah</span></span>
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white">Réseaux</h3>
+                <a href="https://github.com/Abdeelfarouah/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-2 py-1.5 px-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/70 transition ring-1 ring-transparent hover:ring-blue-200/40 dark:hover:ring-blue-400/20">
+                  <span className="flex items-center gap-2"><Github size={18} className="text-gray-900 dark:text-white" /><span className="text-sm text-gray-700 dark:text-gray-300">@Abdeelfarouah</span></span>
                 </a>
-                <a href="https://fr.linkedin.com/in/abderrahmaneelfarouah" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-3 py-2 px-3 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/70 transition ring-1 ring-transparent hover:ring-blue-200/40 dark:hover:ring-blue-400/20">
-                  <span className="flex items-center gap-3"><Linkedin className="text-blue-600" /><span className="text-gray-700 dark:text-gray-300">Abderrahmane El Farouah</span></span>
+                <a href="https://fr.linkedin.com/in/abderrahmaneelfarouah" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-2 py-1.5 px-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/70 transition ring-1 ring-transparent hover:ring-blue-200/40 dark:hover:ring-blue-400/20">
+                  <span className="flex items-center gap-2"><Linkedin size={18} className="text-blue-600" /><span className="text-sm text-gray-700 dark:text-gray-300">Abderrahmane El Farouah</span></span>
                 </a>
               </div>
             </motion.div>
 
             {/* FORMULAIRE */}
-            <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-4 sm:p-6">
-              <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">
+            <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-3 sm:p-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                 N'hésitez pas à me contacter pour discuter de vos projets ou opportunités de collaboration.
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="mt-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
-                    <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Nom</label>
+                    <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1.5">Nom</label>
                     <input
                       type="text"
                       id="name"
@@ -215,13 +215,13 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="Nom"
                       maxLength={50}
-                      className="touch-area focus-visible appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 bg-white/70 dark:bg-gray-800/80 focus:ring-2 focus:ring-blue-400/30"
+                      className="touch-area focus-visible appearance-none border rounded-md w-full py-2 px-3 text-sm text-gray-800 dark:text-gray-100 bg-white/70 dark:bg-gray-800/80 focus:ring-2 focus:ring-blue-400/30"
                       required
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Email</label>
+                    <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1.5">Email</label>
                     <input
                       type="email"
                       id="email"
@@ -230,7 +230,7 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="exemple@domaine.com"
                       maxLength={100}
-                      className={`touch-area appearance-none border rounded-md w-full py-2.5 px-3 leading-tight focus:outline-none focus:ring-2 ${
+                      className={`touch-area appearance-none border rounded-md w-full py-2 px-3 text-sm leading-tight focus:outline-none focus:ring-2 ${
                         errorEmail
                           ? 'border-red-500 focus:ring-red-400/30'
                           : 'border-gray-300 focus:ring-blue-400/30'
@@ -238,13 +238,13 @@ export default function Contact() {
                       required
                     />
                     {errorEmail && (
-                      <p className="text-red-500 text-sm mt-1">{errorEmail}</p>
+                      <p className="text-red-500 text-xs mt-1">{errorEmail}</p>
                     )}
                   </div>
                 </div>
 
-                <div className="mt-4">
-                  <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">
+                <div className="mt-3">
+                  <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1.5">
                     Date et heure du rendez-vous
                   </label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -260,7 +260,7 @@ export default function Contact() {
                         minDate={new Date()}
                         filterDate={(d: Date) => d.getDay() !== 0 && d.getDay() !== 6}
                         placeholderText="Date"
-                        className="appearance-none border rounded-md w-full py-2.5 pl-10 pr-3 text-gray-800 dark:text-gray-100 focus:ring-2 focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70"
+                        className="appearance-none border rounded-md w-full py-2 pl-10 pr-3 text-sm text-gray-800 dark:text-gray-100 focus:ring-2 focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70"
                         todayButton="Aujourd'hui"
                         required
                       />
@@ -269,7 +269,7 @@ export default function Contact() {
                       <select
                         value={selectedHour ?? (formState.date ? new Date(formState.date).getHours() : '')}
                         onChange={handleHourChange}
-                        className="touch-area focus-visible appearance-none border rounded-md w-full py-2.5 px-3 text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70"
+                        className="touch-area focus-visible appearance-none border rounded-md w-full py-2 px-3 text-sm text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70"
                         required
                       >
                         <option value="" disabled>Choisissez l'heure</option>
@@ -285,13 +285,13 @@ export default function Contact() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="touch-area focus-visible mt-6 btn-shiny"
+                  className="touch-area focus-visible mt-4 btn-shiny"
                 >
                   Envoyer
                 </motion.button>
 
                 {sent && (
-                  <p className="mt-4 text-green-600 dark:text-green-400 font-medium">
+                  <p className="mt-3 text-sm text-green-600 dark:text-green-400 font-medium">
                     ✅ Votre rendez-vous a été enregistré.
                   </p>
                 )}
@@ -300,11 +300,11 @@ export default function Contact() {
           </div>
 
           {/* IMAGE DIGICODE */}
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-2">
             <motion.img
               src={PROFILE_IMAGE}
               alt="Abderrahmane El Farouah"
-              className="w-20 h-20 sm:w-28 sm:h-28 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/10 shadow-lg cursor-pointer"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/10 shadow-lg cursor-pointer"
               onClick={handleImageClick}
             />
           </div>

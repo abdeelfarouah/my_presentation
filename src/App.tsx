@@ -1,15 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { ThemeProvider } from './contexts/theme';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
+
+// Loading component
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center h-64">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+  </div>
+);
+
+// Lazy load components for code splitting
+const Hero = lazy(() => import('./components/Hero'));
+const About = lazy(() => import('./components/About'));
+const Projects = lazy(() => import('./components/Projects'));
+const Skills = lazy(() => import('./components/Skills'));
+const Experience = lazy(() => import('./components/Experience'));
+const Contact = lazy(() => import('./components/Contact'));
 
 export default function App() {
   const location = useLocation();
@@ -36,7 +45,7 @@ export default function App() {
           bg-gradient-to-br from-blue-100/40 via-white/60 to-blue-200/20
           dark:from-blue-900/40 dark:via-slate-900/60 dark:to-blue-950/30
           backdrop-blur-2xl transition-all duration-500 ease-in-out
-          p-2 sm:p-4 md:p-8 lg:p-12
+          p-2 sm:p-3 md:p-6 lg:p-10
           shadow-[inset_0_0_80px_rgba(255,255,255,0.1)]
           rounded-none sm:rounded-3xl
         "
@@ -66,16 +75,18 @@ export default function App() {
                 transition={{ duration: 0.35, ease: 'easeInOut' }}
                 className="w-full"
               >
-                <Routes location={location} key={location.pathname}>
-                  <Route path="/" element={<Hero />} />
-                  <Route path="/home" element={<Navigate to="/" />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/skills" element={<Skills />} />
-                  <Route path="/experience" element={<Experience />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="*" element={<Navigate to="/" />} />
-                </Routes>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Routes location={location} key={location.pathname}>
+                    <Route path="/" element={<Hero />} />
+                    <Route path="/home" element={<Navigate to="/" />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/skills" element={<Skills />} />
+                    <Route path="/experience" element={<Experience />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="*" element={<Navigate to="/" />} />
+                  </Routes>
+                </Suspense>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -84,7 +95,7 @@ export default function App() {
         {/* --- Footer chromé --- */}
         <footer
           className="
-            mt-5 py-4 text-center rounded-2xl
+            mt-3 sm:mt-4 md:mt-5 py-3 sm:py-4 text-center rounded-2xl
             bg-white/30 dark:bg-blue-900/20
             ring-1 ring-blue-300/30 dark:ring-blue-700/30
             backdrop-blur-xl shadow-inner

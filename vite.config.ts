@@ -79,9 +79,13 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          react: ['react', 'react-dom'],
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'framer-motion': ['framer-motion'],
+          'datepicker': ['react-datepicker', 'date-fns'],
+          'icons': ['lucide-react'],
         },
       },
     },
+    chunkSizeWarningLimit: 1000,
   },
 });

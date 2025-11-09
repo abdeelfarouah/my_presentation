@@ -19,7 +19,7 @@ export default function Hero() {
       className="
         h-full
         chrome-surface bg-radial-faint
-        py-4 sm:py-8 md:py-14
+        py-3 sm:py-6 md:py-12
         px-2 sm:px-4 md:px-8
         w-full
         max-w-full
@@ -27,7 +27,7 @@ export default function Hero() {
         rounded-xl ring-chrome
       "
     >
-      <Container className="flex flex-col justify-between text-center space-y-8">
+      <Container className="flex flex-col justify-between text-center space-y-4 sm:space-y-6 md:space-y-8">
         <div className="flex justify-center items-center">
           <img
             src={PROFILE_IMAGE}
@@ -54,33 +54,33 @@ export default function Hero() {
             href={SOCIAL_LINKS.GITHUB}
             target="_blank"
             rel="noopener noreferrer"
-            className="touch-area focus-visible p-2 sm:p-3 rounded-full bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors ring-1 ring-white/20"
+            className="touch-area focus-visible w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors ring-1 ring-white/20"
             title="GitHub"
           >
-            <Github className="w-5 sm:w-[22px]" />
+            <Github className="w-5 h-5 sm:w-6 sm:h-6" />
           </a>
           <a
             href={SOCIAL_LINKS.LINKEDIN}
             target="_blank"
             rel="noopener noreferrer"
-            className="touch-area focus-visible p-2 sm:p-3 rounded-full btn-shiny"
+            className="touch-area focus-visible w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full btn-shiny"
             title="LinkedIn"
           >
-            <Linkedin className="w-5 sm:w-[22px]" />
+            <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
           </a>
           <button
             onClick={handleDownloadCV}
-            className="touch-area focus-visible p-2 sm:p-3 rounded-full bg-gradient-to-b from-emerald-500 to-emerald-600 text-white hover:from-emerald-500/95 hover:to-emerald-600/95 transition-colors shadow-md"
+            className="touch-area focus-visible w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-gradient-to-b from-emerald-500 to-emerald-600 text-white hover:from-emerald-500/95 hover:to-emerald-600/95 transition-colors shadow-md"
             title="Télécharger mon CV"
           >
-            <FileText className="w-5 sm:w-[22px]" />
+            <FileText className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
           <a
             href={`mailto:${SOCIAL_LINKS.EMAIL}`}
-            className="touch-area focus-visible p-2 sm:p-3 rounded-full bg-gradient-to-b from-rose-500 to-rose-600 text-white hover:from-rose-500/95 hover:to-rose-600/95 transition-colors shadow-md"
+            className="touch-area focus-visible w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-gradient-to-b from-rose-500 to-rose-600 text-white hover:from-rose-500/95 hover:to-rose-600/95 transition-colors shadow-md"
             title="Email"
           >
-            <Mail className="w-5 sm:w-[22px]" />
+            <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
           </a>
         </div>
       </Container>
