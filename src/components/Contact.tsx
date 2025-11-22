@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { useState, useEffect, useCallback } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { fr } from 'date-fns/locale/fr';
+import fr from 'date-fns/locale/fr';
 import { PROFILE_IMAGE } from '../utils/images';
 import { SOCIAL_LINKS } from '../utils/constants';
 
