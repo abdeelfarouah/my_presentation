@@ -29,7 +29,8 @@ const viteImagemin = resolveImageminFactory();
 
 export default defineConfig({
   root: '.',
-  base: '/', // <-- IMPORTANT pour Vercel : chemins relatifs corrects
+  base: './', // Use relative paths for local development
+  publicDir: 'public',
   plugins: [
     react(),
     ...(viteImagemin
