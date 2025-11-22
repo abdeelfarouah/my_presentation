@@ -29,10 +29,10 @@ const viteImagemin = resolveImageminFactory();
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  root: '.', // racine du projet
   plugins: [
     react(),
 
-    // Add imagemin only if a compatible factory is found
     ...(viteImagemin
       ? [
           viteImagemin({
@@ -51,14 +51,14 @@ export default defineConfig({
       : []),
 
     visualizer({
-      open: true,           // ouvre automatiquement le rapport après build
+      open: true,
       filename: 'dist/stats.html',
-      template: 'treemap', // options : 'treemap', 'sunburst', 'network'
+      template: 'treemap',
     }),
   ],
 
   optimizeDeps: {
-    exclude: ['lucide-react'], // Évite la pré-optimisation de cette lib
+    exclude: ['lucide-react'],
   },
 
   server: {
@@ -77,6 +77,7 @@ export default defineConfig({
     minify: 'esbuild',
     cssCodeSplit: true,
     rollupOptions: {
+      input: 'public/index.html', // <-- utilise index.html dans public comme entry
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
