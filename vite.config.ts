@@ -28,8 +28,8 @@ function resolveImageminFactory(): ((options: Record<string, unknown>) => Plugin
 const viteImagemin = resolveImageminFactory();
 
 export default defineConfig({
+  base: '/',
   root: '.',
-  base: './', // Use relative paths for local development
   publicDir: 'public',
   plugins: [
     react(),
