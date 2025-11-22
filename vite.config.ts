@@ -27,12 +27,11 @@ function resolveImageminFactory(): ((options: Record<string, unknown>) => Plugin
 
 const viteImagemin = resolveImageminFactory();
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  root: '.', // racine du projet
+  root: '.',
+  base: '/', // <-- IMPORTANT pour Vercel : chemins relatifs corrects
   plugins: [
     react(),
-
     ...(viteImagemin
       ? [
           viteImagemin({
@@ -49,18 +48,15 @@ export default defineConfig({
           }),
         ]
       : []),
-
     visualizer({
       open: true,
       filename: 'dist/stats.html',
       template: 'treemap',
     }),
   ],
-
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-
   server: {
     proxy: {
       '/api': {
@@ -70,14 +66,13 @@ export default defineConfig({
       },
     },
   },
-
   build: {
     outDir: 'dist',
     sourcemap: false,
     minify: 'esbuild',
     cssCodeSplit: true,
     rollupOptions: {
-      input: 'index.html', // <-- utilise index.html à la racine comme entry
+      input: 'index.html', // index.html à la racine
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
