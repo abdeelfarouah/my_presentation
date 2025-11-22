@@ -28,9 +28,8 @@ function resolveImageminFactory(): ((options: Record<string, unknown>) => Plugin
 const viteImagemin = resolveImageminFactory();
 
 export default defineConfig({
-  base: '/',
   root: '.',
-  publicDir: 'public',
+  base: '/', // <-- IMPORTANT pour Vercel : chemins relatifs corrects
   plugins: [
     react(),
     ...(viteImagemin
