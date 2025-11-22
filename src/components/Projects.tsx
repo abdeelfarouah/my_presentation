@@ -61,21 +61,21 @@ export default function Projects() {
 	}, []);
 
 	const scrollToIndex = (idx: number) => {
-		const maxIndex = Math.max(0, projects.length - visibleCards);
-		const newIndex = Math.max(0, Math.min(idx, maxIndex));
-		setScrollIndex(newIndex);
-		if (carouselRef.current) {
-			const card = carouselRef.current.querySelectorAll<HTMLDivElement>('.carousel-card')[0];
-			if (card) {
-				const gap = 24; // gap-6
-				const scrollAmount = card.offsetWidth + gap;
-				carouselRef.current.scrollTo({
-					left: newIndex * scrollAmount,
-					behavior: 'smooth',
-				});
+			const maxIndex = Math.max(0, projects.length - visibleCards);
+			const newIndex = Math.max(0, Math.min(idx, maxIndex));
+			setScrollIndex(newIndex);
+			if (carouselRef.current) {
+				const card = carouselRef.current.querySelector<HTMLDivElement>('.carousel-card');
+				if (card) {
+					const gap = 24; // gap-6
+					const scrollAmount = card.offsetWidth + gap;
+					carouselRef.current.scrollTo({
+						left: newIndex * scrollAmount,
+						behavior: 'smooth',
+					});
+				}
 			}
-		}
-	};
+		};
 
 	// Swipe tactile
 	const touch = useRef({ startX: 0, scrollLeft: 0 });
@@ -133,6 +133,8 @@ export default function Projects() {
 								min-w-[85%] sm:min-w-[340px] md:min-w-[350px] max-w-[350px]
 								flex-shrink-0 snap-center
 							"
+							role="group"
+							aria-label={project.title}
 						>
 							<ProjectCard {...project} />
 						</div>
@@ -145,14 +147,17 @@ export default function Projects() {
 					aria-label="Projet suivant"
 				>
 					<ChevronRight size={28} className="text-red-600" />
-				</button>
-			</div>
-			<div className="flex justify-center gap-2 mt-4">
-				{Array.from({ length: projects.length - visibleCards + 1 }).map((_, idx) => (
-					<span
+			<div className="flex justify-center gap-2 mt-4" role="tablist" aria-label="Pagination">
+				{Array.from({ length: Math.max(1, projects.length - visibleCards + 1) }).map((_, idx) => (
+					<button
 						key={idx}
-						className={`w-2 h-2 rounded-full${idx === scrollIndex ? ' bg-blue-600' : ' bg-gray-300 dark:bg-gray-700'}`}
+						type="button"
+						onClick={() => scrollToIndex(idx)}
+						aria-current={idx === scrollIndex ? 'true' : 'false'}
+						className={`w-2 h-2 rounded-full focus:outline-none${idx === scrollIndex ? ' bg-blue-600' : ' bg-gray-300 dark:bg-gray-700'}`}
 					/>
+				))}
+			</div>
 				))}
 			</div>
 		</section>
