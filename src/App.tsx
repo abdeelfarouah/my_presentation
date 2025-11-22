@@ -13,7 +13,6 @@ const LoadingFallback = () => (
 );
 
 // Lazy load components for code splitting
-const Hero = lazy(() => import('./components/Hero'));
 const About = lazy(() => import('./components/About'));
 const Projects = lazy(() => import('./components/Projects'));
 const Skills = lazy(() => import('./components/Skills'));
@@ -26,7 +25,9 @@ export default function App() {
 
   const routeToTab = (pathname: string) => {
     const seg = pathname.split('/').filter(Boolean)[0] || 'home';
-    return ['home', 'about', 'projects', 'skills', 'experience', 'contact'].includes(seg)
+    // Contact redirige vers home car ils sont fusionnés
+    if (seg === 'contact') return 'home';
+    return ['home', 'about', 'projects', 'skills', 'experience'].includes(seg)
       ? seg
       : 'home';
   };
@@ -77,13 +78,13 @@ export default function App() {
               >
                 <Suspense fallback={<LoadingFallback />}>
                   <Routes location={location} key={location.pathname}>
-                    <Route path="/" element={<Hero />} />
+                    <Route path="/" element={<Contact />} />
                     <Route path="/home" element={<Navigate to="/" />} />
+                    <Route path="/contact" element={<Navigate to="/" />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/skills" element={<Skills />} />
                     <Route path="/experience" element={<Experience />} />
-                    <Route path="/contact" element={<Contact />} />
                     <Route path="*" element={<Navigate to="/" />} />
                   </Routes>
                 </Suspense>

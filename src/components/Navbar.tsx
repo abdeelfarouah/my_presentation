@@ -17,7 +17,7 @@ export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
     { id: 'about', label: 'À propos' },
     { id: 'projects', label: 'Projets' },
     { id: 'skills', label: 'Compétences' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'experience', label: 'Expérience' },
   ];
 
   const handleNavClick = (id: string) => {

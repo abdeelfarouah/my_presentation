@@ -77,7 +77,7 @@ export default defineConfig({
     minify: 'esbuild',
     cssCodeSplit: true,
     rollupOptions: {
-      input: 'public/index.html', // <-- utilise index.html dans public comme entry
+      input: 'index.html', // <-- utilise index.html à la racine comme entry
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
