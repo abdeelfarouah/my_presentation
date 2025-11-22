@@ -147,18 +147,18 @@ export default function Projects() {
 					aria-label="Projet suivant"
 				>
 					<ChevronRight size={28} className="text-red-600" />
-			<div className="flex justify-center gap-2 mt-4" role="tablist" aria-label="Pagination">
-				{Array.from({ length: Math.max(1, projects.length - visibleCards + 1) }).map((_, idx) => (
-					<button
-						key={idx}
-						type="button"
-						onClick={() => scrollToIndex(idx)}
-						aria-current={idx === scrollIndex ? 'true' : 'false'}
-						className={`w-2 h-2 rounded-full focus:outline-none${idx === scrollIndex ? ' bg-blue-600' : ' bg-gray-300 dark:bg-gray-700'}`}
-					/>
-				))}
-			</div>
-				))}
+				</button>
+				<div className="flex justify-center gap-2 mt-4" role="tablist" aria-label="Pagination">
+					{Array.from({ length: Math.max(1, projects.length - visibleCards + 1) }).map((_, idx) => (
+						<button
+							key={idx}
+							type="button"
+							onClick={() => scrollToIndex(idx)}
+							aria-current={idx === scrollIndex ? 'true' : 'false'}
+							className={`w-2 h-2 rounded-full focus:outline-none${idx === scrollIndex ? ' bg-blue-600' : ' bg-gray-300 dark:bg-gray-700'}`}
+						/>
+					))}
+				</div>
 			</div>
 		</section>
 	);
