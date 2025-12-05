@@ -240,6 +240,7 @@ Merci,`;
                     type="email"
                     id="email"
                     name="email"
+                    autoComplete="email"
                     value={formState.email}
                     onChange={handleChange}
                     placeholder="exemple@domaine.com"
@@ -251,13 +252,16 @@ Merci,`;
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1.5">Date et heure</label>
+                  <div className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1.5">Date et heure</div>
                   <div className="grid grid-cols-2 gap-2">
                     <div className="relative">
+                      <label htmlFor="appointment-date" className="sr-only">Date</label>
                       <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2 text-blue-600 dark:text-blue-400">
                         <Calendar size={16} />
                       </span>
                       <DatePicker
+                        id="appointment-date"
+                        name="appointment-date"
                         selected={formState.date}
                         onChange={handleDateChange}
                         dateFormat="dd/MM/yyyy"
@@ -267,11 +271,20 @@ Merci,`;
                         placeholderText="Date"
                         className="appearance-none border rounded-md w-full py-2 pl-8 pr-2 text-sm text-gray-800 dark:text-gray-100 focus:ring-2 focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70"
                         todayButton="Aujourd'hui"
+                        autoComplete="off"
                         required
                       />
                     </div>
                     <div>
-                      <select value={selectedHour ?? (formState.date ? new Date(formState.date).getHours() : '')} onChange={handleHourChange} className="touch-area focus-visible appearance-none border rounded-md w-full py-2 px-2 text-sm text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" required>
+                      <label htmlFor="appointment-hour" className="sr-only">Heure</label>
+                      <select 
+                        id="appointment-hour"
+                        name="appointment-hour"
+                        value={selectedHour ?? (formState.date ? new Date(formState.date).getHours() : '')} 
+                        onChange={handleHourChange} 
+                        className="touch-area focus-visible appearance-none border rounded-md w-full py-2 px-2 text-sm text-gray-800 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400/30 dark:bg-gray-800/80 bg-white/70" 
+                        required
+                      >
                         <option value="" disabled>Heure</option>
                         {HOURS.map((h) => (
                           <option key={h} value={h}>{`${h.toString().padStart(2, '0')}:00`}</option>
