@@ -18,6 +18,8 @@ const Projects = lazy(() => import('./components/Projects'));
 const Skills = lazy(() => import('./components/Skills'));
 const Experience = lazy(() => import('./components/Experience'));
 const Contact = lazy(() => import('./components/Contact'));
+const MentionsLegales = lazy(() => import('./components/MentionsLegales'));
+const CGV = lazy(() => import('./components/CGV'));
 
 export default function App() {
   const location = useLocation();
@@ -79,12 +81,13 @@ export default function App() {
                 <Suspense fallback={<LoadingFallback />}>
                   <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<Contact />} />
-                    <Route path="/home" element={<Navigate to="/" />} />
                     <Route path="/contact" element={<Navigate to="/" />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/skills" element={<Skills />} />
                     <Route path="/experience" element={<Experience />} />
+                    <Route path="/mentions-legales" element={<MentionsLegales />} />
+                    <Route path="/cgv" element={<CGV />} />
                     <Route path="*" element={<Navigate to="/" />} />
                   </Routes>
                 </Suspense>
@@ -107,9 +110,34 @@ export default function App() {
           "
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="tracking-wide font-medium text-sm sm:text-base">
+            <p className="tracking-wide font-medium text-sm sm:text-base mb-2">
               &copy; {new Date().getFullYear()} Abderrahmane El Farouah
             </p>
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm">
+              <a
+                href="/mentions-legales"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/mentions-legales');
+                  setActiveTab('mentions-legales');
+                }}
+                className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+              >
+                Mentions légales
+              </a>
+              <span className="text-gray-500 dark:text-gray-400">|</span>
+              <a
+                href="/cgv"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/cgv');
+                  setActiveTab('cgv');
+                }}
+                className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+              >
+                CGV
+              </a>
+            </div>
           </div>
         </footer>
       </div>
