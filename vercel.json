@@ -37,45 +37,6 @@
       ]
     },
     {
-     {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
-  "rewrites": [
-    {
-      "source": "/((?!api|_next|assets|images|favicon\\.ico|robots\\.txt|sitemap\\.xml|site\\.webmanifest).*)",
-      "destination": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/images/(?:.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/assets/(?:.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/.*\\.(?:js|css|woff2?|png|jpg|jpeg|gif|svg|webp|ico)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
       "source": "/sitemap.xml",
       "headers": [
         {
@@ -92,20 +53,16 @@
           "value": "text/plain"
         }
       ]
-    }
-  ]
-}
-        }
-      ]
     },
     {
-      "source": "/robots.txt",
+      "source": "/site.webmanifest",
       "headers": [
         {
           "key": "Content-Type",
-          "value": "text/plain"
+          "value": "application/manifest+json"
         }
       ]
     }
   ]
 }
+
