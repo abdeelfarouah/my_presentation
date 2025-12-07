@@ -72,6 +72,7 @@ export default defineConfig({
     sourcemap: false,
     minify: 'esbuild',
     cssCodeSplit: true,
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
     rollupOptions: {
       input: 'index.html', // index.html à la racine
       output: {

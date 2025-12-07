@@ -32,7 +32,7 @@ export default function Navbar({ activeTab, onTabChange }: NavbarProps) {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3 sm:space-x-4">
             <div className="flex-shrink-0">
-              <img src={NAV_IMAGE} className="w-12 h-12 sm:w-16 sm:h-16" alt="Logo" />
+              <img src={NAV_IMAGE} width="64" height="64" className="w-12 h-12 sm:w-16 sm:h-16" alt="Logo" />
             </div>
             <h1 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-gray-900 dark:text-white text-left leading-tight">
               Abderrahmane el farouah<br className="block sm:hidden" />

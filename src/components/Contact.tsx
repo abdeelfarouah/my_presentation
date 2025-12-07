@@ -203,6 +203,8 @@ Merci,`;
                 <img
                   src={PROFILE_IMAGE}
                   alt="Abderrahmane El Farouah"
+                  width="128"
+                  height="128"
                   className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover ring-2 ring-white/70 dark:ring-white/10 shadow-lg animate-float"
                 />
               </div>
@@ -304,7 +306,16 @@ Merci,`;
 
           {/* IMAGE DIGICODE */}
           <div className="flex justify-center mt-4">
-            <motion.img src={PROFILE_IMAGE} alt="Abderrahmane El Farouah" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/10 shadow-lg cursor-pointer" onClick={handleImageClick} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} />
+            <motion.img 
+              src={PROFILE_IMAGE} 
+              alt="Abderrahmane El Farouah" 
+              width="80"
+              height="80"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/10 shadow-lg cursor-pointer" 
+              onClick={handleImageClick} 
+              whileHover={{ scale: 1.05 }} 
+              whileTap={{ scale: 0.95 }} 
+            />
           </div>
 
           {/* BACK OFFICE */}

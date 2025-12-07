@@ -15,6 +15,8 @@ export default function ProjectCard({ title, description, link, github, image }:
         <img
           src={image}
           alt={title}
+          width="800"
+          height="450"
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />

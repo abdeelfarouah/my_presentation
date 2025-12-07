@@ -32,6 +32,9 @@ export default function Hero() {
           <img
             src={PROFILE_IMAGE}
             alt="Abderrahmane El Farouah"
+            fetchPriority="high"
+            width="144"
+            height="144"
             className="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover ring-2 ring-white/70 dark:ring-white/10 shadow-lg animate-float"
           />
         </div>
