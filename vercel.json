@@ -10,7 +10,7 @@
   ],
   "headers": [
     {
-      "source": "/images/(.*)",
+      "source": "/images/(?:.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "source": "/assets/(.*)",
+      "source": "/assets/(?:.*)",
       "headers": [
         {
           "key": "Cache-Control",
