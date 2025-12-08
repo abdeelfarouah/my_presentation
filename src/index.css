@@ -1,7 +1,36 @@
-html,body {
-  overflow-x: hidden !important;
-  scroll-behavior: smooth;
+/* Styles de base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
+}
+
+/* Reset des styles par défaut */
+h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
 /* Use Tailwind's official directives for CSS layers */
 @tailwind base;
 @tailwind components;
