@@ -10,7 +10,7 @@
   ],
   "headers": [
     {
-      "source": "/images/(?:.*)",
+      "source": "/images/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "source": "/assets/(?:.*)",
+      "source": "/assets/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "source": "/.*\\.(?:js|css|woff2?|png|jpg|jpeg|gif|svg|webp|ico)",
+      "source": "/(.*\\.(js|css|woff2?|png|jpg|jpeg|gif|svg|webp|ico))",
       "headers": [
         {
           "key": "Cache-Control",
