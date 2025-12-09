@@ -44,7 +44,7 @@ ul {
 }
 
 img {
-    max-width: 100%;
+    max-width: 20%;
     height: auto;
     display: block;
 }
@@ -945,3 +945,4 @@ img {
         justify-content: center;
     }
 }
+
