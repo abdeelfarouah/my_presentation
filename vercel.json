@@ -9,13 +9,12 @@
       }
     }
   ],
-  "rewrites": [
-    { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/images/(.*)", "destination": "/images/$1" },
-    { "source": "/(.*\\.(js|css|woff2?|png|jpg|jpeg|gif|svg|webp|ico))", "destination": "/$1" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "headers": [
+ "routes": [
+    { "src": "/assets/(.*)", "dest": "/dist/assets/$1" },
+    { "src": "/images/(.*)", "dest": "/dist/images/$1" },
+    { "src": "/(.*)", "dest": "/dist/index.html" }
+ ],
+ "headers": [
     {
       "source": "/sitemap.xml",
       "headers": [
