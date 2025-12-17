@@ -31,6 +31,18 @@ export default defineConfig({
   base: '/',
   root: '.',
   publicDir: 'public',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+      }
+    }
+  },
   plugins: [
     react(),
     ...(viteImagemin
@@ -38,52 +50,21 @@ export default defineConfig({
           viteImagemin({
             gifsicle: { optimizationLevel: 7 },
             optipng: { optimizationLevel: 7 },
-            mozjpeg: { quality: 75 },
-            pngquant: { quality: [0.6, 0.8] },
+            mozjpeg: { quality: 80 },
+            pngquant: { quality: [0.8, 0.9], speed: 4 },
             svgo: {
               plugins: [
                 { name: 'removeViewBox', active: false },
-                { name: 'removeEmptyAttrs', active: false },
-              ],
-            },
-          }),
+                { name: 'removeEmptyAttrs', active: false }
+              ]
+            }
+          })
         ]
       : []),
     visualizer({
       open: true,
-      filename: 'dist/stats.html',
-      template: 'treemap',
-    }),
-  ],
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:4000',
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
-  build: {
-    outDir: 'dist',
-    sourcemap: false,
-    minify: 'esbuild',
-    cssCodeSplit: true,
-    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
-    rollupOptions: {
-      input: 'index.html', // index.html à la racine
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'framer-motion': ['framer-motion'],
-          'datepicker': ['react-datepicker', 'date-fns'],
-          'icons': ['lucide-react'],
-        },
-      },
-    },
-    chunkSizeWarningLimit: 1000,
-  },
+      gzipSize: true,
+      brotliSize: true
+    })
+  ]
 });
