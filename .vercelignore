@@ -2,9 +2,14 @@
 node_modules
 package-lock.json
 
-# Build files (Vercel builds these)
-dist
+# Vite cache
 .vite
+
+# Development files (these should be in environment variables in Vercel)
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Development files
 .env.local
@@ -36,5 +41,5 @@ serveur
 .github
 
 # Stats
-dist/stats.html
+stats.html
 
