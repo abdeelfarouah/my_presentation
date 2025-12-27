@@ -3,10 +3,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-
-  // IMPORTANT : toujours '/' sur Vercel
-  base: '/',
-
+  // Utilisation d'un chemin relatif pour le déploiement
+  base: process.env.NODE_ENV === 'production' ? './' : '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
