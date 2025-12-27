@@ -3,7 +3,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: './',  // Modifié de '/' à './' pour les chemins relatifs
+  base: process.env.NODE_ENV === 'production' 
+    ? 'https://www.abderrahmane-elfarouahfreelance.com/' 
+    : './',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
