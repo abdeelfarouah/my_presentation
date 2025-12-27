@@ -1,31 +1,33 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig({
-  plugins: [react()],
-  // Utilisation d'un chemin relatif pour le déploiement
-  base: process.env.NODE_ENV === 'production' ? './' : '/',
+  plugins: [
+    react(),
+    viteCompression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+      threshold: 10240, // Seuil de compression (10KB)
+      deleteOriginFile: false
+    }),
+    viteCompression({
+      algorithm: 'gzip',
+      ext: '.gz',
+      threshold: 10240,
+      deleteOriginFile: false
+    })
+  ],
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     emptyOutDir: true,
     rollupOptions: {
-      input: './index.html',
       output: {
-        entryFileNames: 'assets/[name].[hash].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash][extname]'
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom']
+        }
       }
     }
-  },
-
-  server: {
-    port: 3000,
-    strictPort: true
-  },
-
-  preview: {
-    port: 3000,
-    strictPort: true
   }
 });
