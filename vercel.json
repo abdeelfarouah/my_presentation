@@ -19,8 +19,16 @@
       "dest": "/api/check-digicode.js"
     },
     {
+      "src": "/api/(.*)",
+      "status": 404
+    },
+    {
       "src": "/assets/(.*)",
       "dest": "/assets/$1"
+    },
+    {
+      "src": "/404",
+      "dest": "/404.html"
     },
     {
       "src": "/(.*)",

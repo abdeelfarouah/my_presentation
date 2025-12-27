@@ -21,6 +21,19 @@ const Contact = lazy(() => import('./components/Contact'));
 const MentionsLegales = lazy(() => import('./components/MentionsLegales'));
 const CGV = lazy(() => import('./components/CGV'));
 
+const NotFound = () => (
+  <div className="flex flex-col items-center justify-center h-[60vh] text-center px-4">
+    <h1 className="text-6xl font-bold text-blue-600 dark:text-blue-400 mb-4">404</h1>
+    <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-200 mb-6">Page non trouvée</p>
+    <Link
+      to="/"
+      className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+    >
+      Retour à l'accueil
+    </Link>
+  </div>
+);
+
 export default function App() {
   const location = useLocation();
 
@@ -73,7 +86,8 @@ export default function App() {
                     <Route path="/experience" element={<Experience />} />
                     <Route path="/mentions-legales" element={<MentionsLegales />} />
                     <Route path="/cgv" element={<CGV />} />
-                    <Route path="*" element={<Navigate to="/" />} />
+                    <Route path="/404" element={<NotFound />} />
+                    <Route path="*" element={<Navigate to="/404" replace />} />
                   </Routes>
                 </Suspense>
               </motion.div>
