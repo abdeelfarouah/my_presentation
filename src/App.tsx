@@ -1,18 +1,18 @@
-import { useEffect, useState, lazy, Suspense } from 'react';
-import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
+import { useMemo, lazy, Suspense } from 'react';
+import { Routes, Route, useLocation, Navigate, Link } from 'react-router-dom';
 import { ThemeProvider } from './contexts/theme';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from './components/Navbar';
 
-// Loading component
+// Loading fallback
 const LoadingFallback = () => (
   <div className="flex items-center justify-center h-64">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
   </div>
 );
 
-// Lazy load components for code splitting
+// Lazy load components
 const About = lazy(() => import('./components/About'));
 const Projects = lazy(() => import('./components/Projects'));
 const Skills = lazy(() => import('./components/Skills'));
@@ -23,21 +23,12 @@ const CGV = lazy(() => import('./components/CGV'));
 
 export default function App() {
   const location = useLocation();
-  const navigate = useNavigate();
 
-  const routeToTab = (pathname: string) => {
-    const seg = pathname.split('/').filter(Boolean)[0] || 'home';
-    // Contact redirige vers home car ils sont fusionnés
-    if (seg === 'contact') return 'home';
-    return ['home', 'about', 'projects', 'skills', 'experience'].includes(seg)
-      ? seg
-      : 'home';
-  };
-
-  const [activeTab, setActiveTab] = useState(routeToTab(location.pathname));
-
-  useEffect(() => {
-    setActiveTab(routeToTab(location.pathname));
+  // Gestion simplifiée activeTab
+  const activeTab = useMemo(() => {
+    const seg = location.pathname.split('/').filter(Boolean)[0] || 'home';
+    const validTabs = new Set(['home', 'about', 'projects', 'skills', 'experience']);
+    return seg === 'contact' ? 'home' : validTabs.has(seg) ? seg : 'home';
   }, [location.pathname]);
 
   return (
@@ -57,16 +48,10 @@ export default function App() {
             'radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25), transparent 70%), radial-gradient(circle at 80% 70%, rgba(0,100,255,0.25), transparent 70%)',
         }}
       >
-        {/* --- Navbar --- */}
-        <Navbar
-          activeTab={activeTab}
-          onTabChange={(tab) => {
-            setActiveTab(tab);
-            navigate(tab === 'home' ? '/' : `/${tab}`);
-          }}
-        />
+        {/* Navbar */}
+        <Navbar activeTab={activeTab} />
 
-        {/* --- Contenu principal avec animation fluide --- */}
+        {/* Main content */}
         <main id="main-content" className="flex-1 h-auto">
           <div className="h-full flex items-center justify-center">
             <AnimatePresence mode="wait">
@@ -96,7 +81,7 @@ export default function App() {
           </div>
         </main>
 
-        {/* --- Footer chromé --- */}
+        {/* Footer */}
         <footer
           className="
             mt-3 sm:mt-4 md:mt-5 py-3 sm:py-4 text-center rounded-2xl
@@ -114,29 +99,21 @@ export default function App() {
               &copy; {new Date().getFullYear()} Abderrahmane El Farouah
             </p>
             <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm">
-              <a
-                href="/mentions-legales"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/mentions-legales');
-                  setActiveTab('mentions-legales');
-                }}
+              <Link
+                to="/mentions-legales"
                 className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+                aria-current={activeTab === 'mentions-legales' ? 'page' : undefined}
               >
                 Mentions légales
-              </a>
+              </Link>
               <span className="text-gray-500 dark:text-gray-400">|</span>
-              <a
-                href="/cgv"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/cgv');
-                  setActiveTab('cgv');
-                }}
+              <Link
+                to="/cgv"
                 className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+                aria-current={activeTab === 'cgv' ? 'page' : undefined}
               >
                 CGV
-              </a>
+              </Link>
             </div>
           </div>
         </footer>
@@ -144,3 +121,4 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
