@@ -2,7 +2,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteCompression from 'vite-plugin-compression';
 
+// https://vitejs.dev/config/
 export default defineConfig({
+  base: '/', // Set this to your repository name if deploying to GitHub Pages or a subdirectory
   plugins: [
     react(),
     viteCompression({
@@ -21,6 +23,9 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    sourcemap: false,
+    minify: 'terser',
+    chunkSizeWarningLimit: 1000,
     emptyOutDir: true,
     rollupOptions: {
       output: {
@@ -29,5 +34,9 @@ export default defineConfig({
         }
       }
     }
+  },
+  server: {
+    port: 3000,
+    open: true
   }
 });
