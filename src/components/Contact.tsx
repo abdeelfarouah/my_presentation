@@ -118,29 +118,29 @@ export default function Contact() {
     return null;
   };
 
-  const handleImageClick = async () => {
-    const code = prompt('Veuillez entrer le digicode pour accéder au back-office :');
-    if (!code) return;
-    try {
-      const res = await fetch(`${API_BASE}/check-digicode`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code }),
-      });
-      type DigicodeResponse = { success: boolean };
-      let data: DigicodeResponse = { success: false };
-      try {
-        data = (await res.json()) as DigicodeResponse;
-      } catch {
-        data = { success: false };
-      }
-      if (data.success) setShowBackOffice(true);
-      else alert('Digicode incorrect !');
-    } catch (err) {
-      console.error(err);
-      alert('Erreur lors de la vérification du digicode');
+ const handleImageClick = async () => {
+  const code = prompt('Veuillez entrer le digicode pour accéder au back-office :');
+  if (!code) return;
+  try {
+    console.log('Sending request to:', `${API_BASE}/check-digicode`); // Debug log
+    const res = await fetch(`${API_BASE}/check-digicode`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code }),
+    });
+    console.log('Response status:', res.status); // Debug log
+    const data = await res.json();
+    console.log('Response data:', data); // Debug log
+    if (data.success) {
+      setShowBackOffice(true);
+    } else {
+      alert('Digicode incorrect !');
     }
-  };
+  } catch (err) {
+    console.error('Error in handleImageClick:', err);
+    alert('Erreur lors de la vérification du digicode');
+  }
+};
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
