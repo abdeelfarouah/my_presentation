@@ -1,61 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Page d'accueil -->
+  <!-- Accueil / Contact -->
   <url>
-    <loc>https://abderrahmane-elfarouahfreelance.com/</loc>
-    <lastmod>2025-01-27</lastmod>
+    <loc>https://www.abderrahmane-elfarouahfreelance.com/</loc>
+    <lastmod>2025-12-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Section À propos -->
+  <!-- À propos -->
   <url>
-    <loc>https://abderrahmane-elfarouahfreelance.com/about</loc>
-    <lastmod>2025-01-27</lastmod>
+    <loc>https://www.abderrahmane-elfarouahfreelance.com/about</loc>
+    <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Projets -->
   <url>
-    <loc>https://abderrahmane-elfarouahfreelance.com/projects</loc>
-    <lastmod>2025-01-27</lastmod>
+    <loc>https://www.abderrahmane-elfarouahfreelance.com/projects</loc>
+    <lastmod>2025-12-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Compétences -->
   <url>
-    <loc>https://abderrahmane-elfarouahfreelance.com/skills</loc>
-    <lastmod>2025-01-27</lastmod>
+    <loc>https://www.abderrahmane-elfarouahfreelance.com/skills</loc>
+    <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Expérience -->
   <url>
-    <loc>https://abderrahmane-elfarouahfreelance.com/experience</loc>
-    <lastmod>2025-01-27</lastmod>
+    <loc>https://www.abderrahmane-elfarouahfreelance.com/experience</loc>
+    <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-
   <!-- Mentions légales -->
   <url>
-    <loc>https://abderrahmane-elfarouahfreelance.com/mentions-legales</loc>
-    <lastmod>2025-01-27</lastmod>
+    <loc>https://www.abderrahmane-elfarouahfreelance.com/mentions-legales</loc>
+    <lastmod>2025-12-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
-  <!-- Conditions Générales de Vente -->
+  <!-- CGV -->
   <url>
-    <loc>https://abderrahmane-elfarouahfreelance.com/cgv</loc>
-    <lastmod>2025-01-27</lastmod>
+    <loc>https://www.abderrahmane-elfarouahfreelance.com/cgv</loc>
+    <lastmod>2025-12-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
