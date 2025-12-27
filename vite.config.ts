@@ -3,19 +3,16 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: process.env.VERCEL_ENV === 'production'
-    ? 'https://www.abderrahmane-elfarouahfreelance.com/'
-    : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}/`
-    : './',
+
+  // IMPORTANT : toujours '/' sur Vercel
+  base: '/',
+
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     emptyOutDir: true,
     rollupOptions: {
-      input: {
-        main: './index.html'  // Point d'entrée explicite
-      },
+      input: './index.html',
       output: {
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
@@ -23,10 +20,12 @@ export default defineConfig({
       }
     }
   },
+
   server: {
     port: 3000,
     strictPort: true
   },
+
   preview: {
     port: 3000,
     strictPort: true
