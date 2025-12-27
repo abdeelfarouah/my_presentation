@@ -3,8 +3,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: process.env.NODE_ENV === 'production' 
-    ? 'https://www.abderrahmane-elfarouahfreelance.com/' 
+  base: process.env.VERCEL_ENV === 'production'
+    ? 'https://www.abderrahmane-elfarouahfreelance.com/'
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}/`
     : './',
   build: {
     outDir: 'dist',
