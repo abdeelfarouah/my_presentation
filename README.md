@@ -16,3 +16,4 @@ Ce portfolio vise à fournir un aperçu rapide et visuel de mes qualifications e
 📧 [a.elfarouahdev@outlook.fr](mailto:a.elfarouahdev@outlook.fr)  
 
 Merci pour votre visite !
+![affiche dev](https://github.com/user-attachments/assets/9e77a1e5-80b0-4d1b-831f-2b04911b5b94)
