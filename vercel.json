@@ -6,6 +6,14 @@
       "use": "@vercel/node"
     },
     {
+      "src": "api/appointments.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/send-email.js",
+      "use": "@vercel/node"
+    },
+    {
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
@@ -17,6 +25,18 @@
     {
       "src": "/api/check-digicode",
       "dest": "/api/check-digicode.js"
+    },
+    {
+      "src": "/api/appointments",
+      "dest": "/api/appointments.js"
+    },
+    {
+      "src": "/api/resend",
+      "dest": "/api/send-email.js"
+    },
+    {
+      "src": "/api/send-email",
+      "dest": "/api/send-email.js"
     },
     {
       "src": "/api/(.*)",

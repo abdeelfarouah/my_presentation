@@ -10,7 +10,17 @@ const PORT = 4000;
 
 // Middleware CORS pour ton frontend Vite
 app.use(cors({
-  origin: 'http://localhost:5173', // <-- doit correspondre exactement à ton frontend
+  origin: (origin, callback) => {
+    const allowed = new Set([
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'http://localhost:5173',
+      'http://127.0.0.1:5173',
+    ]);
+
+    if (!origin || allowed.has(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true
 }));
 

@@ -1,12 +1,18 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const { RESEND_API_KEY, NOTIFY_TO, RESEND_FROM } = process.env;
+const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 let appointments = [];
 
 async function sendNotificationEmail(appointment) {
-  const { NOTIFY_TO } = process.env;
-  if (!NOTIFY_TO) return;
+  if (!resend) {
+    throw new Error('RESEND_API_KEY is not configured on the server');
+  }
+
+  if (!NOTIFY_TO) {
+    throw new Error('NOTIFY_TO is not configured on the server');
+  }
 
   const when = new Date(appointment.date).toLocaleString('fr-FR', {
     dateStyle: 'full',
@@ -14,7 +20,7 @@ async function sendNotificationEmail(appointment) {
   });
 
   const { data, error } = await resend.emails.send({
-    from: 'RDV Bot <onboarding@resend.dev>', // adresse par défaut fournie
+    from: RESEND_FROM || 'RDV Bot <onboarding@resend.dev>', // adresse par défaut fournie
     to: NOTIFY_TO,
     subject: `Nouveau rendez-vous: ${appointment.name}`,
     html: `

@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const { RESEND_API_KEY, CONTACT_TO, RESEND_FROM } = process.env;
+const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -8,6 +9,18 @@ export default async function handler(req, res) {
   }
 
   try {
+    if (!resend) {
+      return res.status(500).json({
+        error: 'RESEND_API_KEY is not configured on the server',
+      });
+    }
+
+    if (!CONTACT_TO) {
+      return res.status(500).json({
+        error: 'CONTACT_TO is not configured on the server',
+      });
+    }
+
     const { name, email, message } = req.body;
 
     // Validation basique
@@ -22,8 +35,8 @@ export default async function handler(req, res) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev',
-      to: 'votre@email.com', // Remplacez par votre email
+      from: RESEND_FROM || 'onboarding@resend.dev',
+      to: CONTACT_TO,
       reply_to: email,
       subject: `Nouveau message de ${name}`,
       html: `
