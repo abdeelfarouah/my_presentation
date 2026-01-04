@@ -1,38 +1,51 @@
-import { Resend } from 'resend';
-
-const {
-  RESEND_API_KEY,
-  NOTIFY_TO,
-  RESEND_FROM,
-  EMAIL_MODE
-} = process.env;
-
-const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
-
-// 🔑 DESTINATAIRE SELON LE MODE
-const getNotifyTo = () => {
-  // Resend MODE TEST → uniquement l’email du compte
-  if (EMAIL_MODE !== 'prod') {
-    return 'a.elfarouahdev@outlook.fr';
-  }
-  return NOTIFY_TO;
-};
+import { 
+  sendEmailWithRetry, 
+  getSecureFromEmail, 
+  getNotifyTo, 
+  validateEmailConfig,
+  checkRateLimit,
+  updateRateLimit
+} from './utils/email.js';
 
 export default async function handler(req, res) {
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    if (!resend) {
-      return res.status(500).json({
-        error: 'RESEND_API_KEY is not configured on the server',
+    // Vérifier le rate limiting
+    const rateLimit = checkRateLimit(req, 'email');
+    
+    if (!rateLimit.allowed) {
+      console.warn('[Contact] Rate limit atteint:', {
+        retryAfter: rateLimit.retryAfter,
+        resetAt: new Date(rateLimit.resetAt).toISOString()
+      });
+
+      return res.status(429).json({
+        error: 'Trop de messages envoyés',
+        message: `Veuillez réessayer dans ${rateLimit.retryAfter} minute(s)`,
+        retryAfter: rateLimit.retryAfter,
+        resetAt: rateLimit.resetAt
       });
     }
 
-    if (!NOTIFY_TO) {
+    // Validation de la configuration
+    const configCheck = validateEmailConfig();
+    if (!configCheck.isValid) {
       return res.status(500).json({
-        error: 'NOTIFY_TO is not configured on the server',
+        error: 'Configuration email incomplète',
+        details: configCheck.errors
       });
     }
 
@@ -41,7 +54,20 @@ export default async function handler(req, res) {
     // Validation basique
     if (!name || !email || !message) {
       return res.status(400).json({
-        error: 'Tous les champs sont obligatoires',
+        error: 'Tous les champs sont obligatoires'
+      });
+    }
+
+    // Validation des longueurs
+    if (name.length > 100) {
+      return res.status(400).json({
+        error: 'Le nom est trop long (max 100 caractères)'
+      });
+    }
+
+    if (message.length > 5000) {
+      return res.status(400).json({
+        error: 'Le message est trop long (max 5000 caractères)'
       });
     }
 
@@ -49,63 +75,31 @@ export default async function handler(req, res) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
-        error: "Format d'email invalide",
+        error: "Format d'email invalide"
       });
     }
 
-    // FROM sécurisé
-    const getFromEmail = () => {
-      if (!RESEND_FROM) {
-        return 'Portfolio <onboarding@resend.dev>';
-      }
-
-      const emailMatch =
-        RESEND_FROM.match(/<([^>]+)>/) || [null, RESEND_FROM];
-
-      const fromEmail = emailMatch[1] || RESEND_FROM;
-      const emailLower = fromEmail.toLowerCase();
-
-      const unverifiedDomains = [
-        '@outlook.',
-        '@gmail.',
-        '@hotmail.',
-        '@yahoo.',
-        '@live.',
-        '@msn.',
-        '@icloud.',
-        '@me.com',
-        '@mac.com',
-      ];
-
-      if (unverifiedDomains.some(d => emailLower.includes(d))) {
-        console.warn(
-          `[Email] Domaine non vérifié détecté (${fromEmail}), fallback Resend`
-        );
-        return 'Portfolio <onboarding@resend.dev>';
-      }
-
-      return RESEND_FROM;
-    };
-
-    const fromEmail = getFromEmail();
+    const fromEmail = getSecureFromEmail('RDV Bot');
     const notifyTo = getNotifyTo();
 
-    // 🔍 LOG DE DEBUG
-    console.log('[EMAIL DEBUG]', {
-      EMAIL_MODE,
-      to: notifyTo,
+    console.log('[Contact] Envoi message:', {
       from: fromEmail,
-      reply_to: email,
+      to: notifyTo,
+      replyTo: email,
+      remaining: rateLimit.remaining
     });
 
-    const { data, error } = await resend.emails.send({
+    // Mettre à jour le rate limit
+    updateRateLimit(res, 'email', rateLimit);
+
+    const data = await sendEmailWithRetry({
       from: fromEmail,
       to: notifyTo,
-      reply_to: email,
+      replyTo: email,
       subject: `Nouveau message de ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2>Nouveau message de contact</h2>
+          <h2 style="color: #F26B2E;">Nouveau message de contact</h2>
           <p><strong>Nom :</strong> ${name}</p>
           <p><strong>Email :</strong> ${email}</p>
           <p><strong>Message :</strong></p>
@@ -116,26 +110,24 @@ export default async function handler(req, res) {
             Message envoyé depuis le formulaire de contact du site.
           </p>
         </div>
-      `,
+      `
     });
-
-    if (error) {
-      console.error('[Resend Error]', error);
-      return res.status(400).json({
-        error: "Erreur lors de l'envoi du message",
-      });
-    }
 
     return res.status(200).json({
       success: true,
       message: 'Message envoyé avec succès !',
       emailId: data?.id || null,
+      rateLimit: {
+        remaining: rateLimit.remaining,
+        resetAt: rateLimit.resetAt
+      }
     });
 
   } catch (err) {
-    console.error('[Server Error]', err);
+    console.error('[Contact] Erreur:', err);
     return res.status(500).json({
       error: "Une erreur est survenue lors de l'envoi du message",
+      details: err?.message
     });
   }
 }
