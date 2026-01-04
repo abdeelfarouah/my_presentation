@@ -96,25 +96,24 @@ export default function Projects() {
 			className="
 				w-full
 				py-4 sm:py-6 md:py-10 px-2 sm:px-4 md:px-8
-				bg-white dark:bg-gray-900
 				max-w-[768px] max-h-[1024px]
 				sm:max-w-[800px] sm:max-h-[1280px]
 				md:max-w-[1280px] md:max-h-[800px]
-				mx-auto rounded-lg
+				mx-auto
 				flex flex-col items-center
 			"
 		>
-			<h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-4 sm:mb-8">
-				Mes Projets
+			<h2 className="text-2xl sm:text-3xl font-display font-bold text-center text-text-main mb-4 sm:mb-8">
+				Mes <span className="text-accent">Projets</span>
 			</h2>
 			<div className="relative w-full">
 				<button
-					className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-gray-800/80 rounded-full p-2 shadow hover:bg-red-100 dark:hover:bg-red-900 transition disabled:opacity-30"
+					className="absolute left-0 top-1/2 -translate-y-1/2 z-10 glass rounded-full p-2 shadow-glow-orange hover:shadow-glow-orange-hover transition-all disabled:opacity-30 border border-border-color hover:border-accent"
 					onClick={() => scrollToIndex(scrollIndex - 1)}
 					disabled={scrollIndex === 0}
 					aria-label="Projet précédent"
 				>
-					<ChevronLeft size={28} className="text-red-600" />
+					<ChevronLeft size={28} className="text-accent" />
 				</button>
 				<div
 					ref={carouselRef}
@@ -141,12 +140,12 @@ export default function Projects() {
 					))}
 				</div>
 				<button
-					className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-gray-800/80 rounded-full p-2 shadow hover:bg-red-100 dark:hover:bg-red-900 transition disabled:opacity-30"
+					className="absolute right-0 top-1/2 -translate-y-1/2 z-10 glass rounded-full p-2 shadow-glow-orange hover:shadow-glow-orange-hover transition-all disabled:opacity-30 border border-border-color hover:border-accent"
 					onClick={() => scrollToIndex(scrollIndex + 1)}
 					disabled={scrollIndex >= projects.length - visibleCards}
 					aria-label="Projet suivant"
 				>
-					<ChevronRight size={28} className="text-red-600" />
+					<ChevronRight size={28} className="text-accent" />
 				</button>
 				<div className="flex justify-center gap-2 mt-4" role="tablist" aria-label="Pagination">
 					{Array.from({ length: Math.max(1, projects.length - visibleCards + 1) }).map((_, idx) => (
@@ -155,7 +154,7 @@ export default function Projects() {
 							type="button"
 							onClick={() => scrollToIndex(idx)}
 							aria-current={idx === scrollIndex ? 'true' : 'false'}
-							className={`w-2 h-2 rounded-full focus:outline-none${idx === scrollIndex ? ' bg-blue-600' : ' bg-gray-300 dark:bg-gray-700'}`}
+							className={`w-2 h-2 rounded-full focus:outline-none transition-all${idx === scrollIndex ? ' bg-accent shadow-glow-orange' : ' bg-border-color hover:bg-accent/50'}`}
 						/>
 					))}
 				</div>

@@ -18,13 +18,11 @@ export default function Hero() {
     <section
       className="
         h-full
-        chrome-surface bg-radial-faint
         py-3 sm:py-6 md:py-12
         px-2 sm:px-4 md:px-8
         w-full
         max-w-full
         mx-auto
-        rounded-xl ring-chrome
       "
     >
       <Container className="flex flex-col justify-between text-center space-y-4 sm:space-y-6 md:space-y-8">
@@ -34,20 +32,20 @@ export default function Hero() {
             alt="Abderrahmane El Farouah"
             width="144"
             height="144"
-            className="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover ring-2 ring-white/70 dark:ring-white/10 shadow-lg animate-float"
+            className="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover ring-2 ring-accent/30 shadow-glow-orange animate-float"
           />
         </div>
 
         <div className="space-y-3">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-            Abderrahmane El Farouah
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-text-main">
+            Abderrahmane <span className="text-accent">El Farouah</span>
           </h1>
 
-          <p className="text-md sm:text-lg text-gray-600 dark:text-gray-300">
+          <p className="text-md sm:text-lg text-text-secondary font-body">
             Développeur Web & AS 400
           </p>
         </div>
-        <p className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+        <p className="text-lg text-text-secondary max-w-2xl mx-auto font-body">
           Passionné par le développement web et les systèmes legacy,
           je crée des solutions innovantes qui allient technologie moderne et fiabilité.
         </p>
@@ -56,7 +54,7 @@ export default function Hero() {
             href={SOCIAL_LINKS.GITHUB}
             target="_blank"
             rel="noopener noreferrer"
-            className="touch-area focus-visible w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors ring-1 ring-white/20"
+            className="touch-area focus-visible w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-bg-secondary text-text-main hover:bg-accent/20 transition-all ring-1 ring-border-color hover:ring-accent"
             title="GitHub"
           >
             <Github className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -72,14 +70,14 @@ export default function Hero() {
           </a>
           <button
             onClick={handleDownloadCV}
-            className="touch-area focus-visible w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-gradient-to-b from-emerald-500 to-emerald-600 text-white hover:from-emerald-500/95 hover:to-emerald-600/95 transition-colors shadow-md"
+            className="touch-area focus-visible w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-accent-gradient text-white hover:shadow-glow-orange-hover transition-all"
             title="Télécharger mon CV"
           >
             <FileText className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
           <a
             href={`mailto:${SOCIAL_LINKS.EMAIL}`}
-            className="touch-area focus-visible w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-gradient-to-b from-rose-500 to-rose-600 text-white hover:from-rose-500/95 hover:to-rose-600/95 transition-colors shadow-md"
+            className="touch-area focus-visible w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-accent-gradient text-white hover:shadow-glow-orange-hover transition-all"
             title="Email"
           >
             <Mail className="w-5 h-5 sm:w-6 sm:h-6" />

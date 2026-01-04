@@ -1,36 +1,174 @@
-html,body {
+/* Google Fonts are loaded in index.html */
+
+/* CSS Variables - Design System */
+:root {
+  /* Dark mode (default) */
+  --bg-main: #0B1C2D;
+  --bg-secondary: #12283F;
+  --accent: #F26B2E;
+  --accent-hover: #FF8C42;
+  --text-main: #FFFFFF;
+  --text-secondary: #C9D1D9;
+  --border-color: #2B3E50;
+  --radius: 12px;
+  --transition: 0.25s ease;
+  
+  /* Glow effects */
+  --glow-orange: rgba(242, 107, 46, 0.35);
+  --glow-orange-hover: rgba(242, 107, 46, 0.45);
+  --glow-orange-subtle: rgba(242, 107, 46, 0.15);
+}
+
+/* Light mode */
+:root:not(.dark) {
+  --bg-main: #F8FAFC;
+  --bg-secondary: #F1F5F9;
+  --text-main: #0F172A;
+  --text-secondary: #475569;
+  --border-color: #E2E8F0;
+  
+  /* Glow effects - plus subtils en light mode */
+  --glow-orange: rgba(242, 107, 46, 0.2);
+  --glow-orange-hover: rgba(242, 107, 46, 0.3);
+  --glow-orange-subtle: rgba(242, 107, 46, 0.08);
+}
+
+html, body {
   overflow-x: hidden !important;
   scroll-behavior: smooth;
 }
-/* Use Tailwind's official directives for CSS layers */
+
+/* Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre {
+/* Base styles */
+@layer base {
+  body {
     margin: 0;
-    color:lightslategrey
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 20% 30%, var(--glow-orange-subtle), transparent 40%),
+      radial-gradient(circle at 80% 70%, var(--glow-orange-subtle), transparent 40%),
+      linear-gradient(180deg, var(--bg-main), var(--bg-secondary));
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.5px;
+    color: var(--text-main);
+  }
+
+  h1 span,
+  .highlight {
+    color: var(--accent);
+  }
+
+  p, li {
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
 }
 
-@layer utilities {
+/* Component styles */
+@layer components {
+  /* Cards */
+  .card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: all var(--transition);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .card {
+    background: rgba(18, 40, 63, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px var(--glow-orange);
+    border-color: var(--accent);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px var(--glow-orange-hover);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  /* Glass effect (updated for new theme) */
   .glass {
-    @apply bg-white/60 dark:bg-gray-900/50 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-chrome;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition);
+  }
+
+  .dark .glass {
+    background: rgba(18, 40, 63, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
 
   .glass-hover:hover {
-    @apply bg-white/70 dark:bg-gray-900/60 shadow-lg shadow-blue-500/5;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 25px var(--glow-orange-subtle);
+    border-color: var(--accent);
   }
 
+  .dark .glass-hover:hover {
+    background: rgba(18, 40, 63, 0.8);
+    box-shadow: 0 0 25px var(--glow-orange);
+  }
+
+  /* Chrome surface (updated) */
   .chrome-surface {
-    @apply bg-gradient-to-b from-white to-chrome-light dark:from-gray-900 dark:to-gray-800 shadow-chrome;
+    background: linear-gradient(180deg, var(--bg-main), var(--bg-secondary));
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
 
+  /* Metal surface (updated) */
   .metal-surface {
-    @apply bg-gradient-to-b from-white/70 to-metallic-silver/30 dark:from-gray-900/70 dark:to-gray-800/60 shadow-metal rounded-xl border border-white/20 dark:border-white/10;
+    background: linear-gradient(180deg, rgba(18, 40, 63, 0.7), rgba(11, 28, 45, 0.6));
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
   }
 
+  /* Shiny text (updated with orange accent) */
   .shiny-text {
-    background: linear-gradient(90deg, #93C5FD 0%, #60A5FA 20%, #C4B5FD 40%, #60A5FA 60%, #93C5FD 80%);
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 20%, #FFB366 40%, var(--accent-hover) 60%, var(--accent) 80%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -38,67 +176,203 @@ blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre {
     animation: shimmer 3s linear infinite;
   }
 
+  /* Fluid background (updated) */
   .fluid-bg {
-    background-image: linear-gradient(120deg, rgba(96,165,250,0.20), rgba(167,139,250,0.20), rgba(34,211,238,0.20));
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(242, 107, 46, 0.15), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(242, 107, 46, 0.10), transparent 40%),
+      linear-gradient(180deg, var(--bg-main), var(--bg-secondary));
     background-size: 200% 200%;
     animation: aurora 18s ease infinite;
   }
 
+  /* Ring chrome (updated) */
   .ring-chrome {
-    @apply ring-1 ring-white/50 dark:ring-white/10 shadow-chrome;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 0 1px rgba(242, 107, 46, 0.1);
   }
 
+  /* Button shiny (updated) */
   .btn-shiny {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-white shadow-md transition-all;
-    background: linear-gradient(180deg, #60A5FA 0%, #3B82F6 60%, #2563EB 100%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--radius);
+    padding: 12px 24px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 4px 12px rgba(242, 107, 46, 0.3);
+    transition: all var(--transition);
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-hover) 60%, var(--accent) 100%);
   }
-  .btn-shiny:hover { filter: brightness(1.05); box-shadow: 0 6px 20px rgba(59,130,246,0.35); }
-  .btn-shiny:active { transform: translateY(1px); }
 
+  .btn-shiny:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px var(--glow-orange-hover);
+    transform: translateY(-2px);
+  }
+
+  .btn-shiny:active {
+    transform: translateY(0);
+  }
+
+  /* Touch area */
   .touch-area {
-    @apply min-h-[44px] min-w-[44px];
+    min-height: 44px;
+    min-width: 44px;
   }
+
+  /* Focus visible - WCAG compliant */
   .focus-visible {
-    @apply focus:outline-none focus:ring-2 focus:ring-blue-400;
+    outline: none;
+  }
+
+  .focus-visible:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* Fallback for browsers that don't support :focus-visible */
+  @supports not selector(:focus-visible) {
+    .focus-visible:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
   }
 }
 
-/* React DatePicker chrome/glass theme */
-.rdp-popper {
-  @apply z-50;
+/* Utilities */
+@layer utilities {
+  /* Animations */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  @keyframes aurora {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Dark mode utilities */
+  .bg-bg-main {
+    background-color: var(--bg-main);
+  }
+
+  .bg-bg-secondary {
+    background-color: var(--bg-secondary);
+  }
+
+  .text-text-main {
+    color: var(--text-main);
+  }
+
+  .text-text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .text-accent {
+    color: var(--accent);
+  }
+
+  .text-accent-hover {
+    color: var(--accent-hover);
+  }
+
+  .border-border-color {
+    border-color: var(--border-color);
+  }
+
+  .border-accent {
+    border-color: var(--accent);
+  }
 }
+
+/* React DatePicker theme (updated) */
+.rdp-popper {
+  z-index: 50;
+}
+
 .rdp-calendar,
 .react-datepicker {
-  @apply glass ring-chrome rounded-xl overflow-hidden;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
+
+.dark .rdp-calendar,
+.dark .react-datepicker {
+  background: rgba(18, 40, 63, 0.95);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
 .react-datepicker__header {
-  @apply bg-white/70 dark:bg-gray-800/70 border-0 py-3;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 0;
 }
+
+.dark .react-datepicker__header {
+  background: rgba(18, 40, 63, 0.9);
+}
+
 .react-datepicker__current-month,
 .react-datepicker-time__header,
 .react-datepicker-year-header {
-  @apply text-gray-900 dark:text-gray-100 font-semibold;
+  color: var(--text-main);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
+
 .react-datepicker__day-name,
 .react-datepicker__day,
 .react-datepicker__time-list-item {
-  @apply text-gray-800 dark:text-gray-100;
+  color: var(--text-secondary);
 }
+
 .react-datepicker__day--selected,
 .react-datepicker__day--keyboard-selected,
 .react-datepicker__time-list-item--selected {
-  @apply bg-blue-600 text-white;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover)) !important;
+  color: white !important;
 }
+
 .react-datepicker__day--disabled {
-  @apply text-gray-400 dark:text-gray-500 opacity-60 cursor-not-allowed;
+  color: var(--border-color);
+  opacity: 0.4;
+  cursor: not-allowed;
 }
+
 .react-datepicker__day--disabled:hover {
-  @apply bg-transparent;
+  background: transparent;
 }
+
 .react-datepicker__day:hover,
 .react-datepicker__time-list-item:hover {
-  @apply bg-blue-500/10 dark:bg-blue-400/10;
+  background: rgba(242, 107, 46, 0.2);
+  color: var(--accent);
 }
+
 .react-datepicker__navigation-icon::before {
-  @apply border-blue-600 dark:border-blue-400;
+  border-color: var(--accent);
+}
+
+/* Reset margins */
+blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
+  margin: 0;
 }

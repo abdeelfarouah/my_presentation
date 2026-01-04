@@ -4,7 +4,7 @@ interface SkillTagProps {
 
 export default function SkillTag({ skill }: SkillTagProps) {
   return (
-    <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm text-gray-700 dark:text-gray-300">
+    <span className="px-2 py-1 bg-bg-secondary border border-border-color rounded text-sm text-text-secondary hover:text-accent hover:border-accent transition-all font-body">
       {skill}
     </span>
   );
