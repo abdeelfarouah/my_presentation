@@ -50,53 +50,77 @@ app.get('/api/appointments', (req, res) => {
   res.json(appointments);
 });
 
-app.post('/api/appointments', (req, res) => {
-  const appointment = { id: appointments.length + 1, ...req.body };
+app.post('/api/appointments', async (req, res) => {
+  const { name, email, date } = req.body;
+  if (!name || !email || !date) {
+    return res.status(400).json({ error: 'Données manquantes' });
+  }
+
+  const appointment = { id: appointments.length + 1, name, email, date };
   appointments.push(appointment);
 
   const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, NOTIFY_TO } = process.env;
 
+  let emailSent = false;
+  let emailError = null;
+  let emailId = null;
+
+  // Aligné avec le comportement de l'API Vercel : attendre l'envoi de l'email
   if (SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS && NOTIFY_TO) {
-    const transporter = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port: parseInt(SMTP_PORT, 10),
-      secure: parseInt(SMTP_PORT, 10) === 465,
-      auth: {
-        user: SMTP_USER,
-        pass: SMTP_PASS,
-      },
-    });
+    try {
+      const transporter = nodemailer.createTransport({
+        host: SMTP_HOST,
+        port: parseInt(SMTP_PORT, 10),
+        secure: parseInt(SMTP_PORT, 10) === 465,
+        auth: {
+          user: SMTP_USER,
+          pass: SMTP_PASS,
+        },
+      });
 
-    const when = new Date(appointment.date).toLocaleString('fr-FR', {
-      dateStyle: 'full',
-      timeStyle: 'short',
-    });
+      const when = new Date(appointment.date).toLocaleString('fr-FR', {
+        dateStyle: 'full',
+        timeStyle: 'short',
+      });
 
-    transporter
-      .verify()
-      .then(() => {
-        return transporter.sendMail({
-          from: `${appointment.name} <${SMTP_USER}>`, // expéditeur dynamique selon ton compte SMTP
-          to: NOTIFY_TO, // destinataire défini dans .env
-          subject: 'Vous avez une demande de rendez-vous',
-          text: `Nom: ${appointment.name}\nEmail: ${appointment.email}\nDate: ${when}`,
-          html: `
-            <h2>Vous avez une demande de rendez-vous</h2>
+      await transporter.verify();
+      const info = await transporter.sendMail({
+        from: `${appointment.name} <${SMTP_USER}>`,
+        to: NOTIFY_TO,
+        subject: 'Vous avez une demande de rendez-vous',
+        text: `Nom: ${appointment.name}\nEmail: ${appointment.email}\nDate: ${when}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #F26B2E;">Vous avez une demande de rendez-vous</h2>
             <p><strong>Nom:</strong> ${appointment.name}</p>
             <p><strong>Email:</strong> ${appointment.email}</p>
             <p><strong>Date:</strong> ${when}</p>
-          `,
-        });
-      })
-      .then((info) => {
-        console.log('Notification email envoyée :', info && info.messageId);
-      })
-      .catch((err) => {
-        console.error('Erreur SMTP :', err && err.message);
+            <hr style="border: 1px solid #2B3E50; margin: 20px 0;">
+            <p style="font-size: 0.9em; color: #666;">
+              Ce message a été envoyé automatiquement depuis votre site portfolio.
+            </p>
+          </div>
+        `,
       });
+      
+      emailSent = true;
+      emailId = info?.messageId || null;
+      console.log('[Appointment] Notification email envoyée:', emailId);
+    } catch (err) {
+      emailError = err?.message || 'Erreur SMTP';
+      console.error('[Appointment] Erreur SMTP:', err?.message);
+    }
   }
 
-  res.json({ success: true, appointment });
+  // Réponse alignée avec l'API Vercel
+  return res.status(200).json({
+    success: true,
+    appointment,
+    notification: emailId,
+    emailSent,
+    emailError,
+    emailTo: NOTIFY_TO || null
+  });
 });
 
 app.listen(PORT, () => console.log(`✅ Serveur en ligne sur http://localhost:${PORT}`));
