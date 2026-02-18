@@ -1,36 +1,50 @@
 /* Google Fonts are loaded in index.html */
 
-/* CSS Variables - Design System */
+/* CSS Variables - Professional Design System */
 :root {
-  /* Dark mode (default) */
-  --bg-main: #0B1C2D;
-  --bg-secondary: #12283F;
-  --accent: #F26B2E;
-  --accent-hover: #FF8C42;
-  --text-main: #FFFFFF;
-  --text-secondary: #C9D1D9;
-  --border-color: #2B3E50;
-  --radius: 12px;
-  --transition: 0.25s ease;
+  /* Dark mode (default) - Professional blue palette */
+  --bg-main: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-tertiary: #334155;
+  --accent: #3B82F6;
+  --accent-hover: #60A5FA;
+  --accent-subtle: #1E40AF;
+  --text-main: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --border-color: #334155;
+  --border-subtle: #475569;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --transition: 0.2s ease;
   
-  /* Glow effects */
-  --glow-orange: rgba(242, 107, 46, 0.35);
-  --glow-orange-hover: rgba(242, 107, 46, 0.45);
-  --glow-orange-subtle: rgba(242, 107, 46, 0.15);
+  /* Professional shadow system */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Glow effects - subtle blue */
+  --glow-accent: rgba(59, 130, 246, 0.15);
+  --glow-accent-hover: rgba(59, 130, 246, 0.25);
+  --glow-accent-subtle: rgba(59, 130, 246, 0.08);
 }
 
-/* Light mode */
+/* Light mode - Professional clean palette */
 :root:not(.dark) {
-  --bg-main: #F8FAFC;
-  --bg-secondary: #F1F5F9;
+  --bg-main: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --bg-tertiary: #F1F5F9;
   --text-main: #0F172A;
   --text-secondary: #475569;
+  --text-muted: #64748B;
   --border-color: #E2E8F0;
+  --border-subtle: #CBD5E1;
   
-  /* Glow effects - plus subtils en light mode */
-  --glow-orange: rgba(242, 107, 46, 0.2);
-  --glow-orange-hover: rgba(242, 107, 46, 0.3);
-  --glow-orange-subtle: rgba(242, 107, 46, 0.08);
+  /* Glow effects - subtle in light mode */
+  --glow-accent: rgba(59, 130, 246, 0.08);
+  --glow-accent-hover: rgba(59, 130, 246, 0.15);
+  --glow-accent-subtle: rgba(59, 130, 246, 0.05);
 }
 
 html, body {
@@ -48,24 +62,27 @@ html, body {
   body {
     margin: 0;
     min-height: 100vh;
-    background:
-      radial-gradient(circle at 20% 30%, var(--glow-orange-subtle), transparent 40%),
-      radial-gradient(circle at 80% 70%, var(--glow-orange-subtle), transparent 40%),
-      linear-gradient(180deg, var(--bg-main), var(--bg-secondary));
+    background: var(--bg-main);
     color: var(--text-main);
-    font-family: 'Inter', system-ui, sans-serif;
-    transition: background 0.3s ease, color 0.3s ease;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    transition: background 0.2s ease, color 0.2s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.5px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
     color: var(--text-main);
+    line-height: 1.25;
   }
 
   h1 span,
   .highlight {
     color: var(--accent);
+    font-weight: 700;
   }
 
   p, li {
@@ -82,74 +99,115 @@ html, body {
 
 /* Component styles */
 @layer components {
-  /* Cards */
+  /* Cards - Professional design */
   .card {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    padding: 24px;
+    border-radius: var(--radius-lg);
+    padding: 32px;
     transition: all var(--transition);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
   }
 
   .dark .card {
-    background: rgba(18, 40, 63, 0.9);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background: var(--bg-secondary);
+    box-shadow: var(--shadow-md);
   }
 
   .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 25px var(--glow-orange);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
     border-color: var(--accent);
   }
 
-  /* Buttons */
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  /* Buttons - Professional design */
   .btn {
-    display: inline-block;
-    padding: 14px 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
     border-radius: var(--radius);
-    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-    color: #fff;
-    font-weight: 600;
+    background: var(--accent);
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: var(--transition);
-    font-family: 'Inter', system-ui, sans-serif;
+    transition: all var(--transition);
+    font-family: inherit;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s;
   }
 
   .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px var(--glow-orange-hover);
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn:hover::before {
+    left: 100%;
   }
 
   .btn:active {
     transform: translateY(0);
+    box-shadow: var(--shadow-sm);
   }
 
-  /* Glass effect (updated for new theme) */
+  /* Glass effect - Professional */
   .glass {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border-color);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lg);
     transition: all var(--transition);
   }
 
   .dark .glass {
-    background: rgba(18, 40, 63, 0.6);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(30, 41, 59, 0.8);
+    box-shadow: var(--shadow-xl);
   }
 
   .glass-hover:hover {
-    background: rgba(255, 255, 255, 0.85);
-    box-shadow: 0 0 25px var(--glow-orange-subtle);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-xl);
     border-color: var(--accent);
   }
 
   .dark .glass-hover:hover {
-    background: rgba(18, 40, 63, 0.8);
-    box-shadow: 0 0 25px var(--glow-orange);
+    background: rgba(30, 41, 59, 0.9);
+    box-shadow: var(--shadow-xl);
   }
 
   /* Chrome surface (updated) */

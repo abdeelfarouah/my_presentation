@@ -1,0 +1,1 @@
+const a={GITHUB:"https://github.com/abdeelfarouah/",LINKEDIN:"https://fr.linkedin.com/in/abderrahmaneelfarouah",EMAIL:"A.elfarouahDEV@outlook.fr",CV_URL:"https://raw.githubusercontent.com/abdeelfarouah/my_presentation/655a6d0e909b552be1e814e1cc23f90691a30436/src/abderrahmane-elfarouah_cv.pdf"};export{a as S};

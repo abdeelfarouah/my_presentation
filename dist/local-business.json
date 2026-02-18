@@ -1,0 +1,59 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Abderrahmane El Farouah - Développeur Web Fullstack",
+  "description": "Développeur web fullstack freelance spécialisé dans la création d'applications web modernes avec Angular, React, Node.js et PHP.",
+  "url": "https://www.abderrahmane-elfarouahfreelance.com",
+  "telephone": "",
+  "email": "contact@abderrahmane-elfarouahfreelance.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "FR",
+    "addressRegion": "France"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "addressCountry": "FR"
+  },
+  "openingHours": [
+    "Mo-Fr 09:00-18:00"
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/abderrahmaneelfarouah/",
+    "https://github.com/abdeelfarouah",
+    "https://share.google/0UJJ5edbJf4IkW99S"
+  ],
+  "priceRange": "$$",
+  "areaServed": "France",
+  "serviceType": "Développement web fullstack",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services de développement web",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Développement d'applications web",
+          "description": "Création d'applications web sur mesure avec les technologies modernes"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Développement de sites e-commerce",
+          "description": "Sites e-commerce performants et sécurisés"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service", 
+          "name": "Applications mobiles web",
+          "description": "Applications mobiles progressives (PWA)"
+        }
+      }
+    ]
+  }
+}

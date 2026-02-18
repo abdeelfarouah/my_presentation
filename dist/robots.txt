@@ -1,12 +1,35 @@
-# Autoriser tous les moteurs de recherche à explorer le site
+# Priorité pour les moteurs de recherche importants
 User-agent: *
 Allow: /
 
-# Empêcher l’accès aux fichiers sensibles (facultatif)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Bloquer les bots non désirés
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Fichiers à ne pas indexer
 Disallow: /src/
 Disallow: /node_modules/
 Disallow: /dist/
 Disallow: /vite.config.*
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /api/
 
 # Indiquer le plan du site (sitemap)
-Sitemap: https://abderrahmane-elfarouahfreelance.com/sitemap.xml
+Sitemap: https://www.abderrahmane-elfarouahfreelance.com/sitemap.xml
+
+# Délai de crawl (crawl-delay)
+Crawl-delay: 1
