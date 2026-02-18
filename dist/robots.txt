@@ -7,6 +7,7 @@ Allow: /
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 # Bloquer les bots non désirés
 User-agent: AhrefsBot
@@ -25,11 +26,9 @@ Disallow: /dist/
 Disallow: /vite.config.*
 Disallow: /admin/
 Disallow: /*.json$
-Disallow: /*.xml$
 Disallow: /api/
+# Exception pour le sitemap
+Allow: /sitemap.xml
 
 # Indiquer le plan du site (sitemap)
 Sitemap: https://www.abderrahmane-elfarouahfreelance.com/sitemap.xml
-
-# Délai de crawl (crawl-delay)
-Crawl-delay: 1
