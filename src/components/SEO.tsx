@@ -7,7 +7,6 @@ interface SEOProps {
   description?: string;
   image?: string;
   type?: string;
-  keywords?: string;
   noIndex?: boolean;
   structuredData?: object;
 }
@@ -15,133 +14,149 @@ interface SEOProps {
 const baseUrl = 'https://www.abderrahmane-elfarouahfreelance.com';
 
 const defaultSEO = {
-  title: 'Portfolio | Abderrahmane El Farouah – Développeur Fullstack',
-  description: 'Portfolio d\'Abderrahmane El Farouah, développeur fullstack spécialisé dans la création d\'applications web modernes avec Angular, React, Node.js et PHP.',
+  title:
+    'Développeur Web Freelance à Mantes-la-Jolie (Yvelines 78) | Abderrahmane El Farouah',
+  description:
+    "Développeur web freelance basé à Mantes-la-Jolie dans les Yvelines (78), spécialisé en Angular, React et Laravel pour la création d'applications web modernes et performantes.",
   image: `${baseUrl}/og-image.png`,
   type: 'website',
-  keywords: 'développeur web, fullstack, angular, react, node.js, php, typescript, portfolio, freelance, abderrahmane el farouah',
 };
 
 interface PageSEO {
   title: string;
   description: string;
-  keywords: string;
   noIndex?: boolean;
 }
 
 const pageSEO: Record<string, PageSEO> = {
   '/': {
-    title: 'Portfolio | Abderrahmane El Farouah – Développeur Fullstack',
-    description: 'Portfolio d\'Abderrahmane El Farouah, développeur fullstack spécialisé dans la création d\'applications web modernes et performantes.',
-    keywords: 'portfolio, développeur fullstack, angular, react, node.js, php, typescript, web applications',
-  },
-  '/about': {
-    title: 'À propos | Abderrahmane El Farouah – Développeur Fullstack',
-    description: 'Découvrez le parcours d\'Abderrahmane El Farouah, développeur fullstack passionné par les technologies web modernes et les solutions innovantes.',
-    keywords: 'à propos, parcours, biographie, développeur web, compétences, expérience',
-  },
-  '/projects': {
-    title: 'Projets | Abderrahmane El Farouah – Développeur Fullstack',
-    description: 'Explorez les projets réalisés par Abderrahmane El Farouah : applications web, sites e-commerce, plateformes SaaS et solutions sur mesure.',
-    keywords: 'projets, réalisations, applications web, e-commerce, saas, développement, portfolio',
-  },
-  '/experience': {
-    title: 'Parcours professionnel | Abderrahmane El Farouah – Développeur Fullstack',
-    description: 'Parcours professionnel d\'Abderrahmane El Farouah : expériences en développement web, missions freelance et réalisations significatives.',
-    keywords: 'expérience, parcours professionnel, cv, carrière, freelance, missions, développement web',
+    title:
+      'Développeur Web Freelance à Mantes-la-Jolie (Yvelines 78) | Abderrahmane El Farouah',
+    description:
+      "Développeur web freelance basé à Mantes-la-Jolie dans les Yvelines, spécialisé dans les applications Angular, React et Laravel.",
   },
   '/services': {
-    title: 'Services | Abderrahmane El Farouah – Développeur Angular Laravel',
-    description: 'Services de développement web proposés par Abderrahmane El Farouah : applications Angular, sites e-commerce, plateformes SaaS et maintenance. Tarifs compétitifs et accompagnement personnalisé.',
-    keywords: 'services, développement web, angular, laravel, tarifs, prestations, freelance, applications sur mesure, e-commerce, saas',
+    title:
+      'Développeur Angular & Laravel Freelance à Mantes-la-Jolie (Yvelines 78)',
+    description:
+      "Services de développement web à Mantes-la-Jolie et dans les Yvelines : applications Angular, Laravel, plateformes SaaS et solutions sur mesure.",
+  },
+  '/projects': {
+    title:
+      'Projets Web réalisés à Mantes-la-Jolie et en Yvelines | Portfolio',
+    description:
+      "Découvrez les projets web réalisés par un développeur freelance basé à Mantes-la-Jolie (78).",
+  },
+  '/experience': {
+    title:
+      'Parcours professionnel | Développeur Web Freelance Yvelines',
+    description:
+      "Expériences et parcours d’un développeur web freelance basé à Mantes-la-Jolie dans les Yvelines.",
   },
   '/contact': {
-    title: 'Contact | Abderrahmane El Farouah – Développeur Fullstack',
-    description: 'Contactez Abderrahmane El Farouah, développeur fullstack, pour vos projets de développement web applications sur mesure. Formulaire de contact direct et prise de rendez-vous.',
-    keywords: 'contact, devis, projet, développement web, freelance, collaboration, rendez-vous, formulaire',
+    title:
+      'Contact Développeur Web à Mantes-la-Jolie (Yvelines 78)',
+    description:
+      "Contactez un développeur web freelance à Mantes-la-Jolie pour vos projets d'applications web sur mesure.",
   },
   '/mentions-legales': {
-    title: 'Mentions légales | Portfolio Abderrahmane El Farouah',
-    description: 'Mentions légales du site portfolio d\'Abderrahmane El Farouah, développeur web fullstack.',
-    keywords: 'mentions légales, juridique, confidentialité, rgpd, portfolio',
+    title: 'Mentions légales | Abderrahmane El Farouah',
+    description: "Mentions légales du site.",
     noIndex: true,
   },
   '/cgv': {
-    title: 'CGV | Conditions générales de vente | Abderrahmane El Farouah',
-    description: 'Conditions générales de vente pour les services de développement web proposés par Abderrahmane El Farouah, développeur freelance.',
-    keywords: 'cgv, conditions générales, vente, services, développement web, freelance',
+    title: 'Conditions Générales de Vente | Abderrahmane El Farouah',
+    description: "Conditions générales de vente des services.",
     noIndex: true,
   },
 };
 
-export default function SEO({ 
-  title, 
-  description, 
-  image, 
-  type, 
-  keywords, 
+export default function SEO({
+  title,
+  description,
+  image,
+  type,
   noIndex = false,
-  structuredData 
+  structuredData,
 }: SEOProps) {
   const location = useLocation();
-  const currentPath = location.pathname;
-  
-  // Get page-specific SEO or use defaults
-  const pageSpecificSEO = pageSEO[currentPath as keyof typeof pageSEO] || {};
-  
-  // Merge props with page-specific and default SEO
-  const finalTitle = title || pageSpecificSEO.title || defaultSEO.title;
-  const finalDescription = description || pageSpecificSEO.description || defaultSEO.description;
+  const currentPath = location.pathname === '/' ? '' : location.pathname;
+
+  const pageSpecificSEO =
+    pageSEO[location.pathname as keyof typeof pageSEO] || {};
+
+  const finalTitle =
+    title || pageSpecificSEO.title || defaultSEO.title;
+
+  const finalDescription =
+    description || pageSpecificSEO.description || defaultSEO.description;
+
   const finalImage = image || defaultSEO.image;
   const finalType = type || defaultSEO.type;
-  const finalKeywords = keywords || pageSpecificSEO.keywords || defaultSEO.keywords;
-  const finalNoIndex = noIndex || pageSpecificSEO.noIndex || false;
-  
+
+  const finalNoIndex =
+    noIndex || pageSpecificSEO.noIndex || false;
+
   const canonicalUrl = `${baseUrl}${currentPath}`;
-  
-  // Default structured data
+
+  // Structured Data Local Optimisé
   const defaultStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'Person',
+    '@type': 'ProfessionalService',
     name: 'Abderrahmane El Farouah',
+    image: finalImage,
     url: baseUrl,
-    jobTitle: 'Développeur Web Fullstack',
     description: finalDescription,
+    areaServed: {
+      '@type': 'AdministrativeArea',
+      name: 'Yvelines'
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Mantes-la-Jolie',
+      addressRegion: 'Île-de-France',
+      addressCountry: 'FR'
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      availableLanguage: ['French']
+    },
     sameAs: [
       'https://www.linkedin.com/in/abderrahmaneelfarouah/',
-      'https://github.com/abdeelfarouah',
-      'https://share.google/0UJJ5edbJf4IkW99S'
+      'https://github.com/abdeelfarouah'
     ],
     knowsAbout: [
       'Angular',
+      'Laravel',
       'React',
-      'Node.js',
-      'PHP',
       'TypeScript',
-      'Développement web fullstack',
-      'Applications web performantes'
+      'Développement web fullstack'
     ]
   };
 
-  const finalStructuredData = structuredData || pageStructuredData[currentPath as keyof typeof pageStructuredData] || defaultStructuredData;
+  const finalStructuredData =
+    structuredData ||
+    pageStructuredData[
+      location.pathname as keyof typeof pageStructuredData
+    ] ||
+    defaultStructuredData;
 
   return (
     <Helmet>
-      {/* Basic SEO */}
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
-      <meta name="keywords" content={finalKeywords} />
-      
-      {/* Canonical URL */}
+
       <link rel="canonical" href={canonicalUrl} />
-      
-      {/* Robots */}
-      <meta name="robots" content={finalNoIndex ? 'noindex, nofollow' : 'index, follow'} />
-      
-      {/* Open Graph */}
+
+      <meta
+        name="robots"
+        content={finalNoIndex ? 'noindex' : 'index, follow'}
+      />
+
       <meta property="og:type" content={finalType} />
       <meta property="og:locale" content="fr_FR" />
-      <meta property="og:site_name" content="Portfolio Abderrahmane El Farouah" />
+      <meta property="og:site_name" content="Abderrahmane El Farouah" />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
@@ -149,30 +164,25 @@ export default function SEO({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={finalTitle} />
-      
-      {/* Twitter */}
+
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@abdeelfarouah" />
-      <meta name="twitter:creator" content="@abdeelfarouah" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
       <meta name="twitter:image" content={finalImage} />
-      
-      {/* Additional SEO */}
+
       <meta name="author" content="Abderrahmane El Farouah" />
       <meta name="language" content="fr" />
-      <meta name="geo.region" content="FR" />
-      <meta name="geo.placename" content="France" />
-      
-      {/* Structured Data */}
+
       <script type="application/ld+json">
         {JSON.stringify(finalStructuredData)}
       </script>
-      
-      {/* Preconnect for performance */}
+
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-      <link rel="preconnect" href={baseUrl} />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin=""
+      />
     </Helmet>
   );
 }
