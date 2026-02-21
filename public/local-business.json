@@ -1,41 +1,47 @@
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "ProfessionalService",
   "name": "Abderrahmane El Farouah - Développeur Web Fullstack",
-  "description": "Développeur web fullstack freelance spécialisé dans la création d'applications web modernes avec Angular, React, Node.js et PHP.",
+  "description": "Développeur web fullstack freelance basé à Mantes-la-Jolie (Yvelines), spécialisé dans la création d'applications web modernes avec Angular, React, Node.js et PHP.",
   "url": "https://www.abderrahmane-elfarouahfreelance.com",
-  "telephone": "",
-  "email": "contact@abderrahmane-elfarouahfreelance.com",
+  "telephone": "+33760751350",
+  "email": "a.elfarouahDEV@outlook.com",
   "address": {
     "@type": "PostalAddress",
-    "addressCountry": "FR",
-    "addressRegion": "France"
+    "streetAddress": "adresse complète à Mantes-la-Jolie",
+    "addressLocality": "Mantes-la-Jolie",
+    "postalCode": "78200",
+    "addressRegion": "Île-de-France",
+    "addressCountry": "FR"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "addressCountry": "FR"
+    "latitude":49.004072817382976,
+    "longitude": 1.6807611840267045
   },
   "openingHours": [
-    "Mo-Fr 09:00-18:00"
+    "Mo-Fr 09:00-17:00"
   ],
   "sameAs": [
     "https://www.linkedin.com/in/abderrahmaneelfarouah/",
-    "https://github.com/abdeelfarouah",
-    "https://share.google/0UJJ5edbJf4IkW99S"
+    "https://github.com/abdeelfarouah"
   ],
   "priceRange": "$$",
-  "areaServed": "France",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Yvelines"
+  },
   "serviceType": "Développement web fullstack",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Services de développement web",
+    "name": "Services de développement web à Mantes-la-Jolie",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
           "name": "Développement d'applications web",
-          "description": "Création d'applications web sur mesure avec les technologies modernes"
+          "description": "Création d'applications web sur mesure pour entreprises locales dans les Yvelines"
         }
       },
       {
@@ -43,7 +49,7 @@
         "itemOffered": {
           "@type": "Service",
           "name": "Développement de sites e-commerce",
-          "description": "Sites e-commerce performants et sécurisés"
+          "description": "Sites e-commerce performants et sécurisés pour clients basés à Mantes-la-Jolie et dans le département"
         }
       },
       {
@@ -51,7 +57,7 @@
         "itemOffered": {
           "@type": "Service", 
           "name": "Applications mobiles web",
-          "description": "Applications mobiles progressives (PWA)"
+          "description": "Applications mobiles progressives (PWA) pour entreprises locales"
         }
       }
     ]
