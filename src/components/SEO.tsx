@@ -31,28 +31,28 @@ interface PageSEOMeta {
 const pageSEO: Record<string, PageSEOMeta> = {
   '/': {
     title:
-      'Développeur Web Freelance à Mantes-la-Jolie (Yvelines 78) | Abderrahmane El Farouah',
+      'Développement Web Applications | Angular Laravel',
     description:
-      "Développeur web freelance basé à Mantes-la-Jolie dans les Yvelines, spécialisé dans les applications Angular, React et Laravel.",
+      "Développement d'applications web professionnelles avec Angular et Laravel. Solutions modernes et performantes.",
   },
   '/services': {
     title:
-      'Développeur Angular & Laravel Freelance à Mantes-la-Jolie (Yvelines 78)',
+      'Services Angular Laravel Freelance',
     description:
       "Services de développement web à Mantes-la-Jolie et dans les Yvelines : applications Angular, Laravel, plateformes SaaS et solutions sur mesure.",
   },
   '/projects': {
-    title: 'Projets Web réalisés à Mantes-la-Jolie et en Yvelines | Portfolio',
+    title: 'Projets Web | Portfolio Angular Laravel',
     description:
       "Découvrez les projets web réalisés par un développeur freelance basé à Mantes-la-Jolie (78).",
   },
   '/experience': {
-    title: 'Parcours professionnel | Développeur Web Freelance Yvelines',
+    title: 'Parcours Développeur Web | Angular Laravel',
     description:
       "Expériences et parcours d'un développeur web freelance basé à Mantes-la-Jolie dans les Yvelines.",
   },
   '/contact': {
-    title: 'Contact Développeur Web à Mantes-la-Jolie (Yvelines 78)',
+    title: 'Contact Développeur Web Angular Laravel',
     description:
       "Contactez un développeur web freelance à Mantes-la-Jolie pour vos projets d'applications web sur mesure.",
   },
@@ -70,9 +70,9 @@ const pageSEO: Record<string, PageSEOMeta> = {
 
 const defaultSEO = {
   title:
-    'Développeur Web Freelance à Mantes-la-Jolie (Yvelines 78) | Abderrahmane El Farouah',
+    'Développement Web Applications | Angular Laravel',
   description:
-    "Développeur web freelance basé à Mantes-la-Jolie dans les Yvelines (78), spécialisé en Angular, React et Laravel pour la création d'applications web modernes et performantes.",
+    "Développement d'applications web professionnelles avec Angular et Laravel. Solutions modernes, robustes et performantes.",
   type: 'website',
 };
 

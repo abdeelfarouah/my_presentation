@@ -17,7 +17,7 @@ interface Appointment {
   date: string;
 }
 
-const API_BASE = '/api';
+const API_BASE = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:4000/api';
 
 export default function Contact() {
   registerLocale('fr', fr);
@@ -248,19 +248,19 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="h-full w-full min-h-[600px] py-8 px-4 sm:py-12 md:py-16 max-w-[1200px] mx-auto">
+    <main id="contact" className="h-full w-full min-h-[600px] py-8 px-4 sm:py-12 md:py-16 max-w-[1200px] mx-auto">
       <div className="h-full animate-fade-in flex flex-col w-full">
         <motion.div ref={ref} variants={containerVariants} initial="hidden" animate={inView ? 'visible' : 'hidden'} className="w-full">
 
           {/* Header */}
-          <div className="text-center mb-12">
+          <header className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl font-bold text-text-main mb-4">
-              Abderrahmane <span className="text-accent">El Farouah</span>
+              Développement <span className="text-accent">Web Professionnel</span>
             </h1>
             <p className="text-xl text-text-secondary font-medium max-w-2xl mx-auto">
-              Développeur Fullstack spécialisé dans la création d'applications web modernes et performantes
+              Création d'applications web modernes, robustes et performantes pour vos projets
             </p>
-          </div>
+          </header>
 
           {/* GRID COTE A COTE */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
@@ -270,16 +270,25 @@ export default function Contact() {
               <div className="flex justify-center items-center mb-6">
                 <img 
                   src={PROFILE_IMAGE} 
-                  alt="Abderrahmane El Farouah" 
+                  alt="Développeur Web Freelance Angular Laravel - Expert Applications Web" 
                   width="128"
                   height="128"
                   className="w-32 h-32 rounded-full object-cover shadow-xl border-4 border-accent/20"
                 />
               </div>
+              <h2 className="text-xl font-bold text-text-main mb-3">
+                Expert <span className="text-accent">Développement Web</span>
+              </h2>
               <p className="text-base text-text-secondary mb-6 leading-relaxed max-w-md">
-                Passionné par le développement d'applications web robustes et évolutives, 
-                je combine expertise technique et vision produit pour livrer des solutions de qualité.
+                Spécialiste en <strong>applications web modernes</strong> avec <strong>Angular et Laravel</strong>. 
+                Développement de solutions <strong>robustes, évolutives et performantes</strong> pour entreprises et startups.
               </p>
+              <div className="text-sm text-text-secondary mb-4 space-y-1">
+                <p>✅ Applications Web sur mesure</p>
+                <p>✅ Solutions Angular</p>
+                <p>✅ APIs Laravel robustes</p>
+                <p>✅ Performance et SEO optimisés</p>
+              </div>
               <div className="flex flex-wrap justify-center gap-3">
                 <a href={SOCIAL_LINKS.GITHUB} target="_blank" rel="noopener noreferrer" className="touch-area focus-visible flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-secondary text-text-main hover:bg-accent hover:text-white transition-all duration-200 border border-border-color hover:border-accent shadow-sm hover:shadow-md" title="GitHub">
                   <Github className="w-5 h-5" />
@@ -302,11 +311,13 @@ export default function Contact() {
 
             {/* FORMULAIRE */}
             <motion.div variants={itemVariants} className="card">
-              <h2 className="text-2xl font-bold text-center text-text-main mb-6">Contactez-<span className="text-accent">moi</span></h2>
+              <h2 className="text-2xl font-bold text-center text-text-main mb-6">Démarrer votre <span className="text-accent">projet</span></h2>
               <p className="text-text-secondary text-center mb-6">
-                Discutons de votre projet ou d'une opportunité de collaboration
+                Parlons de vos besoins et de la meilleure approche technique pour votre <strong>application web</strong>
               </p>
               <form onSubmit={handleSubmit} className="space-y-4">
+                <fieldset>
+                  <legend className="sr-only">Informations de contact pour votre projet web</legend>
                 {/* PRÉNOM */}
                 <div>
                   <label htmlFor="firstName" className="block text-text-secondary text-sm font-medium mb-2">Prénom</label>
@@ -318,6 +329,7 @@ export default function Contact() {
                     onChange={handleChange}
                     placeholder="Votre prénom"
                     maxLength={50}
+                    autoComplete="given-name"
                     className={`touch-area appearance-none border rounded-lg w-full py-3 px-4 text-sm leading-tight focus:outline-none focus:ring-2 transition-all duration-200 ${errorFirstName ? 'border-red-500 focus:ring-red-400/20 bg-red-50/10' : 'border-border-color focus:ring-accent/20 bg-bg-secondary hover:border-accent/50'} text-text-main placeholder-text-muted`}
                     required
                   />
@@ -335,6 +347,7 @@ export default function Contact() {
                     onChange={handleChange}
                     placeholder="Votre nom"
                     maxLength={50}
+                    autoComplete="family-name"
                     className={`touch-area appearance-none border rounded-lg w-full py-3 px-4 text-sm leading-tight focus:outline-none focus:ring-2 transition-all duration-200 ${errorLastName ? 'border-red-500 focus:ring-red-400/20 bg-red-50/10' : 'border-border-color focus:ring-accent/20 bg-bg-secondary hover:border-accent/50'} text-text-main placeholder-text-muted`}
                     required
                   />
@@ -352,6 +365,7 @@ export default function Contact() {
                     onChange={handleChange}
                     placeholder="votre.email@exemple.com"
                     maxLength={100}
+                    autoComplete="email"
                     className={`touch-area appearance-none border rounded-lg w-full py-3 px-4 text-sm leading-tight focus:outline-none focus:ring-2 transition-all duration-200 ${errorEmail ? 'border-red-500 focus:ring-red-400/20 bg-red-50/10' : 'border-border-color focus:ring-accent/20 bg-bg-secondary hover:border-accent/50'} text-text-main placeholder-text-muted`}
                     required
                   />
@@ -360,10 +374,9 @@ export default function Contact() {
 
                 {/* DATE + HEURE */}
                 <div>
-                  <label className="block text-text-secondary text-sm font-medium mb-2">Date et heure de rendez-vous</label>
+                  <label htmlFor="appointment-date" className="block text-text-secondary text-sm font-medium mb-2">Date et heure de rendez-vous</label>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="relative">
-                      <label htmlFor="appointment-date" className="sr-only">Date</label>
                       <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-accent">
                         <Calendar size={16} />
                       </span>
@@ -384,13 +397,14 @@ export default function Contact() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="appointment-hour" className="sr-only">Heure</label>
+                      <label htmlFor="appointment-hour" className="sr-only">Heure du rendez-vous</label>
                       <select 
                         id="appointment-hour"
                         name="appointment-hour"
                         value={selectedHour ?? (formState.date ? new Date(formState.date).getHours() : '')} 
                         onChange={handleHourChange} 
                         className="touch-area focus-visible appearance-none border rounded-lg w-full py-3 px-4 text-sm text-text-main leading-tight focus:outline-none focus:ring-2 focus:ring-accent/20 bg-bg-secondary border-border-color hover:border-accent/50 transition-all duration-200" 
+                        autoComplete="off"
                         required
                       >
                         <option value="" disabled>Heure</option>
@@ -405,7 +419,7 @@ export default function Contact() {
                 <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" className="touch-area focus-visible w-full btn mt-6">
                   <span className="flex items-center justify-center gap-2">
                     <Calendar size={16} />
-                    Prendre rendez-vous
+                    Démarrer votre projet web
                   </span>
                 </motion.button>
 
@@ -414,6 +428,7 @@ export default function Contact() {
                     ✅ Votre demande de rendez-vous a été enregistrée avec succès.
                   </div>
                 )}
+                </fieldset>
               </form>
             </motion.div>
 
@@ -459,6 +474,6 @@ export default function Contact() {
 
         </motion.div>
       </div>
-    </section>
+    </main>
   );
 }

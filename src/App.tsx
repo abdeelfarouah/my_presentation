@@ -1,6 +1,7 @@
 import { useMemo, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation, Navigate, Link } from 'react-router-dom';
-import { ThemeProvider } from './contexts/theme';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { MenuProvider, useMenu } from './contexts/MenuContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -36,8 +37,9 @@ const NotFound = () => (
   </div>
 );
 
-export default function App() {
+const AppContent = () => {
   const location = useLocation();
+  const { isMenuOpen } = useMenu();
 
   // Gestion simplifiée activeTab
   const activeTab = useMemo(() => {
@@ -47,50 +49,52 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <HelmetProvider>
-      <ThemeProvider>
-        <SEO />
-        <div
-          className="
-            flex flex-col min-h-screen w-full mx-auto
-            backdrop-blur-2xl transition-all duration-200 ease-in-out
-            p-4 sm:p-6 md:p-8 lg:p-12
-            rounded-none sm:rounded-2xl
-          "
-        >
-          {/* Navbar */}
-          <Navbar activeTab={activeTab} />
+    <>
+      <SEO />
+      <div
+        className="
+          flex flex-col min-h-screen w-full mx-auto
+          backdrop-blur-2xl transition-all duration-200 ease-in-out
+          p-4 sm:p-6 md:p-8 lg:p-12
+          rounded-none sm:rounded-2xl
+        "
+      >
+        {/* Navbar */}
+        <Navbar activeTab={activeTab} />
 
-          {/* Main content */}
-          <main id="main-content" className="flex-1 h-auto">
-            <div className="h-full flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={location.pathname}
-                  initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                  transition={{ duration: 0.35, ease: 'easeInOut' }}
-                  className="w-full"
-                >
-                  <Suspense fallback={<LoadingFallback />}>
-                  <Routes location={location} key={location.pathname}>
-                    <Route path="/" element={<Contact />} />
-                    <Route path="/contact" element={<Navigate to="/" />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/experience" element={<Experience />} />
-                    <Route path="/services" element={<Services />} />
-                    <Route path="/mentions-legales" element={<MentionsLegales />} />
-                    <Route path="/cgv" element={<CGV />} />
-                    <Route path="/404" element={<NotFound />} />
-                    <Route path="*" element={<Navigate to="/404" replace />} />
-                  </Routes>
-                </Suspense>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </main>
+        {/* Main content */}
+        <main 
+          id="main-content" 
+          className={`flex-1 h-auto transition-all duration-300 ${isMenuOpen ? 'blur-lg opacity-30' : ''}`}
+        >
+          <div className="h-full flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={location.pathname}
+                initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                transition={{ duration: 0.35, ease: 'easeInOut' }}
+                className="w-full"
+              >
+                <Suspense fallback={<LoadingFallback />}>
+                <Routes location={location} key={location.pathname}>
+                  <Route path="/" element={<Contact />} />
+                  <Route path="/contact" element={<Navigate to="/" />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/experience" element={<Experience />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/mentions-legales" element={<MentionsLegales />} />
+                  <Route path="/cgv" element={<CGV />} />
+                  <Route path="/404" element={<NotFound />} />
+                  <Route path="*" element={<Navigate to="/404" replace />} />
+                </Routes>
+              </Suspense>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </main>
 
         {/* Footer */}
         <footer
@@ -124,7 +128,18 @@ export default function App() {
           </div>
         </footer>
       </div>
-    </ThemeProvider>
+    </>
+  );
+};
+
+export default function App() {
+  return (
+    <HelmetProvider>
+      <ThemeProvider>
+        <MenuProvider>
+          <AppContent />
+        </MenuProvider>
+      </ThemeProvider>
     </HelmetProvider>
   );
 }

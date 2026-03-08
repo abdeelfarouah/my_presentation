@@ -1,8 +1,9 @@
 import { Menu, X } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import { NAV_IMAGE } from '../utils/images';
+import { useMenu } from '../contexts/MenuContext';
 
 type NavbarProps = {
   activeTab?: string;
@@ -11,6 +12,11 @@ type NavbarProps = {
 export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { setIsMenuOpen } = useMenu();
+
+  useEffect(() => {
+    setIsMenuOpen(isOpen);
+  }, [isOpen, setIsMenuOpen]);
 
   const navItems = [
     { id: 'home', label: 'Accueil', path: '/' },
@@ -26,7 +32,7 @@ export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
   }, [activeTabProp, location.pathname]);
 
   return (
-    <nav className="glass sticky top-0 border-b border-border-color/50">
+    <nav className={`glass sticky top-0 border-b border-border-color/50 ${isOpen ? 'z-[1000]' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo + titre */}
@@ -75,7 +81,7 @@ export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
             <button
               aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden touch-area focus-visible inline-flex items-center justify-center p-2 rounded-lg text-text-secondary hover:text-text-main hover:bg-bg-secondary/50 transition-all duration-200"
+              className={`lg:hidden touch-area focus-visible inline-flex items-center justify-center p-2 rounded-lg text-text-secondary hover:text-text-main hover:bg-bg-secondary/50 transition-all duration-200 ${isOpen ? 'relative z-[2000]' : ''}`}
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -87,11 +93,11 @@ export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 z-[59] bg-black/50 backdrop-blur-[1px]"
+            className="fixed inset-0 z-[999] bg-black/40 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
-          <div className="fixed top-0 right-0 h-screen w-72 glass z-[60] transform transition-transform duration-300 ease-in-out translate-x-0 border-l border-border-color/50">
+          <div className="fixed top-0 right-0 h-screen w-72 glass z-[1000] transform transition-transform duration-300 ease-in-out translate-x-0 border-l border-border-color/50">
             <div className="flex flex-col h-screen">
               <div className="flex items-center justify-between p-4 border-b border-border-color/50 flex-shrink-0">
                 <h2 className="text-lg font-semibold text-text-main">Navigation</h2>

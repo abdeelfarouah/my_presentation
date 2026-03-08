@@ -15,7 +15,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
+    <header
       className="
         h-full
         py-3 sm:py-6 md:py-12
@@ -29,7 +29,7 @@ export default function Hero() {
         <div className="flex justify-center items-center">
           <img
             src={PROFILE_IMAGE}
-            alt="Abderrahmane El Farouah"
+            alt="Développeur Web Angular Laravel - Abderrahmane El Farouah"
             width="144"
             height="144"
             className="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover ring-2 ring-accent/30 shadow-glow-orange animate-float"
@@ -38,16 +38,16 @@ export default function Hero() {
 
         <div className="space-y-3">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-text-main">
-            Abderrahmane <span className="text-accent">El Farouah</span>
+            Développement <span className="text-accent">Web & Applications</span>
           </h1>
 
-          <p className="text-md sm:text-lg text-text-secondary font-body">
-            Développeur Web & AS 400
-          </p>
+          <h2 className="text-md sm:text-lg text-text-secondary font-body">
+            Solutions Modernes & Performantes
+          </h2>
         </div>
         <p className="text-lg text-text-secondary max-w-2xl mx-auto font-body">
-          Passionné par le développement web et les systèmes legacy,
-          je crée des solutions innovantes qui allient technologie moderne et fiabilité.
+          Spécialisé dans la création d'applications web robustes et évolutives, 
+          je transforme vos idées en solutions techniques innovantes avec <strong>Angular et Laravel</strong>.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <a
@@ -84,6 +84,6 @@ export default function Hero() {
           </a>
         </div>
       </Container>
-    </section>
+    </header>
   );
 }

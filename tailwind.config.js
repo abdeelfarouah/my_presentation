@@ -33,9 +33,11 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Montserrat', 'sans-serif'],
-        heading: ['Montserrat', 'Poppins', 'sans-serif'],
-        body: ['Inter', 'Roboto', 'system-ui', 'sans-serif'],
+        display: ['Source Serif Pro', 'Georgia', 'serif'],
+        heading: ['Source Serif Pro', 'Georgia', 'serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Cascadia Code', 'Roboto Mono', 'Fira Code', 'Monaco', 'Consolas', 'monospace'],
+        code: ['JetBrains Mono', 'Cascadia Code', 'Roboto Mono', 'monospace'],
       },
       borderRadius: {
         'design': '12px',
