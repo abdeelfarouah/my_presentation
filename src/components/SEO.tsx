@@ -93,12 +93,16 @@ function toAbsoluteImageUrl(image: string): string {
 /** Avertit en dev si title/description dépassent les longueurs optimales */
 function validateSEOLengths(title: string, description: string): void {
   if (process.env.NODE_ENV !== 'development') return;
+
   if (title.length > 60)
     console.warn(`[SEO] Title trop long : ${title.length}/60 chars → "${title}"`);
+
   if (title.length < 30)
     console.warn(`[SEO] Title trop court : ${title.length}/30 min → "${title}"`);
+
   if (description.length > 155)
     console.warn(`[SEO] Description trop longue : ${description.length}/155 chars`);
+
   if (description.length < 70)
     console.warn(`[SEO] Description trop courte : ${description.length}/70 min`);
 }
@@ -134,10 +138,28 @@ export default function SEO({
     image: finalImage,
     url: BASE_URL,
     description: finalDescription,
+
     areaServed: [
-      { '@type': 'City', name: 'Mantes-la-Jolie' },
-      { '@type': 'AdministrativeArea', name: 'Yvelines' },
+      {
+        '@type': 'City',
+        name: 'Mantes-la-Jolie',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Yvelines',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Île-de-France',
+      },
     ],
+
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 48.9900,
+      longitude: 1.7170,
+    },
+
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Mantes-la-Jolie',
@@ -145,16 +167,31 @@ export default function SEO({
       addressRegion: 'Île-de-France',
       addressCountry: 'FR',
     },
+
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
       availableLanguage: ['French'],
     },
+
     sameAs: [
       'https://www.linkedin.com/in/abderrahmaneelfarouah/',
       'https://github.com/abdeelfarouah',
+      'https://plateforme.freelance.com/freelance/Abderrahmane-1136aeb2-b20d-437a-9a78-fccd54de2f81',
+      'https://www.malt.fr/profile/abderrahmaneelfarouah',
+      'https://www.pagesjaunes.fr/pros/64207852',
     ],
-    knowsAbout: ['Angular', 'site web', 'Laravel', 'React', 'TypeScript', 'Développement web fullstack'],
+
+    knowsAbout: [
+      'Angular',
+      'site web',
+      'Laravel',
+      'React',
+      'site vitrine',
+      'Api',
+      'TypeScript',
+      'Développement web fullstack',
+    ],
   };
 
   const finalStructuredData =
@@ -164,47 +201,56 @@ export default function SEO({
 
   return (
     <Helmet>
+
       {/* ── Fondamentaux ── */}
+
       <html lang="fr" />
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
-      <meta name="author"      content={SITE_NAME} />
-      <meta name="language"    content="fr" />
-      <meta name="robots"      content={robotsContent} />
+      <meta name="author" content={SITE_NAME} />
+      <meta name="language" content="fr" />
+      <meta name="robots" content={robotsContent} />
+      <meta name="theme-color" content="#000000" />
 
       {/* ── Canonical + hreflang ── */}
-      <link rel="canonical"              href={canonicalUrl} />
-      <link rel="alternate" hrefLang="fr"        href={canonicalUrl} />
+
+      <link rel="canonical" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="fr" href={canonicalUrl} />
       <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
 
       {/* ── Open Graph ── */}
-      <meta property="og:type"         content={finalType} />
-      <meta property="og:locale"       content="fr_FR" />
-      <meta property="og:site_name"    content={SITE_NAME} />
-      <meta property="og:url"          content={canonicalUrl} />
-      <meta property="og:title"        content={finalTitle} />
-      <meta property="og:description"  content={finalDescription} />
-      <meta property="og:image"        content={finalImage} />
-      <meta property="og:image:type"   content="image/png" />
-      <meta property="og:image:width"  content="1200" />
+
+      <meta property="og:type" content={finalType} />
+      <meta property="og:locale" content="fr_FR" />
+      <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:title" content={finalTitle} />
+      <meta property="og:description" content={finalDescription} />
+      <meta property="og:image" content={finalImage} />
+      <meta property="og:image:type" content="image/png" />
+      <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt"    content={finalTitle} />
+      <meta property="og:image:alt" content={finalTitle} />
 
       {/* ── Twitter Card ── */}
-      <meta name="twitter:card"        content="summary_large_image" />
-      <meta name="twitter:site"        content={TWITTER_HANDLE} />
-      <meta name="twitter:title"       content={finalTitle} />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={TWITTER_HANDLE} />
+      <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
-      <meta name="twitter:image"       content={finalImage} />
+      <meta name="twitter:image" content={finalImage} />
 
       {/* ── JSON-LD ── */}
+
       <script type="application/ld+json">
         {JSON.stringify(finalStructuredData)}
       </script>
 
       {/* ── Performance ── */}
+
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+
     </Helmet>
   );
-    }
+}
