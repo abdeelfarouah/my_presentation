@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0">
+  
+  <!-- Page d'accueil avec localisation -->
+  <url>
+    <loc>https://www.abderrahmane-elfarouahfreelance.com/</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <geo:geo>
+      <geo:format>gml</geo:format>
+      <geo:gml>
+        <gml:Feature xmlns:gml="http://www.opengis.net/gml">
+          <gml:boundedBy>
+            <gml:Envelope>
+              <gml:lowerCorner>1.7170 48.9900</gml:lowerCorner>
+              <gml:upperCorner>1.7170 48.9900</gml:upperCorner>
+            </gml:Envelope>
+          </gml:boundedBy>
+          <gml:featureMember>
+            <gml:Feature>
+              <gml:name>Abderrahmane El Farouah - Développeur Web Mantes-la-Jolie</gml:name>
+              <gml:geometryProperty>
+                <gml:Point>
+                  <gml:coordinates>1.7170,48.9900</gml:coordinates>
+                </gml:Point>
+              </gml:geometryProperty>
+            </gml:Feature>
+          </gml:featureMember>
+        </gml:Feature>
+      </geo:gml>
+    </geo:geo>
+  </url>
+
+  <!-- Services avec localisation -->
+  <url>
+    <loc>https://www.abderrahmane-elfarouahfreelance.com/services</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <geo:geo>
+      <geo:format>gml</geo:format>
+      <geo:gml>
+        <gml:Feature xmlns:gml="http://www.opengis.net/gml">
+          <gml:boundedBy>
+            <gml:Envelope>
+              <gml:lowerCorner>1.7170 48.9900</gml:lowerCorner>
+              <gml:upperCorner>1.7170 48.9900</gml:upperCorner>
+            </gml:Envelope>
+          </gml:boundedBy>
+          <gml:featureMember>
+            <gml:Feature>
+              <gml:name>Développement web Mantes-la-Jolie</gml:name>
+              <gml:geometryProperty>
+                <gml:Point>
+                  <gml:coordinates>1.7170,48.9900</gml:coordinates>
+                </gml:Point>
+              </gml:geometryProperty>
+            </gml:Feature>
+          </gml:featureMember>
+        </gml:Feature>
+      </geo:gml>
+    </geo:geo>
+  </url>
+
+  <!-- Contact avec localisation -->
+  <url>
+    <loc>https://www.abderrahmane-elfarouahfreelance.com/contact</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <geo:geo>
+      <geo:format>gml</geo:format>
+      <geo:gml>
+        <gml:Feature xmlns:gml="http://www.opengis.net/gml">
+          <gml:boundedBy>
+            <gml:Envelope>
+              <gml:lowerCorner>1.7170 48.9900</gml:lowerCorner>
+              <gml:upperCorner>1.7170 48.9900</gml:upperCorner>
+            </gml:Envelope>
+          </gml:boundedBy>
+          <gml:featureMember>
+            <gml:Feature>
+              <gml:name>Contact développeur web Mantes-la-Jolie</gml:name>
+              <gml:geometryProperty>
+                <gml:Point>
+                  <gml:coordinates>1.7170,48.9900</gml:coordinates>
+                </gml:Point>
+              </gml:geometryProperty>
+            </gml:Feature>
+          </gml:featureMember>
+        </gml:Feature>
+      </geo:gml>
+    </geo:geo>
+  </url>
+
+</urlset>

@@ -1,0 +1,152 @@
+{
+  "strategy": "long-tail-ultra-cible",
+  "target": "TPE/PME en Île-de-France",
+  "keywords": {
+    "service_direct": [
+      "développeur Angular freelance Île-de-France",
+      "développeur Laravel freelance Île-de-France", 
+      "développeur fullstack Angular Laravel freelance France",
+      "développeur web freelance Angular Paris",
+      "développeur application web Laravel freelance",
+      "freelance Angular TypeScript expert France",
+      "développeur API Laravel freelance",
+      "développeur web sur mesure Angular Laravel",
+      "freelance création application métier Angular",
+      "développeur web indépendant Angular Laravel",
+      "développeur SaaS Angular Laravel freelance",
+      "freelance développement logiciel web sur mesure",
+      "développeur web backend Laravel freelance France",
+      "développeur frontend Angular freelance Paris",
+      "développeur fullstack TypeScript Laravel freelance"
+    ],
+    "seo_local": [
+      "développeur web freelance Mantes-la-Jolie",
+      "développeur Angular freelance Yvelines",
+      "développeur Laravel freelance Île-de-France",
+      "développeur web freelance proche Pontoise",
+      "développeur application web Val-d'Oise",
+      "développeur freelance Île-de-France PME",
+      "développeur web indépendant Paris entreprise",
+      "freelance Angular Hauts-de-Seine",
+      "développeur Laravel freelance Seine-et-Marne",
+      "développeur web freelance Versailles",
+      "développeur fullstack Île-de-France startup",
+      "développeur Angular freelance Cergy",
+      "développeur web freelance Nanterre",
+      "freelance Laravel Val-d'Oise",
+      "développeur web freelance Île-de-France TPE"
+    ],
+    "intention_prix": [
+      "tarif développeur Angular freelance France",
+      "prix développeur Laravel freelance",
+      "devis création application web Angular Laravel",
+      "coût développement application web sur mesure",
+      "combien coûte développeur freelance Angular",
+      "tarif développeur fullstack freelance France",
+      "prix API Laravel sur mesure",
+      "devis développeur web freelance Île-de-France",
+      "coût création SaaS Angular Laravel",
+      "tarif journalier développeur Angular freelance",
+      "TJM développeur Laravel freelance France",
+      "prix développement backend Laravel",
+      "devis application métier Angular",
+      "coût refonte site Angular",
+      "tarif freelance développeur web sur mesure"
+    ],
+    "probleme_client": [
+      "créer application web sur mesure entreprise",
+      "moderniser application web Angular",
+      "refonte site web Angular Laravel", 
+      "améliorer performance application Angular",
+      "sécuriser API Laravel entreprise",
+      "développer logiciel interne entreprise web",
+      "créer outil métier sur mesure Angular",
+      "automatiser processus entreprise application web",
+      "développer dashboard web entreprise Laravel",
+      "créer back office Angular Laravel",
+      "corriger bug application Angular freelance",
+      "optimiser application web lente Angular",
+      "audit code Laravel freelance",
+      "maintenance application web Angular",
+      "migration application vers Angular"
+    ],
+    "projets_specifiques": [
+      "créer SaaS avec Angular et Laravel",
+      "développer CRM sur mesure Angular",
+      "créer plateforme web Laravel Angular",
+      "application de gestion entreprise Angular",
+      "développer intranet Laravel Angular",
+      "créer outil de gestion client web",
+      "développer application RH Angular",
+      "créer logiciel de facturation Laravel",
+      "application de réservation Angular Laravel",
+      "plateforme marketplace Angular Laravel",
+      "créer application fintech Angular",
+      "développer API REST Laravel sécurisée",
+      "créer dashboard analytics Angular",
+      "application de gestion stock Laravel",
+      "développer application B2B web sur mesure"
+    ],
+    "expertise": [
+      "expert Angular freelance France",
+      "expert Laravel freelance Île-de-France",
+      "développeur Angular senior freelance",
+      "développeur Laravel expert backend",
+      "freelance TypeScript expert Angular",
+      "développeur web spécialisé Angular Laravel",
+      "expert développement application web sur mesure",
+      "consultant Angular freelance France",
+      "consultant Laravel backend freelance",
+      "développeur fullstack senior freelance France"
+    ],
+    "comparaison": [
+      "freelance vs agence développement web",
+      "pourquoi choisir développeur freelance Angular",
+      "agence ou freelance Laravel",
+      "avantage développeur web indépendant",
+      "freelance Angular ou React lequel choisir",
+      "Laravel ou Node.js pour projet web",
+      "Angular ou React pour application entreprise",
+      "développeur freelance ou ESN",
+      "choisir développeur web freelance France",
+      "meilleur développeur Angular freelance"
+    ],
+    "conversion": [
+      "contacter développeur Angular freelance",
+      "trouver développeur Laravel freelance rapidement",
+      "embaucher développeur web freelance France",
+      "mission développeur Angular freelance disponible",
+      "développeur freelance disponible immédiatement Angular Laravel"
+    ]
+  },
+  "content_pillars": [
+    {
+      "pillar": "Expertise Technique Angular/Laravel",
+      "keywords": ["Angular", "Laravel", "TypeScript", "fullstack", "API", "performance"],
+      "target": "Décision technique"
+    },
+    {
+      "pillar": "Solutions Business",
+      "keywords": ["SaaS", "CRM", "B2B", "automatisation", "dashboard", "gestion"],
+      "target": "Problèmes métier"
+    },
+    {
+      "pillar": "Services Freelance",
+      "keywords": ["freelance", "indépendant", "sur mesure", "expert", "senior", "disponible"],
+      "target": "Choix prestataire"
+    },
+    {
+      "pillar": "Localisation Île-de-France",
+      "keywords": ["Mantes-la-Jolie", "Yvelines", "Paris", "Île-de-France", "proximité", "présentiel"],
+      "target": "Recherche locale"
+    }
+  ],
+  "implementation": {
+    "meta_titles": "Intégrer dans titles SEO.tsx",
+    "meta_descriptions": "Optimiser pour chaque page",
+    "h1_h2": "Structurer le contenu hiérarchique",
+    "blog_content": "Créer articles pour chaque catégorie",
+    "landing_pages": "Pages dédiées pour services spécifiques",
+    "faq_content": "Répondre aux questions de conversion"
+  }
+}
