@@ -143,35 +143,47 @@ export default function SEO({
       {
         '@type': 'City',
         name: 'Mantes-la-Jolie',
+        addressCountry: 'FR'
       },
       {
         '@type': 'AdministrativeArea',
         name: 'Yvelines',
+        addressCountry: 'FR'
       },
       {
         '@type': 'AdministrativeArea',
         name: 'Île-de-France',
+        addressCountry: 'FR'
       },
+      {
+        '@type': 'Country',
+        name: 'France'
+      }
     ],
 
     geo: {
       '@type': 'GeoCoordinates',
       latitude: 48.9900,
       longitude: 1.7170,
+      addressCountry: 'FR',
+      addressRegion: 'Île-de-France'
     },
 
     address: {
       '@type': 'PostalAddress',
+      streetAddress: '30 Rue du Commandant Bouchet',
       addressLocality: 'Mantes-la-Jolie',
       postalCode: '78200',
       addressRegion: 'Île-de-France',
       addressCountry: 'FR',
+      addressCountryName: 'France'
     },
 
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
       availableLanguage: ['French'],
+      areaServed: 'FR'
     },
 
     sameAs: [
@@ -184,14 +196,21 @@ export default function SEO({
 
     knowsAbout: [
       'Angular',
-      'site web',
-      'Laravel',
       'React',
-      'site vitrine',
-      'Api',
+      'Node.js',
+      'PHP',
       'TypeScript',
       'Développement web fullstack',
+      'Applications web performantes',
+      'Développement web Mantes-la-Jolie',
+      'Développement web Yvelines',
+      'Applications web Île-de-France'
     ],
+
+    availableLanguage: ['French'],
+    currenciesAccepted: 'EUR',
+    paymentAccepted: ['Bank Transfer', 'Check'],
+    priceRange: '€€€',
   };
 
   const finalStructuredData =

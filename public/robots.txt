@@ -1,12 +1,17 @@
 # Priorité pour les moteurs de recherche importants
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
+# Googlebot - optimisations spécifiques
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0.5
 
+# Bingbot - optimisations spécifiques  
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 # Bloquer les bots non désirés
 User-agent: AhrefsBot
@@ -18,18 +23,32 @@ Disallow: /
 User-agent: DotBot
 Disallow: /
 
-# Fichiers à ne pas indexer
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Fichiers et dossiers à ne pas indexer
 Disallow: /src/
 Disallow: /node_modules/
 Disallow: /dist/
 Disallow: /vite.config.*
 Disallow: /admin/
+Disallow: /.well-known/
+Disallow: /api/
 Disallow: /*.json$
 Disallow: /*.xml$
-Disallow: /api/
+Disallow: /*.txt$
+Disallow: /404.html
+
+# Autoriser les fichiers SEO importants
+Allow: /sitemap.xml
+Allow: /robots.txt
+Allow: /manifest.json
+Allow: /local-business.json
 
 # Indiquer le plan du site (sitemap)
 Sitemap: https://www.abderrahmane-elfarouahfreelance.com/sitemap.xml
-
-# Délai de crawl (crawl-delay)
-Crawl-delay: 1
+Sitemap: https://www.abderrahmane-elfarouahfreelance.com/geo-sitemap.xml
+Sitemap: https://www.abderrahmane-elfarouahfreelance.com/sitemap_index.xml

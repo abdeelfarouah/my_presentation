@@ -31,25 +31,52 @@
     ExpiresByType application/x-font-opentype "access plus 1 year"
 </IfModule>
 
-# Headers de sécurité
+# Headers de sécurité et performance
 <IfModule mod_headers.c>
     Header always set X-Content-Type-Options nosniff
     Header always set X-Frame-Options DENY
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # Headers de performance
+    Header always set X-DNS-Prefetch-Control "on"
+    Header always set Early-Hints "rel=preconnect; href=https://fonts.googleapis.com"
+    Header always set Early-Hints "rel=preconnect; href=https://fonts.gstatic.com"
+    
+    # Headers géolocalisation SEO
+    Header always set X-Geo-Country "FR"
+    Header always set X-Geo-Region "Île-de-France"
+    Header always set X-Geo-City "Mantes-la-Jolie"
 </IfModule>
 
-# Redirections SEO
+# Redirections SEO améliorées
 # Redirection 301 de contact vers l'accueil (car contact redirige vers home)
 RedirectMatch 301 ^/contact/?$ https://www.abderrahmane-elfarouahfreelance.com/
 
-# Forcer le HTTPS (optionnel)
-# <IfModule mod_rewrite.c>
-#     RewriteEngine On
-#     RewriteCond %{HTTPS} off
-#     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-# </IfModule>
+# Redirections pour variations d'URL (optimisation SEO)
+# Forcer WWW pour éviter le contenu dupliqué
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^abderrahmane-elfarouahfreelance\.com [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+# Redirections pour anciennes URLs (si applicable)
+# Décommentez et adaptez selon vos besoins
+# RedirectMatch 301 ^/ancien-service/?$ /services
+# RedirectMatch 301 ^/portfolio/?$ /projects
+# RedirectMatch 301 ^/a-propos/?$ /about
+
+# Gestion uniforme des slashes finaux
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ https://www.abderrahmane-elfarouahfreelance.com/$1/ [R=301,L]
+
+# Forcer le HTTPS (recommandé pour la production)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
 
 # Gestion des erreurs personnalisées
 ErrorDocument 404 /404.html
@@ -70,7 +97,29 @@ ErrorDocument 404 /404.html
     Options -Indexes
 </IfModule>
 
-# Optimisation des polices
+# Optimisation des polices et CORS
 <FilesMatch "\.(woff|woff2|ttf|eot)$">
     Header add Access-Control-Allow-Origin "*"
+    Header add Cache-Control "public, max-age=31536000, immutable"
 </FilesMatch>
+
+# Optimisation des images et assets
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+    Header add Cache-Control "public, max-age=31536000, immutable"
+    Header add Vary "Accept-Encoding"
+</FilesMatch>
+
+# Optimisation des fichiers JS/CSS
+<FilesMatch "\.(js|css)$">
+    Header add Cache-Control "public, max-age=31536000, immutable"
+    Header add Vary "Accept-Encoding"
+</FilesMatch>
+
+# Préchargement des ressources critiques
+# Note : Les preloads statiques sont problématiques avec le hashage automatique
+# Utiliser plutôt les preloads dans le HTML ou le JavaScript
+# <IfModule mod_headers.c>
+#     Header add Link "</assets/index-CTuaoY1I.css>; rel=preload; as=style"
+#     Header add Link "</assets/vendor-DjZT-AL-.js>; rel=preload; as=script"
+#     Header add Link "</assets/index-DfUqxDJF.js>; rel=preload; as=script"
+# </IfModule>

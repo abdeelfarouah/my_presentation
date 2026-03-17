@@ -8,30 +8,55 @@
   "email": "a.elfarouahDEV@outlook.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "adresse complète à Mantes-la-Jolie",
+    "streetAddress": "30 Rue du Commandant Bouchet, 78200 Mantes-la-Jolie",
     "addressLocality": "Mantes-la-Jolie",
     "postalCode": "78200",
     "addressRegion": "Île-de-France",
-    "addressCountry": "FR"
+    "addressCountry": "FR",
+    "addressCountryName": "France"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude":49.004072817382976,
-    "longitude": 1.6807611840267045
+    "latitude": 48.9900,
+    "longitude": 1.7170,
+    "addressCountry": "FR"
   },
   "openingHours": [
     "Mo-Fr 09:00-17:00"
   ],
   "sameAs": [
     "https://www.linkedin.com/in/abderrahmaneelfarouah/",
-    "https://github.com/abdeelfarouah"
+    "https://github.com/abdeelfarouah",
+    "https://plateforme.freelance.com/freelance/Abderrahmane-1136aeb2-b20d-437a-9a78-fccd54de2f81",
+    "https://www.malt.fr/profile/abderrahmaneelfarouah",
+    "https://www.pagesjaunes.fr/pros/64207852"
   ],
-  "priceRange": "$$",
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Yvelines"
-  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Mantes-la-Jolie",
+      "addressCountry": "FR"
+    },
+    {
+      "@type": "AdministrativeArea", 
+      "name": "Yvelines",
+      "addressCountry": "FR"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Île-de-France", 
+      "addressCountry": "FR"
+    },
+    {
+      "@type": "Country",
+      "name": "France"
+    }
+  ],
   "serviceType": "Développement web fullstack",
+  "availableLanguage": ["French"],
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": ["Cash", "Check", "Bank Transfer"],
+  "priceRange": "€€€",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Services de développement web à Mantes-la-Jolie",
