@@ -58,26 +58,49 @@ export default function About() {
             </div>
 
           </div>
-          <p>🚀 Retrouvez-moi sur toutes mes plateformes !
+          <section style="font-family: Arial, sans-serif; line-height: 1.6;">
+  <h2>Retrouvez-moi sur toutes mes plateformes</h2>
+  
+  <p>
+    Suivez-moi pour du contenu autour du développement, de la tech et de mes projets.
+  </p>
 
-Suivez-moi pour du contenu autour du développement, de la tech et de mes projets 👨‍💻
+  <h3>Rejoignez-moi ici :</h3>
+  <ul>
+    <li>Site web : 
+      <a href="https://www.abderrahmane-elfarouahfreelance.com/" target="_blank">
+        abderrahmane-elfarouahfreelance.com
+      </a>
+    </li>
+    <li>Freelance : 
+      <a href="https://www.jeveuxunfreelance.fr" target="_blank">
+        jeveuxunfreelance.fr
+      </a>
+    </li>
+    <li>Malt : 
+      <a href="https://www.malt.fr/profile/abderrahmaneelfarouah" target="_blank">
+        Voir mon profil Malt
+      </a>
+    </li>
+    <li>LinkedIn : 
+      <a href="https://www.linkedin.com/in/abderrahmaneelfarouah/" target="_blank">
+        Mon profil LinkedIn
+      </a>
+    </li>
+    <li>GitHub : 
+      <a href="https://github.com/abdeelfarouah/" target="_blank">
+        Mon GitHub
+      </a>
+    </li>
+  </ul>
 
-📲 Rejoignez-moi ici :
+  <p>
+    Développeur Fullstack Angular & Laravel — disponible pour vos projets<br>
+    Applications web performantes | UX/UI | API robustes
+  </p>
 
-* Site web : [https://www.abderrahmane-elfarouahfreelance.com/](https://www.abderrahmane-elfarouahfreelance.com/)
-* Freelance : [https://www.jeveuxunfreelance.fr](https://www.jeveuxunfreelance.fr)
-* Malt : [https://www.malt.fr/profile/abderrahmaneelfarouah](https://www.malt.fr/profile/abderrahmaneelfarouah)
-* LinkedIn : [https://www.linkedin.com/in/abderrahmaneelfarouah/](https://www.linkedin.com/in/abderrahmaneelfarouah/)
-* GitHub : [https://github.com/abdeelfarouah/](https://github.com/abdeelfarouah/)
-
-Développeur Fullstack Angular & Laravel — disponible pour vos projets
-Applications web performantes | UX/UI | API robustes ([Malt][1])
-
-À très vite 
-
-[1]: https://www.malt.fr/profile/abderrahmaneelfarouah?utm_source=chatgpt.com "Abderrahmane El Farouah, Développeur Angular | TypeScript | API Laravel"
-</p>
-
+  <p>À très vite</p>
+</section>
           <div className="mt-6 text-center">
             <a
               href="https://www.malt.fr/profile/abderrahmaneelfarouah"
