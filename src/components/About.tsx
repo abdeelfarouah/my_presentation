@@ -58,6 +58,25 @@ export default function About() {
             </div>
 
           </div>
+          <p>🚀 Retrouvez-moi sur toutes mes plateformes !
+
+Suivez-moi pour du contenu autour du développement, de la tech et de mes projets 👨‍💻
+
+📲 Rejoignez-moi ici :
+
+* Site web : [https://www.abderrahmane-elfarouahfreelance.com/](https://www.abderrahmane-elfarouahfreelance.com/)
+* Freelance : [https://www.jeveuxunfreelance.fr](https://www.jeveuxunfreelance.fr)
+* Malt : [https://www.malt.fr/profile/abderrahmaneelfarouah](https://www.malt.fr/profile/abderrahmaneelfarouah)
+* LinkedIn : [https://www.linkedin.com/in/abderrahmaneelfarouah/](https://www.linkedin.com/in/abderrahmaneelfarouah/)
+* GitHub : [https://github.com/abdeelfarouah/](https://github.com/abdeelfarouah/)
+
+Développeur Fullstack Angular & Laravel — disponible pour vos projets
+Applications web performantes | UX/UI | API robustes ([Malt][1])
+
+À très vite 
+
+[1]: https://www.malt.fr/profile/abderrahmaneelfarouah?utm_source=chatgpt.com "Abderrahmane El Farouah, Développeur Angular | TypeScript | API Laravel"
+</p>
 
           <div className="mt-6 text-center">
             <a
