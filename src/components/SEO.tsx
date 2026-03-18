@@ -192,6 +192,7 @@ export default function SEO({
       'https://plateforme.freelance.com/freelance/Abderrahmane-1136aeb2-b20d-437a-9a78-fccd54de2f81',
       'https://www.malt.fr/profile/abderrahmaneelfarouah',
       'https://www.pagesjaunes.fr/pros/64207852',
+      'https://www.jeveuxunfreelance.fr',
     ],
 
     knowsAbout: [
