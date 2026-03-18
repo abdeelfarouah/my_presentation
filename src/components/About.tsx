@@ -5,7 +5,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-4 sm:py-8 md:py-12"
+      className="py-6 sm:py-10 md:py-14"
       itemScope
       itemType="https://schema.org/Person"
     >
@@ -17,19 +17,45 @@ export default function About() {
 
         <div className="max-w-3xl mx-auto text-lg text-text-secondary leading-relaxed font-body">
 
+          {/* INTRO */}
           <p className="mb-4" itemProp="description">
-            Développeur web freelance spécialisé en technologies modernes et en systèmes IBM i (AS400).
-            J’accompagne les entreprises dans la modernisation d’applications métiers et le développement
-            d’interfaces web performantes avec Angular, TypeScript et Laravel.
+            Développeur web freelance, je conçois des applications modernes, rapides et robustes en combinant 
+            <strong> Angular, TypeScript et Laravel </strong> avec une expertise avancée des systèmes 
+            <strong> IBM i (AS400)</strong>.
           </p>
 
           <p className="mb-4">
-            Mon expertise combine les environnements legacy RPG et les technologies web modernes afin
-            d’assurer la continuité, la performance et l’évolutivité des systèmes d’information.
+            J’aide les entreprises à <strong>moderniser leurs applications métiers</strong>, améliorer leurs performances
+            et garantir la pérennité de leur système d’information.
+          </p>
+
+          <p className="mb-6">
+            Mon approche : <strong>allier legacy et modernité</strong> pour créer des solutions fiables, évolutives 
+            et parfaitement adaptées à vos enjeux techniques et business.
           </p>
 
           <meta itemProp="jobTitle" content="Développeur Web Freelance" />
           <meta itemProp="url" content="https://www.abderrahmane-elfarouahfreelance.com" />
+
+          {/* POINTS FORTS */}
+          <div className="mb-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+
+            <div className="card">
+              <p className="font-semibold text-text-main">⚡ Performance</p>
+              <p className="text-sm">Applications rapides et optimisées</p>
+            </div>
+
+            <div className="card">
+              <p className="font-semibold text-text-main">🔗 Interopérabilité</p>
+              <p className="text-sm">Legacy AS400 ↔ Web moderne</p>
+            </div>
+
+            <div className="card">
+              <p className="font-semibold text-text-main">🧩 Sur-mesure</p>
+              <p className="text-sm">Solutions adaptées à vos besoins</p>
+            </div>
+
+          </div>
 
           {/* FORMATIONS */}
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -61,40 +87,27 @@ export default function About() {
           </div>
 
           {/* LIENS */}
-          <div className="mt-8">
+          <div className="mt-10">
             <h2 className="text-xl font-display font-semibold text-text-main mb-4">
-              Retrouvez-moi sur toutes mes plateformes
+              Me retrouver en ligne
             </h2>
 
             <p className="mb-4">
-              Suivez-moi pour du contenu autour du développement, de la tech et de mes projets.
+              Consultez mes profils pour découvrir mes projets, mon parcours et me contacter directement.
             </p>
 
             <ul className="space-y-2">
 
               <li>
-                Site web :
+                Plateforme freelance :
                 <a
-                  href="https://www.abderrahmane-elfarouahfreelance.com/"
+                  href="https://www.jeveuxunfreelance.fr/freelance/3168"
                   target="_blank"
                   rel="noopener noreferrer"
                   itemProp="sameAs"
-                  className="ml-2 text-accent underline"
+                  className="ml-2 text-accent underline hover:opacity-80"
                 >
-                  abderrahmane-elfarouahfreelance.com
-                </a>
-              </li>
-
-              <li>
-                Freelance :
-                <a
-                  href="https://www.jeveuxunfreelance.fr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  itemProp="sameAs"
-                  className="ml-2 text-accent underline"
-                >
-                  jeveuxunfreelance.fr
+                  Voir mon profil
                 </a>
               </li>
 
@@ -105,7 +118,7 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   itemProp="sameAs"
-                  className="ml-2 text-accent underline"
+                  className="ml-2 text-accent underline hover:opacity-80"
                 >
                   Voir mon profil Malt
                 </a>
@@ -118,9 +131,9 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   itemProp="sameAs"
-                  className="ml-2 text-accent underline"
+                  className="ml-2 text-accent underline hover:opacity-80"
                 >
-                  Mon profil LinkedIn
+                  Me contacter
                 </a>
               </li>
 
@@ -131,21 +144,22 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   itemProp="sameAs"
-                  className="ml-2 text-accent underline"
+                  className="ml-2 text-accent underline hover:opacity-80"
                 >
-                  Mon GitHub
+                  Voir mes projets
                 </a>
               </li>
 
             </ul>
 
-            <p className="mt-4">
+            <p className="mt-6 text-text-main font-medium">
               Développeur Fullstack Angular & Laravel — disponible pour vos projets
-              <br />
-              Applications web performantes | UX/UI | API robustes
             </p>
 
-            <p className="mt-2">À très vite</p>
+            <p className="text-sm text-text-secondary">
+              Applications web performantes • UX/UI • API robustes
+            </p>
+
           </div>
 
         </div>
