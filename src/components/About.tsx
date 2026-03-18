@@ -28,9 +28,10 @@ export default function About() {
             d’assurer la continuité, la performance et l’évolutivité des systèmes d’information.
           </p>
 
-          <meta itemProp="jobTitle" content="Développeur Web Freelance"/>
-          <meta itemProp="url" content="https://www.abderrahmane-elfarouahfreelance.com"/>
+          <meta itemProp="jobTitle" content="Développeur Web Freelance" />
+          <meta itemProp="url" content="https://www.abderrahmane-elfarouahfreelance.com" />
 
+          {/* FORMATIONS */}
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
 
             <div className="card">
@@ -58,59 +59,93 @@ export default function About() {
             </div>
 
           </div>
-          <section style="font-family: Arial, sans-serif; line-height: 1.6;">
-  <h2>Retrouvez-moi sur toutes mes plateformes</h2>
-  
-  <p>
-    Suivez-moi pour du contenu autour du développement, de la tech et de mes projets.
-  </p>
 
-  <h3>Rejoignez-moi ici :</h3>
-  <ul>
-    <li>Site web : 
-      <a href="https://www.abderrahmane-elfarouahfreelance.com/" target="_blank">
-        abderrahmane-elfarouahfreelance.com
-      </a>
-    </li>
-    <li>Freelance : 
-      <a href="https://www.jeveuxunfreelance.fr" target="_blank">
-        jeveuxunfreelance.fr
-      </a>
-    </li>
-    <li>Malt : 
-      <a href="https://www.malt.fr/profile/abderrahmaneelfarouah" target="_blank">
-        Voir mon profil Malt
-      </a>
-    </li>
-    <li>LinkedIn : 
-      <a href="https://www.linkedin.com/in/abderrahmaneelfarouah/" target="_blank">
-        Mon profil LinkedIn
-      </a>
-    </li>
-    <li>GitHub : 
-      <a href="https://github.com/abdeelfarouah/" target="_blank">
-        Mon GitHub
-      </a>
-    </li>
-  </ul>
+          {/* LIENS */}
+          <div className="mt-8">
+            <h2 className="text-xl font-display font-semibold text-text-main mb-4">
+              Retrouvez-moi sur toutes mes plateformes
+            </h2>
 
-  <p>
-    Développeur Fullstack Angular & Laravel — disponible pour vos projets<br>
-    Applications web performantes | UX/UI | API robustes
-  </p>
+            <p className="mb-4">
+              Suivez-moi pour du contenu autour du développement, de la tech et de mes projets.
+            </p>
 
-  <p>À très vite</p>
-</section>
-          <div className="mt-6 text-center">
-            <a
-              href="https://www.malt.fr/profile/abderrahmaneelfarouah"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent underline"
-              itemProp="sameAs"
-            >
-              Voir le profil Malt
-            </a>
+            <ul className="space-y-2">
+
+              <li>
+                Site web :
+                <a
+                  href="https://www.abderrahmane-elfarouahfreelance.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  itemProp="sameAs"
+                  className="ml-2 text-accent underline"
+                >
+                  abderrahmane-elfarouahfreelance.com
+                </a>
+              </li>
+
+              <li>
+                Freelance :
+                <a
+                  href="https://www.jeveuxunfreelance.fr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  itemProp="sameAs"
+                  className="ml-2 text-accent underline"
+                >
+                  jeveuxunfreelance.fr
+                </a>
+              </li>
+
+              <li>
+                Malt :
+                <a
+                  href="https://www.malt.fr/profile/abderrahmaneelfarouah"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  itemProp="sameAs"
+                  className="ml-2 text-accent underline"
+                >
+                  Voir mon profil Malt
+                </a>
+              </li>
+
+              <li>
+                LinkedIn :
+                <a
+                  href="https://www.linkedin.com/in/abderrahmaneelfarouah/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  itemProp="sameAs"
+                  className="ml-2 text-accent underline"
+                >
+                  Mon profil LinkedIn
+                </a>
+              </li>
+
+              <li>
+                GitHub :
+                <a
+                  href="https://github.com/abdeelfarouah/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  itemProp="sameAs"
+                  className="ml-2 text-accent underline"
+                >
+                  Mon GitHub
+                </a>
+              </li>
+
+            </ul>
+
+            <p className="mt-4">
+              Développeur Fullstack Angular & Laravel — disponible pour vos projets
+              <br />
+              Applications web performantes | UX/UI | API robustes
+            </p>
+
+            <p className="mt-2">À très vite</p>
           </div>
 
         </div>
