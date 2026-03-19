@@ -100,15 +100,9 @@ export default function About() {
 
               <li>
                 Plateforme freelance :
-                <a
-                  href="https://www.jeveuxunfreelance.fr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  itemProp="sameAs"
-                  className="ml-2 text-accent underline hover:opacity-80"
-                >
-                  Voir mon profil
-                </a>
+                <a href="https://www.jeveuxunfreelance.fr" target="_blank" rel="noopener">
+  Annuaire freelance
+</a>
               </li>
 
               <li>
