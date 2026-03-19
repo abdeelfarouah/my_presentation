@@ -101,7 +101,7 @@ export default function About() {
               <li>
                 Plateforme freelance :
                 <a
-                  href="https://www.jeveuxunfreelance.fr/freelance/3168"
+                  href="https://www.jeveuxunfreelance.fr"
                   target="_blank"
                   rel="noopener noreferrer"
                   itemProp="sameAs"
