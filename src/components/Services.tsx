@@ -12,6 +12,8 @@ interface Service {
   id: string;
   title: string;
   description: string;
+  problem: string;
+  solution: string;
   icon: React.ReactNode;
   features: string[];
   price: string;
@@ -24,6 +26,8 @@ const services: Service[] = [
     id: 'web-app',
     title: 'Application Web Sur Mesure',
     description: 'Développement d\'applications web complètes avec Angular et Laravel, adaptées à vos besoins spécifiques.',
+    problem: 'Vous perdez du temps avec des processus manuels et des outils non intégrés',
+    solution: 'Interface intuitive, automatisation des tâches, suivi des performances',
     icon: <Globe className="w-8 h-8" />,
     features: [
       'Architecture moderne Angular 17+',
@@ -33,14 +37,16 @@ const services: Service[] = [
       'Documentation technique',
       'Support 3 mois inclus'
     ],
-    price: 'À partir de 3 500€',
-    delay: '4-8 semaines',
+    price: 'Sur devis',
+    delay: 'Selon complexité',
     popular: true
   },
   {
     id: 'ecommerce',
     title: 'Site E-Commerce',
     description: 'Boutique en ligne complète avec panier, paiement et gestion des produits.',
+    problem: 'Votre site actuel ne convertit pas ou offre une expérience utilisateur limitée',
+    solution: 'Design responsive, parcours d\'achat optimisé, paiement sécurisé',
     icon: <ShoppingCart className="w-8 h-8" />,
     features: [
       'Catalogue produits illimité',
@@ -51,13 +57,15 @@ const services: Service[] = [
       'Optimisation SEO',
       'Support 6 mois'
     ],
-    price: 'À partir de 2 800€',
-    delay: '3-6 semaines'
+    price: 'Sur devis',
+    delay: 'Selon besoins'
   },
   {
     id: 'saas',
     title: 'Plateforme SaaS',
     description: 'Solution Software as a Service avec abonnements, multi-utilisateurs et tableau de bord.',
+    problem: 'Besoin d\'une solution scalable qui puisse accompagner votre croissance',
+    solution: 'Architecture multi-tenants, système d\'abonnements, tableaux de bord analytics',
     icon: <Users className="w-8 h-8" />,
     features: [
       'Architecture multi-tenants',
@@ -68,13 +76,15 @@ const services: Service[] = [
       'Mises à jour automatiques',
       'Support prioritaire 24/7'
     ],
-    price: 'À partir de 8 000€',
-    delay: '8-16 semaines'
+    price: 'Sur devis',
+    delay: 'Selon projet'
   },
   {
     id: 'maintenance',
     title: 'Maintenance & Évolution',
     description: 'Suivi technique, mises à jour et évolutions de vos applications existantes.',
+    problem: 'Vous manquez de temps ou de compétences pour maintenir votre application',
+    solution: 'Surveillance proactive, mises à jour régulières, support technique dédié',
     icon: <Shield className="w-8 h-8" />,
     features: [
       'Veille sécurité',
@@ -85,13 +95,15 @@ const services: Service[] = [
       'Rapports mensuels',
       'Interventions prioritaires'
     ],
-    price: 'À partir de 350€/mois',
+    price: 'Sur devis',
     delay: 'Continu'
   },
   {
     id: 'consulting',
     title: 'Consulting Technique',
     description: 'Expertise technique pour vos projets, audit de code et accompagnement équipe.',
+    problem: 'Vous avez besoin d\'expertise technique pour valider vos choix architecturaux',
+    solution: 'Audit complet, recommandations personnalisées, transfert de compétences',
     icon: <Code className="w-8 h-8" />,
     features: [
       'Audit de architecture',
@@ -102,7 +114,7 @@ const services: Service[] = [
       'Documentation',
       'Suivi projet'
     ],
-    price: '450€/jour',
+    price: 'Sur devis',
     delay: 'Selon disponibilité'
   }
 ];
@@ -126,8 +138,8 @@ export default function Services() {
               Mes <span className="text-accent">Services</span>
             </h1>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-              Développeur spécialisé Angular et Laravel, je propose des solutions web complètes et adaptées à vos besoins.
-              Chaque projet est unique et bénéficie d'un accompagnement personnalisé.
+              Votre partenaire digital pour des solutions web sur mesure. 
+              Chaque service est conçu pour résoudre vos problématiques business et accompagner votre croissance.
             </p>
           </div>
 
@@ -164,7 +176,18 @@ export default function Services() {
                 </p>
 
                 <div className="mb-4">
-                  <div className="text-2xl font-bold text-accent mb-2">{service.price}</div>
+                  <div className="text-sm font-semibold text-red-400 mb-1">❌ Problème résolu</div>
+                  <p className="text-xs text-text-muted">{service.problem}</p>
+                </div>
+                
+                <div className="mb-4">
+                  <div className="text-sm font-semibold text-green-400 mb-1">✅ Solution apportée</div>
+                  <p className="text-xs text-text-muted">{service.solution}</p>
+                </div>
+
+                <div className="mb-4">
+                  <div className="text-lg font-semibold text-accent mb-2">{service.price}</div>
+                  <div className="text-sm text-text-secondary">{service.delay}</div>
                 </div>
 
                 {selectedService === service.id && (
@@ -196,14 +219,14 @@ export default function Services() {
           {/* Process Section */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-center text-text-main mb-12">
-              Mon <span className="text-accent">Processus</span>
+              Mon <span className="text-accent">Approche</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {[
-                { icon: <Clock className="w-6 h-6" />, title: 'Analyse', desc: 'Écoute de vos besoins et définition des objectifs' },
-                { icon: <Code className="w-6 h-6" />, title: 'Développement', desc: 'Codage agile avec livraisons régulières' },
-                { icon: <Zap className="w-6 h-6" />, title: 'Tests', desc: 'Validation qualité et tests utilisateur' },
-                { icon: <CheckCircle className="w-6 h-6" />, title: 'Livraison', desc: 'Mise en production et formation' }
+                { icon: <Clock className="w-6 h-6" />, title: 'Écoute', desc: 'Compréhension de vos enjeux business et de vos objectifs' },
+                { icon: <Code className="w-6 h-6" />, title: 'Conception', desc: 'Architecture technique alignée avec vos besoins' },
+                { icon: <Zap className="w-6 h-6" />, title: 'Développement', desc: 'Réalisation agile avec livraisons régulières' },
+                { icon: <CheckCircle className="w-6 h-6" />, title: 'Accompagnement', desc: 'Mise en production et support continu' }
               ].map((step, stepIndex) => (
                 <motion.div
                   key={stepIndex}
@@ -226,18 +249,18 @@ export default function Services() {
               Prêt à <span className="text-accent">démarrer</span> votre projet ?
             </h2>
             <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
-              Contactez-moi pour discuter de vos besoins et obtenir un devis personnalisé. 
-              Chaque projet commence par un échange gratuit pour définir parfaitement vos attentes.
+              Discutons de vos besoins et définissons ensemble la solution digitale idéale pour votre entreprise. 
+              Chaque projet commence par un échange gratuit pour comprendre vos enjeux.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/contact" 
                 className="btn px-8 py-3 text-lg"
               >
-                Demander un devis
+                Prendre rendez-vous
               </a>
               <a 
-                href="mailto:contact@abderrahmane-elfarouahfreelance.com" 
+                href="mailto:a.elfarouahDEV@outlook.com" 
                 className="btn btn-secondary px-8 py-3 text-lg"
               >
                 <Mail className="w-5 h-5 mr-2" />

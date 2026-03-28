@@ -16,6 +16,7 @@ const LoadingFallback = () => (
 );
 
 // Lazy load components
+const Home = lazy(() => import('./components/Home'));
 const About = lazy(() => import('./components/About'));
 const Projects = lazy(() => import('./components/Projects'));
 const Experience = lazy(() => import('./components/Experience'));
@@ -79,8 +80,8 @@ const AppContent = () => {
               >
                 <Suspense fallback={<LoadingFallback />}>
                 <Routes location={location} key={location.pathname}>
-                  <Route path="/" element={<Contact />} />
-                  <Route path="/contact" element={<Navigate to="/" />} />
+                  <Route path="/" element={<Home />} />
+                  <Route path="/contact" element={<Contact />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/experience" element={<Experience />} />

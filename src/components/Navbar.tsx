@@ -20,10 +20,9 @@ export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
 
   const navItems = [
     { id: 'home', label: 'Accueil', path: '/' },
-    { id: 'about', label: 'À propos', path: '/about' },
-    { id: 'projects', label: 'Projets', path: '/projects' },
-    { id: 'experience', label: 'Parcours', path: '/experience' },
     { id: 'services', label: 'Services', path: '/services' },
+    { id: 'realisations', label: 'Réalisations', path: '/projects' },
+    { id: 'approche', label: 'Approche', path: '/about' },
   ];
 
   const activeTab = useMemo(() => {
@@ -51,7 +50,7 @@ export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
                 Abderrahmane <span className="text-text-secondary">El Farouah</span>
               </h1>
               <p className="text-xs md:text-sm text-text-secondary font-medium">
-                Développeur Fullstack
+                Votre Partenaire Digital
               </p>
             </div>
           </div>

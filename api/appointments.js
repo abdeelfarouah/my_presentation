@@ -44,6 +44,24 @@ async function sendNotificationEmail(appointment) {
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
+    // 🔒 Vérification du digicode pour protéger les données
+    const authCode = req.headers['x-digicode'];
+    const expectedCode = process.env.DIGICODE;
+    
+    if (!expectedCode) {
+      console.error('DIGICODE is not set in environment variables');
+      return res.status(500).json({ 
+        error: 'Configuration serveur incorrecte' 
+      });
+    }
+    
+    if (authCode !== expectedCode) {
+      console.warn('Tentative d\'accès non autorisée aux rendez-vous');
+      return res.status(401).json({ 
+        error: 'Non autorisé' 
+      });
+    }
+    
     return res.status(200).json(appointments);
   }
 
