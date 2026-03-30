@@ -1,5 +1,5 @@
 import { useMemo, lazy, Suspense } from 'react';
-import { Routes, Route, useLocation, Link } from 'react-router-dom';
+import { Routes, Route, useLocation, Link, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { MenuProvider, useMenu } from './contexts/MenuContext';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -94,6 +94,10 @@ const AppContent = () => {
                     <Route path="/services" element={<Services />} />
                     <Route path="/mentions-legales" element={<MentionsLegales />} />
                     <Route path="/cgv" element={<CGV />} />
+
+                    {/* ✅ Redirections doublons SEO */}
+                    <Route path="/home" element={<Navigate to="/" replace />} />
+                    <Route path="/index.html" element={<Navigate to="/" replace />} />
 
                     {/* Fallback 404 */}
                     <Route path="*" element={<NotFound />} />
