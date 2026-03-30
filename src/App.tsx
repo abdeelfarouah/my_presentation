@@ -1,9 +1,9 @@
 import { useMemo, lazy, Suspense } from 'react';
-import { Routes, Route, useLocation, Navigate, Link } from 'react-router-dom';
+import { Routes, Route, useLocation, Link } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { MenuProvider, useMenu } from './contexts/MenuContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 
 import Navbar from './components/Navbar';
 import SEO from './components/SEO';
@@ -25,17 +25,23 @@ const Contact = lazy(() => import('./components/Contact'));
 const MentionsLegales = lazy(() => import('./components/MentionsLegales'));
 const CGV = lazy(() => import('./components/CGV'));
 
+// NotFound page avec noindex
 const NotFound = () => (
-  <div className="flex flex-col items-center justify-center h-[60vh] text-center px-4">
-    <h1 className="text-6xl font-display font-bold text-accent mb-4">404</h1>
-    <p className="text-lg sm:text-xl text-text-secondary mb-6 font-body">Page non trouvée</p>
-    <Link
-      to="/"
-      className="btn"
-    >
-      Retour à l'accueil
-    </Link>
-  </div>
+  <>
+    <Helmet>
+      <meta name="robots" content="noindex, follow" />
+    </Helmet>
+
+    <div className="flex flex-col items-center justify-center h-[60vh] text-center px-4">
+      <h1 className="text-6xl font-display font-bold text-accent mb-4">404</h1>
+      <p className="text-lg sm:text-xl text-text-secondary mb-6 font-body">
+        Page non trouvée
+      </p>
+      <Link to="/" className="btn">
+        Retour à l'accueil
+      </Link>
+    </div>
+  </>
 );
 
 const AppContent = () => {
@@ -64,8 +70,8 @@ const AppContent = () => {
         <Navbar activeTab={activeTab} />
 
         {/* Main content */}
-        <main 
-          id="main-content" 
+        <main
+          id="main-content"
           className={`flex-1 h-auto transition-all duration-300 ${isMenuOpen ? 'blur-lg opacity-30' : ''}`}
         >
           <div className="h-full flex items-center justify-center">
@@ -79,23 +85,24 @@ const AppContent = () => {
                 className="w-full"
               >
                 <Suspense fallback={<LoadingFallback />}>
-                <Routes location={location} key={location.pathname}>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/experience" element={<Experience />} />
-                  <Route path="/services" element={<Services />} />
-                  <Route path="/mentions-legales" element={<MentionsLegales />} />
-                  <Route path="/cgv" element={<CGV />} />
-                  <Route path="/404" element={<NotFound />} />
-                  <Route path="*" element={<Navigate to="/404" replace />} />
-                </Routes>
-              </Suspense>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </main>
+                  <Routes location={location} key={location.pathname}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/experience" element={<Experience />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/mentions-legales" element={<MentionsLegales />} />
+                    <Route path="/cgv" element={<CGV />} />
+
+                    {/* Fallback 404 */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </main>
 
         {/* Footer */}
         <footer
@@ -143,5 +150,4 @@ export default function App() {
       </ThemeProvider>
     </HelmetProvider>
   );
-}
-
+          }
