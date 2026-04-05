@@ -42,7 +42,7 @@ export default function MentionsLegales() {
                     <strong>Activité :</strong> Développeur Web Freelance
                   </p>
                   <p>Numéro Siren:990 550 212</p>
-                 <p>  30 rue du commandant Bouchet<br>
+                 <p>  30 rue du commandant Bouchet</br>
                        78200 Mantes-la-Jolie
                    </p>
                     <strong>Email :</strong>{' '}
