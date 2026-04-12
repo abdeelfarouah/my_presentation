@@ -93,7 +93,7 @@ export default function Contact() {
         setFormState({ firstName: '', lastName: '', email: '', date: null });
         alert('Rendez-vous enregistré !');
       }
-    } catch (err) {
+    } catch {
       alert("Erreur lors de l'enregistrement");
     }
   };
@@ -115,7 +115,7 @@ export default function Contact() {
       } else {
         setAdminError('Code incorrect');
       }
-    } catch (err) {
+    } catch {
       setAdminError('Erreur de connexion');
     }
   };

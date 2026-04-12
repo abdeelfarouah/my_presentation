@@ -36,6 +36,12 @@ const pageSEO: Record<string, PageSEOMeta> = {
     description:
       "Développeur web freelance expert à Mantes-la-Jolie. Spécialisé Angular, Laravel, TypeScript. Création d'applications sur mesure pour PME et startups.",
   },
+  '/about': {
+    title:
+      'À Propos | Développeur Freelance Angular Laravel Mantes-la-Jolie (78)',
+    description:
+      "Développeur web freelance Angular & Laravel basé à Mantes-la-Jolie, Yvelines (78). Expertise fullstack, interopérabilité AS400, transformation digitale en Île-de-France.",
+  },
   '/services': {
     title:
       'Services Développement Web Angular Laravel Freelance France',
@@ -56,6 +62,18 @@ const pageSEO: Record<string, PageSEOMeta> = {
     title: 'Contact Développeur Freelance Angular Laravel',
     description:
       "Contactez un développeur web freelance disponible pour vos projets sur mesure.",
+  },
+  '/mentions-legales': {
+    title: 'Mentions Légales | Abderrahmane El Farouah',
+    description:
+      "Mentions légales du site portfolio d'Abderrahmane El Farouah, développeur web freelance.",
+    noIndex: true,
+  },
+  '/cgv': {
+    title: 'Conditions Générales de Vente | Développeur Web Freelance',
+    description:
+      "Conditions générales de vente pour les prestations de développement web freelance d'Abderrahmane El Farouah.",
+    noIndex: true,
   },
 };
 

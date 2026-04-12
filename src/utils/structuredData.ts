@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface StructuredDataProps {
   type: 'Person' | 'WebPage' | 'Article' | 'Project' | 'Service';
   data: Record<string, any>;
