@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Code, CheckCircle, Clock, Users, Zap, Shield, Globe, ShoppingCart, Mail } from 'lucide-react';
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 1, y: 0 },
   visible: { opacity: 1, y: 0 }
 };
 
@@ -25,7 +25,7 @@ const services: Service[] = [
   {
     id: 'web-app',
     title: 'Application Web Sur Mesure',
-    description: 'Développement d\'applications web complètes avec Angular et Laravel, adaptées à vos besoins spécifiques.',
+    description: 'Développement d\'applications web complètes avec Angular 17+, Laravel 11 et TypeScript. Solutions sur mesure pour entreprises en Île-de-France et Yvelines (78). API REST sécurisées et interfaces modernes.',
     problem: 'Vous perdez du temps avec des processus manuels et des outils non intégrés',
     solution: 'Interface intuitive, automatisation des tâches, suivi des performances',
     icon: <Globe className="w-8 h-8" />,
@@ -44,7 +44,7 @@ const services: Service[] = [
   {
     id: 'ecommerce',
     title: 'Site E-Commerce',
-    description: 'Boutique en ligne complète avec panier, paiement et gestion des produits.',
+    description: 'Création de boutiques en ligne performantes avec Angular, Laravel ou React. E-commerce complet avec paiement sécurisé Stripe/PayPal, gestion des stocks et optimisation SEO technique pour plus de ventes.',
     problem: 'Votre site actuel ne convertit pas ou offre une expérience utilisateur limitée',
     solution: 'Design responsive, parcours d\'achat optimisé, paiement sécurisé',
     icon: <ShoppingCart className="w-8 h-8" />,
@@ -63,7 +63,7 @@ const services: Service[] = [
   {
     id: 'saas',
     title: 'Plateforme SaaS',
-    description: 'Solution Software as a Service avec abonnements, multi-utilisateurs et tableau de bord.',
+    description: 'Plateforme SaaS scalable développée avec Angular et Laravel. Architecture multi-tenants, API REST, système d\'abonnements et tableaux de bord analytics. Idéal pour les startups et éditeurs de logiciels.',
     problem: 'Besoin d\'une solution scalable qui puisse accompagner votre croissance',
     solution: 'Architecture multi-tenants, système d\'abonnements, tableaux de bord analytics',
     icon: <Users className="w-8 h-8" />,
@@ -82,7 +82,7 @@ const services: Service[] = [
   {
     id: 'maintenance',
     title: 'Maintenance & Évolution',
-    description: 'Suivi technique, mises à jour et évolutions de vos applications existantes.',
+    description: 'Maintenance technique et évolutive de vos applications Angular, Laravel et Node.js. Mises à jour de sécurité, optimisations de performance, veille technologique et support réactif pour entreprises en Île-de-France.',
     problem: 'Vous manquez de temps ou de compétences pour maintenir votre application',
     solution: 'Surveillance proactive, mises à jour régulières, support technique dédié',
     icon: <Shield className="w-8 h-8" />,

@@ -131,14 +131,6 @@ export const pageStructuredData = {
       url: 'https://www.abderrahmane-elfarouahfreelance.com/projects'
     }
   }),
-  '/skills': generateStructuredData({
-    type: 'WebPage',
-    data: {
-      title: 'Compétences | Abderrahmane El Farouah – Développeur Fullstack',
-      description: 'Compétences techniques d\'Abderrahmane El Farouah : Angular, React, Node.js, PHP, TypeScript, et les meilleures pratiques du développement web.',
-      url: 'https://www.abderrahmane-elfarouahfreelance.com/skills'
-    }
-  }),
   '/experience': generateStructuredData({
     type: 'WebPage',
     data: {

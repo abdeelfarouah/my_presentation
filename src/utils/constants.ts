@@ -8,6 +8,5 @@ export const NAV_ITEMS = [
   { href: '#home', label: 'Accueil' },
   { href: '#about', label: 'À propos' },
   { href: '#projects', label: 'Projets' },
-  { href: '#skills', label: 'Compétences' },
   { href: '#contact', label: 'Contact' }
 ];

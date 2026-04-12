@@ -46,9 +46,9 @@ export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
               />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-sm md:text-base lg:text-lg font-semibold text-text-main leading-tight">
+              <div className="text-sm md:text-base lg:text-lg font-semibold text-text-main leading-tight">
                 Abderrahmane <span className="text-text-secondary">El Farouah</span>
-              </h1>
+              </div>
               <p className="text-xs md:text-sm text-text-secondary font-medium">
                 Votre Partenaire Digital
               </p>

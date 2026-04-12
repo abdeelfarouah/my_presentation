@@ -103,9 +103,9 @@ export default function Projects() {
 				flex flex-col items-center
 			"
 		>
-			<h2 className="text-2xl sm:text-3xl font-display font-bold text-center text-text-main mb-4 sm:mb-8">
+			<h1 className="text-2xl sm:text-3xl font-display font-bold text-center text-text-main mb-4 sm:mb-8">
 				Mes <span className="text-accent">Projets</span>
-			</h2>
+			</h1>
 			<div className="relative w-full">
 				<button
 					className="absolute left-0 top-1/2 -translate-y-1/2 z-10 glass rounded-full p-2 shadow-glow-orange hover:shadow-glow-orange-hover transition-all disabled:opacity-30 border border-border-color hover:border-accent"

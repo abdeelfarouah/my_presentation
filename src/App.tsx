@@ -72,13 +72,13 @@ const AppContent = () => {
         {/* Main content */}
         <main
           id="main-content"
-          className={`flex-1 h-auto transition-all duration-300 ${isMenuOpen ? 'blur-lg opacity-30' : ''}`}
+          className={`flex-1 h-auto transition-all duration-300 ${isMenuOpen ? 'pointer-events-none' : ''}`}
         >
           <div className="h-full flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={location.pathname}
-                initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                initial={{ opacity: 1, y: 0, scale: 1 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.98 }}
                 transition={{ duration: 0.35, ease: 'easeInOut' }}

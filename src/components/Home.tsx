@@ -11,7 +11,7 @@ const Home = () => {
           <div className="mb-8">
             <img 
               src={PROFILE_IMAGE} 
-              alt="Abderrahmane El Farouah" 
+              alt="Abderrahmane El Farouah - Développeur Web Freelance Angular Laravel à Mantes-la-Jolie (78)" 
               className="w-32 h-32 rounded-full object-cover shadow-lg mx-auto mb-6"
               style={{ border: '4px solid rgba(0,102,170,0.2)' }}
             />
@@ -20,13 +20,16 @@ const Home = () => {
             </span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ color: 'var(--text-main)' }}>
-            Votre Partenaire Digital
+            Développeur Freelance Angular & Laravel
           </h1>
           <h2 className="text-xl md:text-2xl mb-8" style={{ color: 'var(--text-secondary)' }}>
-            Abderrahmane El Farouah • Expert Fullstack
+            Expert Fullstack • Mantes-la-Jolie, Yvelines (78) • Île-de-France
           </h2>
           <p className="text-lg mb-12 max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>
-            Je transforme vos défis business en solutions digitales performantes pour les entreprises en Île-de-France.
+            Développeur web freelance spécialisé <strong>Angular, Laravel et TypeScript</strong>. Je crée des applications 
+            sur mesure pour les entreprises des <strong>Yvelines (78)</strong>, de la région <strong>Île-de-France</strong> 
+            et de toute la France. Transformation digitale, modernisation d'applications legacy et création de 
+            solutions web performantes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -57,10 +60,10 @@ const Home = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Code className="w-8 h-8" />, title: "Applications Web", desc: "Développement sur mesure avec Angular et React" },
-              { icon: <Database className="w-8 h-8" />, title: "APIs & Backend", desc: "APIs robustes avec Laravel et Node.js" },
-              { icon: <Globe className="w-8 h-8" />, title: "Sites Vitrines", desc: "Présence web professionnelle et responsive" },
-              { icon: <Zap className="w-8 h-8" />, title: "Optimisation", desc: "Performance et SEO pour votre existant" }
+              { icon: <Code className="w-8 h-8" />, title: "Applications Web Angular", desc: "Développement sur mesure avec Angular, React et TypeScript pour entreprises" },
+              { icon: <Database className="w-8 h-8" />, title: "APIs Laravel & Backend", desc: "APIs REST robustes avec Laravel, PHP et Node.js pour applications métiers" },
+              { icon: <Globe className="w-8 h-8" />, title: "Sites Web & E-commerce", desc: "Création de sites vitrines, boutiques en ligne et applications web responsive" },
+              { icon: <Zap className="w-8 h-8" />, title: "SEO & Performance", desc: "Optimisation technique, référencement naturel et amélioration de vos applications existantes" }
             ].map((service, index) => (
               <div key={index} className="p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow" style={{ background: 'var(--bg-glass)' }}>
                 <div className="text-blue-600 mb-4">{service.icon}</div>

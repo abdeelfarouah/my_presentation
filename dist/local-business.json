@@ -63,6 +63,7 @@
     "itemListElement": [
       {
         "@type": "Offer",
+        "name": "Développement d'applications web",
         "itemOffered": {
           "@type": "Service",
           "name": "Développement d'applications web",
@@ -70,7 +71,8 @@
         }
       },
       {
-        "@type": "Offer", 
+        "@type": "Offer",
+        "name": "Développement de sites e-commerce",
         "itemOffered": {
           "@type": "Service",
           "name": "Développement de sites e-commerce",
@@ -79,8 +81,9 @@
       },
       {
         "@type": "Offer",
+        "name": "Applications mobiles web",
         "itemOffered": {
-          "@type": "Service", 
+          "@type": "Service",
           "name": "Applications mobiles web",
           "description": "Applications mobiles progressives (PWA) pour entreprises locales"
         }

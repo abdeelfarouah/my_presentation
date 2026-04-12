@@ -1,19 +1,18 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Container from './shared/Container';
-import SectionTitle from './shared/SectionTitle';
 import { SOCIAL_LINKS } from '../utils/constants';
 
 export default function CGV() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 1, y: 0 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.1 } },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 1, y: 0 },
     visible: { opacity: 1, y: 0 },
   };
 
@@ -28,12 +27,14 @@ export default function CGV() {
           className="w-full"
         >
           <Container>
-            <SectionTitle>Conditions Générales de Vente</SectionTitle>
+            <h1 className="text-3xl sm:text-4xl font-display font-bold text-center text-text-main mb-6">
+              Conditions Générales de Vente
+            </h1>
 
             <motion.div variants={itemVariants} className="glass ring-chrome rounded-xl p-4 sm:p-6 space-y-6">
               {/* Préambule */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Préambule</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Préambule</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre :
@@ -54,7 +55,7 @@ export default function CGV() {
 
               {/* Statut et identification */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">1. Statut et identification</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">1. Statut et identification</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     <strong>Prestataire :</strong> Abderrahmane El Farouah
@@ -96,7 +97,7 @@ export default function CGV() {
 
               {/* Services proposés */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">2. Services proposés</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">2. Services proposés</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>Les services de développement web proposés incluent notamment :</p>
                   <ul className="list-disc list-inside space-y-1 ml-4">
@@ -117,7 +118,7 @@ export default function CGV() {
 
               {/* Devis et commande */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">3. Devis et commande</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">3. Devis et commande</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     <strong>3.1. Devis :</strong> Tout devis est établi gratuitement et reste valable 30 jours à compter de sa date d'émission, sauf mention contraire.
@@ -136,7 +137,7 @@ export default function CGV() {
 
               {/* Prix et facturation */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">4. Prix et facturation</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">4. Prix et facturation</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     <strong>4.1. Prix :</strong> Les prix sont indiqués en euros, hors taxes (HT) pour les clients assujettis à la TVA, et toutes taxes comprises (TTC) pour les particuliers. En tant que micro-entrepreneur, je ne suis pas assujetti à la TVA (franchise en base de TVA).
@@ -160,7 +161,7 @@ export default function CGV() {
 
               {/* Délais et livraison */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">5. Délais et livraison</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">5. Délais et livraison</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     <strong>5.1. Délais :</strong> Les délais de réalisation sont indiqués dans le devis. Ils courent à compter de la réception de l'acompte ou de la confirmation de commande, et de la fourniture de tous les éléments nécessaires par le Client.
@@ -179,7 +180,7 @@ export default function CGV() {
 
               {/* Obligations du client */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">6. Obligations du Client</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">6. Obligations du Client</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>Le Client s'engage à :</p>
                   <ul className="list-disc list-inside space-y-1 ml-4">
@@ -195,7 +196,7 @@ export default function CGV() {
 
               {/* Obligations du prestataire */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">7. Obligations du Prestataire</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">7. Obligations du Prestataire</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>Le Prestataire s'engage à :</p>
                   <ul className="list-disc list-inside space-y-1 ml-4">
@@ -210,7 +211,7 @@ export default function CGV() {
 
               {/* Propriété intellectuelle */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">8. Propriété intellectuelle</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">8. Propriété intellectuelle</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     <strong>8.1. Code source :</strong> Le code source développé spécifiquement pour le Client est cédé au Client après paiement intégral de la facture, sauf mention contraire dans le devis.
@@ -229,7 +230,7 @@ export default function CGV() {
 
               {/* Garantie et maintenance */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">9. Garantie et maintenance</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">9. Garantie et maintenance</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     <strong>9.1. Garantie de conformité :</strong> Le Prestataire garantit la conformité de la prestation aux spécifications du devis pendant une période de 3 mois à compter de la livraison, pour les défauts non apparents.
@@ -248,7 +249,7 @@ export default function CGV() {
 
               {/* Responsabilité */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">10. Responsabilité</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">10. Responsabilité</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     <strong>10.1. Limitation :</strong> La responsabilité du Prestataire est limitée au montant HT de la prestation concernée. Le Prestataire ne pourra être tenu responsable des dommages indirects (perte de données, perte d'exploitation, préjudice commercial, etc.).
@@ -264,7 +265,7 @@ export default function CGV() {
 
               {/* Confidentialité */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">11. Confidentialité</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">11. Confidentialité</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     Le Prestataire s'engage à respecter la confidentialité de toutes les informations communiquées par le Client dans le cadre de la prestation. Cette obligation perdure après la fin de la mission.
@@ -274,7 +275,7 @@ export default function CGV() {
 
               {/* Résiliation */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">12. Résiliation</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">12. Résiliation</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     <strong>12.1. Par le Client :</strong> Le Client peut résilier la commande à tout moment, moyennant le paiement des prestations déjà réalisées et des frais engagés.
@@ -287,7 +288,7 @@ export default function CGV() {
 
               {/* Litiges et médiation */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">13. Litiges et médiation</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">13. Litiges et médiation</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     <strong>13.1. Médiation :</strong> Conformément aux articles L. 611-1 et R. 612-1 et suivants du Code de la consommation, le Client a le droit de recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable du litige qui l'oppose au Prestataire.
@@ -303,7 +304,7 @@ export default function CGV() {
 
               {/* Dispositions diverses */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">14. Dispositions diverses</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">14. Dispositions diverses</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     <strong>14.1. Modification :</strong> Les présentes CGV peuvent être modifiées à tout moment. Les CGV applicables sont celles en vigueur au moment de la commande.
@@ -319,7 +320,7 @@ export default function CGV() {
 
               {/* Contact */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">15. Contact</h3>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">15. Contact</h2>
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
                     Pour toute question concernant ces CGV, vous pouvez me contacter :

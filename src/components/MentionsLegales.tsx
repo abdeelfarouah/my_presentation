@@ -1,14 +1,13 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Container from './shared/Container';
-import SectionTitle from './shared/SectionTitle';
 import { SOCIAL_LINKS } from '../utils/constants';
 
 export default function MentionsLegales() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 1, y: 0 },
     visible: {
       opacity: 1,
       y: 0,
@@ -17,7 +16,7 @@ export default function MentionsLegales() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 1, y: 0 },
     visible: { opacity: 1, y: 0 },
   };
 
@@ -35,7 +34,9 @@ export default function MentionsLegales() {
           className="w-full"
         >
           <Container>
-            <SectionTitle>Mentions Légales</SectionTitle>
+            <h1 className="text-3xl sm:text-4xl font-display font-bold text-center text-text-main mb-6">
+              Mentions Légales
+            </h1>
 
             <motion.div
               variants={itemVariants}
@@ -43,9 +44,9 @@ export default function MentionsLegales() {
             >
               {/* Éditeur du site */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   1. Éditeur du site
-                </h3>
+                </h2>
 
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
@@ -91,9 +92,9 @@ export default function MentionsLegales() {
 
               {/* Hébergement */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   2. Hébergement
-                </h3>
+                </h2>
 
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
@@ -120,9 +121,9 @@ export default function MentionsLegales() {
 
               {/* Propriété intellectuelle */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   3. Propriété intellectuelle
-                </h3>
+                </h2>
 
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
@@ -141,9 +142,9 @@ export default function MentionsLegales() {
 
               {/* Données personnelles */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   4. Protection des données personnelles
-                </h3>
+                </h2>
 
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
@@ -168,9 +169,9 @@ export default function MentionsLegales() {
 
               {/* Cookies */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   5. Cookies
-                </h3>
+                </h2>
 
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
@@ -185,9 +186,9 @@ export default function MentionsLegales() {
 
               {/* Responsabilité */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   6. Responsabilité
-                </h3>
+                </h2>
 
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
@@ -202,9 +203,9 @@ export default function MentionsLegales() {
 
               {/* Liens */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   7. Liens hypertextes
-                </h3>
+                </h2>
 
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
@@ -219,9 +220,9 @@ export default function MentionsLegales() {
 
               {/* Droit applicable */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   8. Droit applicable
-                </h3>
+                </h2>
 
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <p>
@@ -236,9 +237,9 @@ export default function MentionsLegales() {
 
               {/* Contact */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   9. Contact
-                </h3>
+                </h2>
 
                 <div className="text-gray-700 dark:text-gray-300 space-y-2 text-sm sm:text-base">
                   <ul className="list-disc list-inside space-y-1 ml-4">

@@ -19,22 +19,28 @@ export default function About() {
 
           {/* INTRO */}
           <p className="mb-4" itemProp="description">
-            Développeur web freelance, je conçois des applications modernes, rapides et robustes en combinant 
-            <strong> Angular, TypeScript et Laravel </strong> avec une expertise avancée des systèmes 
-            <strong> IBM i (AS400)</strong>.
+            <strong>Développeur web freelance basé à Mantes-la-Jolie dans les Yvelines (78)</strong>, je conçois des 
+            applications modernes, rapides et robustes en combinant <strong>Angular, TypeScript et Laravel</strong> avec 
+            une expertise avancée des systèmes <strong>IBM i (AS400)</strong>. J'interviens dans toute la région 
+            <strong>Île-de-France</strong> pour accompagner les entreprises dans leur transformation digitale.
           </p>
 
           <p className="mb-4">
-            J’aide les entreprises à <strong>moderniser leurs applications métiers</strong>, améliorer leurs performances
-            et garantir la pérennité de leur système d’information.
+            J'aide les entreprises des <strong>Yvelines, du Val-d'Oise et de l'Île-de-France</strong> à 
+            <strong>moderniser leurs applications métiers</strong>, améliorer leurs performances et garantir la 
+            pérennité de leur système d'information. Spécialisé dans l'<strong>interopérabilité entre systèmes 
+            legacy AS400 et applications web modernes</strong>.
           </p>
 
           <p className="mb-6">
             Mon approche : <strong>allier legacy et modernité</strong> pour créer des solutions fiables, évolutives 
-            et parfaitement adaptées à vos enjeux techniques et business.
+            et parfaitement adaptées à vos enjeux techniques et business. Que vous soyez à 
+            <strong>Mantes-la-Jolie, Versailles, Saint-Germain-en-Laye</strong> ou ailleurs en Île-de-France, 
+            je vous accompagne avec réactivité et expertise sur vos projets <strong>Angular, Laravel et 
+            développement web fullstack</strong>.
           </p>
 
-          <meta itemProp="jobTitle" content="Développeur Web Freelance" />
+          <meta itemProp="jobTitle" content="Développeur Web Freelance Angular Laravel - Mantes-la-Jolie (78)" />
           <meta itemProp="url" content="https://www.abderrahmane-elfarouahfreelance.com" />
 
           {/* POINTS FORTS */}
@@ -47,7 +53,7 @@ export default function About() {
 
             <div className="card">
               <p className="font-semibold text-text-main">🔗 Interopérabilité</p>
-              <p className="text-sm">Legacy AS400 ↔ Web moderne</p>
+              <p className="text-sm">AS400 ↔ Applications Angular/Laravel</p>
             </div>
 
             <div className="card">

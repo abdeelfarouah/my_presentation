@@ -13,10 +13,10 @@ export default function ContactSimple() {
   const [sent, setSent] = useState(false);
 
   const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 1, y: 0 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.2 } },
   };
-  const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
+  const itemVariants = { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
