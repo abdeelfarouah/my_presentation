@@ -19,7 +19,7 @@ export function generateStructuredData({ type, data }: StructuredDataProps) {
       description: data.description || 'Développeur web fullstack spécialisé dans la création d\'applications web modernes.',
       sameAs: [
         'https://www.linkedin.com/in/abderrahmaneelfarouah/',
-        'https://github.com/abdeelfarouah',
+        'https://github.com/abderrahmaneelfarouah',
         'https://share.google/0UJJ5edbJf4IkW99S'
       ],
       knowsAbout: [

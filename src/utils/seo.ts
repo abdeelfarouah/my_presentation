@@ -1,12 +1,14 @@
 const baseUrl = 'https://www.abderrahmane-elfarouahfreelance.com';
 
+// Routes avec priorités SEO ajustées selon la navigation principale
+// Accueil (1.0) > Services, Réalisations, Contact (0.9) > About (0.6) > Légales (0.3)
 const routes = [
   { path: '/', priority: '1.0', changeFreq: 'weekly' },
-  { path: '/about', priority: '0.8', changeFreq: 'monthly' },
+  { path: '/services', priority: '0.9', changeFreq: 'weekly' },
   { path: '/projects', priority: '0.9', changeFreq: 'weekly' },
-  { path: '/experience', priority: '0.8', changeFreq: 'monthly' },
-  { path: '/services', priority: '0.8', changeFreq: 'monthly' },
-  { path: '/contact', priority: '0.7', changeFreq: 'monthly' },
+  { path: '/contact', priority: '0.9', changeFreq: 'weekly' },
+  { path: '/about', priority: '0.6', changeFreq: 'monthly' }, // Page secondaire
+  { path: '/experience', priority: '0.5', changeFreq: 'monthly' },
   { path: '/mentions-legales', priority: '0.3', changeFreq: 'yearly' },
   { path: '/cgv', priority: '0.3', changeFreq: 'yearly' },
 ];

@@ -12,8 +12,8 @@ export const NAV_IMAGE = getImagePath('images/profile.jpg');
 
 // Remote project images
 export const PROJECT_IMAGES = {
-  CHIFOUMI: 'https://raw.githubusercontent.com/abdeelfarouah/chifoumi/refs/heads/main/image.png',
+  CHIFOUMI: 'https://raw.githubusercontent.com/abderrahmaneelfarouah/chifoumi/refs/heads/main/image.png',
   POKEDEX: 'https://images.unsplash.com/photo-1613771404784-3a5686aa2be3?auto=format&fit=crop&q=80&w=800&h=500',
-  PUZZLE: 'https://raw.githubusercontent.com/abdeelfarouah/puzzle/refs/heads/main/hero.jpg?auto=format&fit=crop&q=800&w=800&h=500',
-  SNAKE: 'https://raw.githubusercontent.com/abdeelfarouah/retro-snake-game/refs/heads/main/IMG_5666.jpeg'
+  PUZZLE: 'https://raw.githubusercontent.com/abderrahmaneelfarouah/puzzle/refs/heads/main/hero.jpg?auto=format&fit=crop&q=800&w=800&h=500',
+  SNAKE: 'https://raw.githubusercontent.com/abderrahmaneelfarouah/retro-snake-game/refs/heads/main/IMG_5666.jpeg'
 };

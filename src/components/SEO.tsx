@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
+import { useRouterState } from '@tanstack/react-router';
 import { useMemo } from 'react';
 import { pageStructuredData } from '../utils/structuredData';
 
@@ -120,7 +120,8 @@ export default function SEO({
   noIndex = false,
   structuredData,
 }: SEOProps) {
-  const { pathname } = useLocation();
+  const { location } = useRouterState();
+  const pathname = location.pathname;
 
   const pageSpecific = pageSEO[pathname] ?? {};
 
@@ -149,7 +150,7 @@ export default function SEO({
       
       "url": BASE_URL,
       "telephone": "+33760751350",
-      "email": "a.elfarouahDEV@outlook.com",
+      "email": "abde.elfarouah@gmail.com",
 
       "address": {
         "@type": "PostalAddress",
@@ -184,7 +185,7 @@ export default function SEO({
 
       "sameAs": [
         "https://www.linkedin.com/in/abderrahmaneelfarouah/",
-        "https://github.com/abdeelfarouah",
+        "https://github.com/abderrahmaneelfarouah",
         "https://www.malt.fr/profile/abderrahmaneelfarouah"
       ],
 

@@ -1,5 +1,6 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, Calendar, ArrowRight, Sparkles, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { fr } from 'date-fns/locale/fr';
@@ -121,52 +122,93 @@ export default function Contact() {
   };
 
   return (
-    <main id="contact" className="min-h-screen py-16 px-4 bg-white">
+    <main id="contact" className="min-h-screen py-16 px-4 relative overflow-hidden">
+      {/* Background gradient orbs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-accent/20 rounded-full blur-[100px] -z-10" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10" />
+      
       <div className="max-w-5xl mx-auto">
-
-        <header className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
-            Prise de <span className="text-blue-600">Rendez-vous</span>
+        <motion.header 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium mb-6">
+            <Sparkles className="w-4 h-4 text-accent" />
+            <span>Premier rendez-vous gratuit</span>
+          </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-main mb-4">
+            Prenons <span className="text-gradient">contact</span>
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discutons de votre projet lors d'un entretien personnalisé.
+          <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+            Discutons de votre projet lors d'un entretien personnalisé et sans engagement.
           </p>
-        </header>
+        </motion.header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Profil */}
-          <div className="bg-gray-50 rounded-lg p-8">
+        <motion.div 
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {/* Profil Card */}
+          <div className="card-bento p-8">
             <div className="flex justify-center mb-6">
-              <img 
-                src={PROFILE_IMAGE} 
-                alt="Profile" 
-                className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg"
-              />
+              <div className="relative">
+                <img 
+                  src={PROFILE_IMAGE} 
+                  alt="Abderrahmane El Farouah" 
+                  className="w-32 h-32 rounded-full object-cover ring-4 ring-accent/30 shadow-glow-animated"
+                />
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white dark:border-gray-900 flex items-center justify-center">
+                  <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                </div>
+              </div>
             </div>
-            <h2 className="text-xl font-semibold text-center text-gray-900 mb-2">
+            <h2 className="text-2xl font-bold text-center text-text-main mb-2">
               Abderrahmane El Farouah
             </h2>
-            <p className="text-gray-600 text-center mb-6">
-              Spécialiste applications web Angular & Laravel
+            <p className="text-text-secondary text-center mb-6">
+              Créateur de solutions digitaux pour commerçants et artisans
             </p>
+            
+            {/* Contact Info */}
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-accent/10">
+                <Mail className="w-5 h-5 text-accent" />
+                <a href="mailto:abde.elfarouah@gmail.com" className="text-text-secondary hover:text-accent transition-colors">
+                  abde.elfarouah@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-accent/10">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span className="text-text-secondary">Réponse sous 24h</span>
+              </div>
+            </div>
+            
+            {/* Social Links */}
             <div className="flex justify-center gap-3">
-              <a href={SOCIAL_LINKS.GITHUB} target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">
-                <Github className="w-5 h-5 text-gray-700" />
+              <a href={SOCIAL_LINKS.GITHUB} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-text-main hover:text-accent hover:border-accent/50 transition-all">
+                <Github className="w-6 h-6" />
               </a>
-              <a href={SOCIAL_LINKS.LINKEDIN} target="_blank" rel="noopener noreferrer" className="p-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
-                <Linkedin className="w-5 h-5 text-white" />
+              <a href={SOCIAL_LINKS.LINKEDIN} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-text-main hover:text-accent hover:border-accent/50 transition-all">
+                <Linkedin className="w-6 h-6" />
               </a>
-              <a href={`mailto:a.elfarouahDEV@outlook.com`} className="p-2 bg-green-600 rounded-lg hover:bg-green-700 transition-colors">
-                <Mail className="w-5 h-5 text-white" />
+              <a href="mailto:abde.elfarouah@gmail.com" className="w-12 h-12 rounded-2xl btn-primary flex items-center justify-center">
+                <Mail className="w-6 h-6" />
               </a>
             </div>
           </div>
 
-          {/* Formulaire */}
-          <div className="bg-gray-50 rounded-lg p-8">
-            <h2 className="text-2xl font-semibold text-center text-gray-900 mb-6">
+          {/* Formulaire Card */}
+          <div className="card-bento p-8">
+            <h2 className="text-2xl font-bold text-center text-text-main mb-2">
               Prendre rendez-vous
             </h2>
+            <p className="text-text-secondary text-center mb-6">
+              Choisissez un créneau qui vous convient
+            </p>
             
             {sent ? (
               <div className="text-center py-8">
@@ -178,7 +220,7 @@ export default function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="firstName" className="block text-gray-700 text-sm font-medium mb-2">Prénom</label>
+                  <label htmlFor="firstName" className="block text-text-secondary text-sm font-medium mb-2">Prénom</label>
                   <input
                     type="text"
                     id="firstName"
@@ -187,13 +229,13 @@ export default function Contact() {
                     value={formState.firstName}
                     onChange={handleChange}
                     placeholder="Votre prénom"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
+                    className="w-full px-4 py-3 rounded-xl bg-white/50 border border-border-color focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="lastName" className="block text-gray-700 text-sm font-medium mb-2">Nom</label>
+                  <label htmlFor="lastName" className="block text-text-secondary text-sm font-medium mb-2">Nom</label>
                   <input
                     type="text"
                     id="lastName"
@@ -202,13 +244,13 @@ export default function Contact() {
                     value={formState.lastName}
                     onChange={handleChange}
                     placeholder="Votre nom"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
+                    className="w-full px-4 py-3 rounded-xl bg-white/50 border border-border-color focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">Email</label>
+                  <label htmlFor="email" className="block text-text-secondary text-sm font-medium mb-2">Email</label>
                   <input
                     type="email"
                     id="email"
@@ -217,13 +259,13 @@ export default function Contact() {
                     value={formState.email}
                     onChange={handleChange}
                     placeholder="votre@email.com"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
+                    className="w-full px-4 py-3 rounded-xl bg-white/50 border border-border-color focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="date" className="block text-gray-700 text-sm font-medium mb-2">Date</label>
+                  <label htmlFor="date" className="block text-text-secondary text-sm font-medium mb-2">Date</label>
                   <DatePicker
                     id="date"
                     selected={formState.date}
@@ -234,7 +276,7 @@ export default function Contact() {
                     minDate={new Date()}
                     locale={fr}
                     dateFormat="Pp"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
+                    className="w-full px-4 py-3 rounded-xl bg-white/50 border border-border-color focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
                     placeholderText="Choisissez une date"
                     required
                     autoComplete="off"
@@ -242,13 +284,13 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="hour" className="block text-gray-700 text-sm font-medium mb-2">Heure</label>
+                  <label htmlFor="hour" className="block text-text-secondary text-sm font-medium mb-2">Heure</label>
                   <select
                     id="hour"
                     name="hour"
                     value={selectedHour || ''}
                     onChange={handleHourChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
+                    className="w-full px-4 py-3 rounded-xl bg-white/50 border border-border-color focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
                   >
                     <option value="">Sélectionnez une heure</option>
                     {HOURS.map((hour) => (
@@ -257,16 +299,20 @@ export default function Contact() {
                   </select>
                 </div>
 
-                <button
+                <motion.button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                  className="w-full btn btn-primary py-4 text-lg font-bold group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
+                  <Calendar className="w-6 h-6 mr-2" />
                   Confirmer le rendez-vous
-                </button>
+                  <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-2 transition-transform" />
+                </motion.button>
               </form>
             )}
           </div>
-        </div>
+        </motion.div>
 
         {/* Admin access - hidden */}
         <div className="flex flex-col items-center mt-16">
@@ -288,7 +334,7 @@ export default function Contact() {
         {/* Admin modal */}
         {showAdminLogin && !isAdmin && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowAdminLogin(false)}>
-            <div className="bg-white p-6 w-full max-w-md rounded-lg shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <div className="card-bento p-6 w-full max-w-md" onClick={(e) => e.stopPropagation()}>
               <h3 className="text-xl font-semibold mb-4">Accès Admin</h3>
               <form onSubmit={handleAdminLogin} className="space-y-4">
                 <input
@@ -296,13 +342,13 @@ export default function Contact() {
                   value={adminCode}
                   onChange={(e) => setAdminCode(e.target.value)}
                   placeholder="Code admin"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 border border-border-color focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
                   required
                 />
                 {adminError && <p className="text-red-500 text-sm">{adminError}</p>}
                 <div className="flex gap-3">
-                  <button type="submit" className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Connexion</button>
-                  <button type="button" onClick={() => setShowAdminLogin(false)} className="flex-1 bg-gray-200 py-2 rounded-lg hover:bg-gray-300">Annuler</button>
+                  <button type="submit" className="flex-1 btn btn-primary py-3">Connexion</button>
+                  <button type="button" onClick={() => setShowAdminLogin(false)} className="flex-1 btn btn-secondary py-3">Annuler</button>
                 </div>
               </form>
             </div>
@@ -311,16 +357,16 @@ export default function Contact() {
 
         {/* Admin panel */}
         {isAdmin && (
-          <div className="bg-white rounded-lg shadow border border-gray-200 mt-8 p-6">
+          <div className="card-bento mt-8 p-6">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold">Rendez-vous ({appointments.length})</h3>
-              <button onClick={() => setIsAdmin(false)} className="text-gray-500 hover:text-gray-700">Fermer</button>
+              <h3 className="text-xl font-bold text-text-main">Rendez-vous ({appointments.length})</h3>
+              <button onClick={() => setIsAdmin(false)} className="text-text-secondary hover:text-accent transition-colors">Fermer</button>
             </div>
             {appointments.map((apt) => (
-              <div key={apt.id} className="p-3 bg-gray-50 rounded mb-2 flex justify-between">
+              <div key={apt.id} className="p-4 bg-accent/5 rounded-xl mb-2 flex justify-between border border-accent/10">
                 <div>
-                  <p className="font-medium">{apt.name}</p>
-                  <p className="text-sm text-gray-600">{new Date(apt.date).toLocaleString('fr-FR')}</p>
+                  <p className="font-semibold text-text-main">{apt.name}</p>
+                  <p className="text-sm text-text-secondary">{new Date(apt.date).toLocaleString('fr-FR')}</p>
                 </div>
               </div>
             ))}

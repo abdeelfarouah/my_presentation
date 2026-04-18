@@ -13,12 +13,17 @@ import path from 'path';
 
 const BASE_URL = process.env.BASE_URL || 'https://www.abderrahmane-elfarouahfreelance.com';
 
-// Liste des routes à inclure dans le sitemap (ajoute tes pages ici)
+// Liste des routes à inclure dans le sitemap
+// Priorités ajustées selon la navigation principale : Accueil > Services > Réalisations > Contact
 const routes: Array<{ url: string; priority?: number; lastmod?: string }> = [
   { url: '/', priority: 1.0 },
-  { url: '/projets', priority: 0.8 },
-  { url: '/contact', priority: 0.8 },
-  { url: '/services', priority: 0.8 }, // exemple : page Services recommandée dans ton audit
+  { url: '/services', priority: 0.9 },
+  { url: '/projects', priority: 0.9 },
+  { url: '/contact', priority: 0.9 },
+  { url: '/about', priority: 0.6 }, // Page secondaire (non dans nav principale)
+  { url: '/experience', priority: 0.5 },
+  { url: '/mentions-legales', priority: 0.3 },
+  { url: '/cgv', priority: 0.3 },
 ];
 
 // Format date YYYY-MM-DD

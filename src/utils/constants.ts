@@ -1,8 +1,8 @@
 export const SOCIAL_LINKS = {
-  GITHUB: 'https://github.com/abdeelfarouah/',
+  GITHUB: 'https://github.com/abderrahmaneelfarouah/',
   LINKEDIN: 'https://fr.linkedin.com/in/abderrahmaneelfarouah',
-  EMAIL: 'A.elfarouahDEV@outlook.fr',
-  CV_URL: 'https://raw.githubusercontent.com/abdeelfarouah/my_presentation/655a6d0e909b552be1e814e1cc23f90691a30436/src/abderrahmane-elfarouah_cv.pdf',
+  EMAIL: 'abde.elfarouah@gmail.com',
+  CV_URL: 'https://raw.githubusercontent.com/abderrahmaneelfarouah/my_presentation/655a6d0e909b552be1e814e1cc23f90691a30436/src/abderrahmane-elfarouah_cv.pdf',
 };
 export const NAV_ITEMS = [
   { href: '#home', label: 'Accueil' },

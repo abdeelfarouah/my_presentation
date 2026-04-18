@@ -1,6 +1,6 @@
 import { Menu, X } from 'lucide-react';
 import { useMemo, useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useRouterState } from '@tanstack/react-router';
 import ThemeToggle from './ThemeToggle';
 import { NAV_IMAGE } from '../utils/images';
 import { useMenu } from '../contexts/MenuContext';
@@ -11,7 +11,7 @@ type NavbarProps = {
 
 export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
+  const { location } = useRouterState();
   const { setIsMenuOpen } = useMenu();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
     { id: 'home', label: 'Accueil', path: '/' },
     { id: 'services', label: 'Services', path: '/services' },
     { id: 'realisations', label: 'Réalisations', path: '/projects' },
-    { id: 'approche', label: 'Approche', path: '/about' },
+    { id: 'contact', label: 'Contact', path: '/contact' },
   ];
 
   const activeTab = useMemo(() => {
@@ -99,14 +99,7 @@ export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
           <div className="fixed top-0 right-0 h-screen w-72 glass z-[1000] transform transition-transform duration-300 ease-in-out translate-x-0 border-l border-border-color/50">
             <div className="flex flex-col h-screen">
               <div className="flex items-center justify-between p-4 border-b border-border-color/50 flex-shrink-0">
-                <h2 className="text-lg font-semibold text-text-main">Navigation</h2>
-                <button
-                  aria-label="Fermer le menu"
-                  onClick={() => setIsOpen(false)}
-                  className="touch-area focus-visible p-2 rounded-lg text-text-secondary hover:text-text-main hover:bg-bg-secondary/50 transition-all duration-200"
-                >
-                  <X size={20} />
-                </button>
+                <h2 className="text-lg font-semibold text-text-main">Menu</h2>
               </div>
 
               <nav className="flex-1 flex flex-col p-4 overflow-hidden space-y-1">

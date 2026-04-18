@@ -33,7 +33,7 @@ export default function ContactSimple() {
     // Send email
     const subject = `Nouveau contact de ${formData.name}`;
     const body = `Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    window.location.href = `mailto:a.elfarouahDEV@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:abde.elfarouah@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
     setSent(true);
     setTimeout(() => setSent(false), 3000);
@@ -72,8 +72,8 @@ export default function ContactSimple() {
               <div className="space-y-4 w-full max-w-sm">
                 <div className="flex items-center gap-3 p-3 bg-accent/10 rounded-lg">
                   <Mail className="w-5 h-5 text-accent" />
-                  <a href="mailto:a.elfarouahDEV@outlook.com" className="text-text-secondary hover:text-accent transition-colors">
-                    a.elfarouahDEV@outlook.com
+                  <a href="mailto:abde.elfarouah@gmail.com" className="text-text-secondary hover:text-accent transition-colors">
+                    abde.elfarouah@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center gap-3 p-3 bg-accent/10 rounded-lg">

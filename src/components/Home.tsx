@@ -1,158 +1,312 @@
-import { Code, Database, Globe, Zap, MapPin, Phone, Mail } from 'lucide-react';
+import { Code, Database, Globe, Zap, MapPin, Phone, Mail, ArrowRight, Sparkles, CheckCircle, Calendar } from 'lucide-react';
 import { PROFILE_IMAGE } from '../utils/images';
+import { motion } from 'framer-motion';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
 
 const Home = () => {
-
   return (
-    <div className="min-h-screen" style={{ background: 'var(--bg-main)' }}>
+    <div className="min-h-screen selection-accent">
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center px-4 py-20">
-        <div className="text-center max-w-4xl">
-          <div className="mb-8">
-            <img 
-              src={PROFILE_IMAGE} 
-              alt="Abderrahmane El Farouah - Développeur Web Freelance Angular Laravel à Mantes-la-Jolie (78)" 
-              className="w-32 h-32 rounded-full object-cover shadow-lg mx-auto mb-6"
-              style={{ border: '4px solid rgba(0,102,170,0.2)' }}
-            />
-            <span className="px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'rgba(0,102,170,0.15)', color: 'var(--cyan)' }}>
-              Développeur Fullstack • Angular & Laravel
+      <section id="hero" className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden">
+        {/* Background gradient orbs */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-accent/20 rounded-full blur-[100px] -z-10" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10" />
+        
+        <motion.div 
+          className="text-center max-w-4xl"
+          initial="initial"
+          animate="animate"
+          variants={staggerContainer}
+        >
+          <motion.div className="mb-8" variants={fadeInUp}>
+            <div className="relative inline-block">
+              <img 
+                src={PROFILE_IMAGE} 
+                alt="Abderrahmane El Farouah - Développeur Web Freelance Angular Laravel à Mantes-la-Jolie (78)" 
+                className="w-36 h-36 rounded-full object-cover shadow-glow-animated mx-auto mb-6 ring-4 ring-accent/20"
+              />
+              <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-green-500 rounded-full border-4 border-white dark:border-gray-900 flex items-center justify-center">
+                <span className="w-3 h-3 bg-white rounded-full animate-pulse" />
+              </div>
+            </div>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium">
+              <Sparkles className="w-4 h-4 text-accent" />
+              <span>Transformation digitale • Résultats mesurables</span>
             </span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ color: 'var(--text-main)' }}>
-            Développeur Freelance Angular & Laravel
-          </h1>
-          <h2 className="text-xl md:text-2xl mb-8" style={{ color: 'var(--text-secondary)' }}>
-            Expert Fullstack • Mantes-la-Jolie, Yvelines (78) • Île-de-France
-          </h2>
-          <p className="text-lg mb-12 max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>
-            Développeur web freelance spécialisé <strong>Angular, Laravel et TypeScript</strong>. Je crée des applications 
-            sur mesure pour les entreprises des <strong>Yvelines (78)</strong>, de la région <strong>Île-de-France</strong> 
-            et de toute la France. Transformation digitale, modernisation d'applications legacy et création de 
-            solutions web performantes.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+          </motion.div>
+          
+          <motion.h1 
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
+            variants={fadeInUp}
+          >
+            <span className="text-text-main">Des Applications qui </span>
+            <span className="text-gradient">Performent</span>
+          </motion.h1>
+          
+          <motion.h2 
+            className="text-xl md:text-2xl mb-8 text-text-secondary font-medium"
+            variants={fadeInUp}
+          >
+            Développeur freelance • Mantes-la-Jolie, Yvelines (78) • Île-de-France
+          </motion.h2>
+          
+          <motion.p 
+            className="text-lg mb-12 max-w-2xl mx-auto text-text-secondary leading-relaxed"
+            variants={fadeInUp}
+          >
+            J'aide les entreprises des <strong className="text-accent">Yvelines, du Val-d'Oise et de l'Île-de-France</strong> 
+            à <strong>transformer leurs processus métiers</strong> avec des applications sur mesure. Gain de temps, 
+            réduction des coûts, productivité accrue : des résultats concrets et mesurables.
+          </motion.p>
+          
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            variants={fadeInUp}
+          >
+            <motion.a
               href="/contact"
-              className="px-8 py-3 rounded-lg font-medium transition-colors" style={{ background: 'var(--blue)', color: '#fff' }}>
-              Prendre rendez-vous
-            </a>
+              className="relative inline-flex items-center gap-3 px-12 py-6 text-xl font-bold bg-white text-accent rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] border-2 border-white/50 hover:border-white transition-all duration-300 group overflow-hidden"
+              whileHover={{ scale: 1.08, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+              <Calendar className="w-7 h-7 relative z-10" />
+              <span className="relative z-10">Prendre RDV gratuit</span>
+              <ArrowRight className="w-7 h-7 ml-1 relative z-10 group-hover:translate-x-3 transition-transform duration-300" />
+            </motion.a>
             <a 
               href="/services"
-              className="px-8 py-3 rounded-lg font-medium transition-colors" style={{ background: 'var(--bg-tertiary)', color: 'var(--text-main)' }}>
+              className="btn btn-secondary px-8 py-4 text-base font-medium group"
+            >
               Voir mes services
+              <ArrowRight className="w-5 h-5 ml-2 inline-block group-hover:translate-x-1 transition-transform" />
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 px-4" style={{ background: 'var(--bg-secondary)' }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-main)' }}>
-              Mes Services
+      {/* Services Bento Section */}
+      <section id="services" className="py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium mb-6">
+              <Zap className="w-4 h-4 text-accent" />
+              <span>Expertises</span>
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-main">
+              Mes <span className="text-gradient">Services</span>
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-xl max-w-2xl mx-auto text-text-secondary">
               Des solutions sur mesure pour votre transformation digitale
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 perspective-1000">
             {[
-              { icon: <Code className="w-8 h-8" />, title: "Applications Web Angular", desc: "Développement sur mesure avec Angular, React et TypeScript pour entreprises" },
-              { icon: <Database className="w-8 h-8" />, title: "APIs Laravel & Backend", desc: "APIs REST robustes avec Laravel, PHP et Node.js pour applications métiers" },
-              { icon: <Globe className="w-8 h-8" />, title: "Sites Web & E-commerce", desc: "Création de sites vitrines, boutiques en ligne et applications web responsive" },
-              { icon: <Zap className="w-8 h-8" />, title: "SEO & Performance", desc: "Optimisation technique, référencement naturel et amélioration de vos applications existantes" }
+              { icon: <Code className="w-8 h-8" />, title: "Outils Métiers sur Mesure", desc: "Applications web personnalisées pour automatiser vos tâches et gagner du temps au quotidien", color: "from-blue-500 to-cyan-500" },
+              { icon: <Database className="w-8 h-8" />, title: "Gestion & Stock", desc: "Systèmes de gestion clients, stocks, devis et facturation adaptés à votre activité", color: "from-purple-500 to-pink-500" },
+              { icon: <Globe className="w-8 h-8" />, title: "Site Web & Boutique", desc: "Site vitrine professionnel ou boutique en ligne pour vendre sur internet 24h/24", color: "from-green-500 to-emerald-500" },
+              { icon: <Zap className="w-8 h-8" />, title: "Référencement Local", desc: "Apparaître sur Google dans votre région et attirer plus de clients près de chez vous", color: "from-orange-500 to-yellow-500" }
             ].map((service, index) => (
-              <div key={index} className="p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow" style={{ background: 'var(--bg-glass)' }}>
-                <div className="text-blue-600 mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--text-main)' }}>{service.title}</h3>
-                <p style={{ color: 'var(--text-secondary)' }}>{service.desc}</p>
-              </div>
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="card-bento group cursor-pointer"
+              >
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold text-text-main mb-3 group-hover:text-accent transition-colors">{service.title}</h3>
+                <p className="text-text-secondary leading-relaxed">{service.desc}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8" style={{ color: 'var(--text-main)' }}>
-            Une Approche Orientée Résultats
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            <div className="p-6">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl" style={{ background: 'rgba(0,102,170,0.15)', color: 'var(--cyan)' }}>
-                1
-              </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-main)' }}>Analyse</h3>
-              <p style={{ color: 'var(--text-secondary)' }}>Compréhension de vos besoins et objectifs business</p>
-            </div>
-            <div className="p-6">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl" style={{ background: 'rgba(0,102,170,0.15)', color: 'var(--cyan)' }}>
-                2
-              </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-main)' }}>Conception</h3>
-              <p style={{ color: 'var(--text-secondary)' }}>Architecture technique adaptée à vos contraintes</p>
-            </div>
-            <div className="p-6">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl" style={{ background: 'rgba(0,102,170,0.15)', color: 'var(--cyan)' }}>
-                3
-              </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-main)' }}>Livraison</h3>
-              <p style={{ color: 'var(--text-secondary)' }}>Déploiement et accompagnement post-projet</p>
-            </div>
+      {/* About Bento Section */}
+      <section id="about" className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-main">
+              Une <span className="text-gradient">Approche</span> Orientée Résultats
+            </h2>
+            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+              Processus éprouvé pour livrer des solutions de qualité
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { num: "01", title: "Écoute", desc: "On discute de votre activité, de vos contraintes et de vos objectifs concrets", icon: <Code className="w-6 h-6" /> },
+              { num: "02", title: "Solution", desc: "Je vous propose un outil adapté à votre métier et à votre budget", icon: <Database className="w-6 h-6" /> },
+              { num: "03", title: "Accompagnement", desc: "Mise en place, formation et suivi pour que vous soyez autonome", icon: <Globe className="w-6 h-6" /> }
+            ].map((step, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="card-bento text-center group"
+              >
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-2xl font-bold text-gradient">{step.num}</span>
+                </div>
+                <h3 className="text-xl font-bold text-text-main mb-3">{step.title}</h3>
+                <p className="text-text-secondary leading-relaxed">{step.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Location Section */}
-      <section id="local" className="py-20 px-4" style={{ background: 'var(--bg-secondary)' }}>
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-main)' }}>
-              Intervention en Île-de-France
+      {/* Location Bento Section */}
+      <section id="local" className="py-24 px-4">
+        <div className="max-w-5xl mx-auto">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium mb-6">
+              <MapPin className="w-4 h-4 text-accent" />
+              <span>Localisation</span>
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-main">
+              Intervention en <span className="text-gradient">Île-de-France</span>
             </h2>
-            <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
               Basé à Mantes-la-Jolie, disponible pour vos projets dans toute la région
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="flex items-center gap-3 p-4 rounded-lg" style={{ background: 'var(--bg-glass)' }}>
-              <MapPin className="w-5 h-5" style={{ color: 'var(--cyan)' }} />
-              <span style={{ color: 'var(--text-main)' }}>Mantes-la-Jolie</span>
-            </div>
-            <div className="flex items-center gap-3 p-4 rounded-lg" style={{ background: 'var(--bg-glass)' }}>
-              <Phone className="w-5 h-5" style={{ color: 'var(--cyan)' }} />
-              <span style={{ color: 'var(--text-main)' }}>07 60 75 13 50</span>
-            </div>
-            <div className="flex items-center gap-3 p-4 rounded-lg" style={{ background: 'var(--bg-glass)' }}>
-              <Mail className="w-5 h-5" style={{ color: 'var(--cyan)' }} />
-              <span style={{ color: 'var(--text-main)' }}>a.elfarouahDEV@outlook.com</span>
-            </div>
+            {[
+              { icon: <MapPin className="w-6 h-6" />, label: "Mantes-la-Jolie", sublabel: "Yvelines (78)" },
+              { icon: <Phone className="w-6 h-6" />, label: "07 60 75 13 50", sublabel: "Disponible 7j/7" },
+              { icon: <Mail className="w-6 h-6" />, label: "abde.elfarouah@gmail.com", sublabel: "Réponse sous 24h" }
+            ].map((item, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="card-bento flex items-center gap-4 group cursor-pointer"
+              >
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent/20 to-primary/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform duration-300">
+                  {item.icon}
+                </div>
+                <div>
+                  <span className="block text-text-main font-semibold">{item.label}</span>
+                  <span className="text-sm text-text-secondary">{item.sublabel}</span>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section id="cta" className="py-20 px-4" style={{ background: 'var(--blue)' }}>
-        <div className="max-w-4xl mx-auto text-center" style={{ color: '#fff' }}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Prêt à démarrer votre projet ?
-          </h2>
-          <p className="text-lg mb-8" style={{ color: 'rgba(255,255,255,0.85)' }}>
-            Discutons de vos besoins lors d'un premier rendez-vous gratuit
-          </p>
-          <a 
-            href="/contact"
-            className="inline-block px-8 py-3 rounded-lg font-medium transition-colors"
-            style={{ background: '#fff', color: 'var(--blue)' }}
-          >
-            Me contacter
-          </a>
-        </div>
+      {/* CTA Section - Enhanced Visibility */}
+      <section id="cta" className="py-28 px-4 relative overflow-hidden">
+        {/* Dark gradient background for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/90 via-primary to-accent/90 bg-[length:200%_200%] animate-gradient-shift -z-20" />
+        
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/30 -z-10" />
+        
+        {/* Subtle glow orbs */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/30 rounded-full blur-[120px] -z-10" />
+        
+        {/* Card container with dark background */}
+        <motion.div 
+          className="max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-3xl p-10 md:p-14 text-center border border-white/20 shadow-2xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-white text-sm font-medium mb-6 border border-accent/30">
+              <Sparkles className="w-4 h-4 text-accent" />
+              <span>Premier rendez-vous gratuit</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white tracking-tight leading-tight">
+              Prêt à booster<br />votre performance ?
+            </h2>
+            <p className="text-xl md:text-2xl mb-10 text-gray-200 font-medium max-w-xl mx-auto leading-relaxed">
+              Discutons de vos objectifs et identifions ensemble les leviers pour augmenter votre productivité
+            </p>
+            
+            {/* Prominent CTA Button with pulse */}
+            <div className="relative inline-block">
+              {/* Pulse ring animation */}
+              <div className="absolute inset-0 rounded-2xl bg-white/30 animate-ping opacity-20" />
+              
+              <motion.a 
+                href="/contact"
+                className="relative inline-flex items-center gap-3 px-12 py-5 rounded-2xl bg-white text-accent font-bold text-lg shadow-2xl hover:shadow-white/50 hover:scale-105 transition-all duration-300 group"
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail className="w-6 h-6" />
+                Me contacter maintenant
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+              </motion.a>
+            </div>
+            
+            {/* Trust indicators */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-white/80 text-sm">
+              <span className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4" />
+                Sans engagement
+              </span>
+              <span className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4" />
+                Réponse sous 24h
+              </span>
+              <span className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4" />
+                Disponible Île-de-France
+              </span>
+            </div>
+          </div>
+        </motion.div>
       </section>
     </div>
   );

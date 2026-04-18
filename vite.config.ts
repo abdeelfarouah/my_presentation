@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteCompression from 'vite-plugin-compression';
+import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/', // Set this to your repository name if deploying to GitHub Pages or a subdirectory
   plugins: [
+    TanStackRouterVite(),
     react(),
     viteCompression({
       algorithm: 'brotliCompress',
@@ -30,7 +32,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom']
+          vendor: ['react', 'react-dom', '@tanstack/react-router']
         }
       }
     }

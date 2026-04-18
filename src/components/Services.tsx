@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
-import { Code, CheckCircle, Clock, Users, Zap, Shield, Globe, ShoppingCart, Mail } from 'lucide-react';
+import { Code, CheckCircle, Clock, Users, Zap, Shield, Globe, ShoppingCart, Mail, Rocket, ArrowRight } from 'lucide-react';
 
 const itemVariants = {
   hidden: { opacity: 1, y: 0 },
@@ -24,95 +24,95 @@ interface Service {
 const services: Service[] = [
   {
     id: 'web-app',
-    title: 'Application Web Sur Mesure',
-    description: 'Développement d\'applications web complètes avec Angular 17+, Laravel 11 et TypeScript. Solutions sur mesure pour entreprises en Île-de-France et Yvelines (78). API REST sécurisées et interfaces modernes.',
-    problem: 'Vous perdez du temps avec des processus manuels et des outils non intégrés',
-    solution: 'Interface intuitive, automatisation des tâches, suivi des performances',
+    title: 'Logiciel Métier sur Mesure',
+    description: 'Application web personnalisée pour votre activité : gestion de clients, devis, factures, planning, stock ou tout autre besoin spécifique. Solution clé en main adaptée aux commerçants, artisans et professions libérales en Île-de-France.',
+    problem: 'Vous perdez du temps avec des tableurs Excel, des papiers et des tâches répétitives',
+    solution: 'Un outil unique qui centralise tout et automatise vos tâches chronophages',
     icon: <Globe className="w-8 h-8" />,
     features: [
-      'Architecture moderne Angular 17+',
-      'API RESTful avec Laravel 11',
-      'Design responsive et accessible',
-      'Tests unitaires et intégration',
-      'Documentation technique',
+      'Solution 100% adaptée à votre métier',
+      'Accessible de n\'importe où (ordinateur, tablette, mobile)',
+      'Données sécurisées et sauvegardées',
+      'Formation et accompagnement inclus',
+      'Évolution possible selon vos besoins',
       'Support 3 mois inclus'
     ],
     price: 'Sur devis',
-    delay: 'Selon complexité',
+    delay: '2 à 8 semaines',
     popular: true
   },
   {
     id: 'ecommerce',
-    title: 'Site E-Commerce',
-    description: 'Création de boutiques en ligne performantes avec Angular, Laravel ou React. E-commerce complet avec paiement sécurisé Stripe/PayPal, gestion des stocks et optimisation SEO technique pour plus de ventes.',
-    problem: 'Votre site actuel ne convertit pas ou offre une expérience utilisateur limitée',
-    solution: 'Design responsive, parcours d\'achat optimisé, paiement sécurisé',
+    title: 'Boutique en Ligne',
+    description: 'Création de votre boutique en ligne professionnelle pour vendre vos produits ou services 24h/24. Paiement sécurisé par carte bancaire, gestion des commandes et des stocks simplifiée. Idéal pour commerçants, artisans et créateurs des Yvelines.',
+    problem: 'Vous manquez de visibilité et vos clients ne peuvent pas acheter en dehors de vos horaires',
+    solution: 'Une vitrine en ligne qui vend pour vous, même quand vous dormez',
     icon: <ShoppingCart className="w-8 h-8" />,
     features: [
-      'Catalogue produits illimité',
-      'Panier et checkout',
-      'Intégration Stripe/PayPal',
-      'Panel admin',
-      'Gestion des stocks',
-      'Optimisation SEO',
+      'Catalogue produits illimité avec photos',
+      'Paiement sécurisé par carte bancaire',
+      'Gestion simple des commandes et stocks',
+      'Relances clients automatiques',
+      'Visible sur Google dans votre région',
+      'Formation à l\'administration',
       'Support 6 mois'
     ],
     price: 'Sur devis',
-    delay: 'Selon besoins'
+    delay: '2 à 4 semaines'
   },
   {
     id: 'saas',
-    title: 'Plateforme SaaS',
-    description: 'Plateforme SaaS scalable développée avec Angular et Laravel. Architecture multi-tenants, API REST, système d\'abonnements et tableaux de bord analytics. Idéal pour les startups et éditeurs de logiciels.',
-    problem: 'Besoin d\'une solution scalable qui puisse accompagner votre croissance',
-    solution: 'Architecture multi-tenants, système d\'abonnements, tableaux de bord analytics',
+    title: 'Plateforme pour Pros',
+    description: 'Solution multi-utilisateurs pour structures plus importantes : plusieurs collaborateurs, niveaux d\'accès différenciés, abonnements clients, statistiques de suivi. Parfait pour les entreprises en croissance dans les Yvelines et l\'Île-de-France.',
+    problem: 'Votre activité grandit et vos outils actuels ne suivent plus',
+    solution: 'Une plateforme complète qui évolue avec vous et structure votre organisation',
     icon: <Users className="w-8 h-8" />,
     features: [
-      'Architecture multi-tenants',
-      'Système d\'abonnements',
-      'Tableaux de bord analytics',
-      'API pour intégrations',
-      'Sécurité avancée',
-      'Mises à jour automatiques',
-      'Support prioritaire 24/7'
+      'Accès pour tous vos collaborateurs',
+      'Droits différenciés selon les rôles',
+      'Tableaux de bord et statistiques',
+      'Facturation récurrente automatique',
+      'Connexion avec vos outils existants',
+      'Mises à jour comprises',
+      'Support prioritaire'
     ],
     price: 'Sur devis',
     delay: 'Selon projet'
   },
   {
     id: 'maintenance',
-    title: 'Maintenance & Évolution',
-    description: 'Maintenance technique et évolutive de vos applications Angular, Laravel et Node.js. Mises à jour de sécurité, optimisations de performance, veille technologique et support réactif pour entreprises en Île-de-France.',
-    problem: 'Vous manquez de temps ou de compétences pour maintenir votre application',
-    solution: 'Surveillance proactive, mises à jour régulières, support technique dédié',
+    title: 'Maintenance & Assistance',
+    description: 'Je garde votre site ou application en parfait état de marche : mises à jour, sécurité, sauvegardes et corrections. Vous concentrez-vous sur votre métier, je m\'occupe de la technique. Service disponible pour tous les professionnels en Île-de-France.',
+    problem: 'Vous ne savez pas comment maintenir votre outil à jour et sécurisé',
+    solution: 'Tranquillité d\'esprit avec une surveillance proactive et des interventions rapides',
     icon: <Shield className="w-8 h-8" />,
     features: [
-      'Veille sécurité',
-      'Mises à jour régulières',
-      'Sauvegardes automatisées',
-      'Monitoring performance',
-      'Support technique',
-      'Rapports mensuels',
-      'Interventions prioritaires'
+      'Surveillance quotidienne de votre outil',
+      'Sauvegardes automatiques régulières',
+      'Mises à jour de sécurité incluses',
+      'Intervention rapide en cas de problème',
+      'Conseils personnalisés d\'optimisation',
+      'Rapports mensuels de suivi',
+      'Disponible 7j/7 en urgence'
     ],
-    price: 'Sur devis',
-    delay: 'Continu'
+    price: 'À partir de 150€/mois',
+    delay: 'Contrat annuel'
   },
   {
     id: 'consulting',
-    title: 'Consulting Technique',
-    description: 'Expertise technique pour vos projets, audit de code et accompagnement équipe.',
-    problem: 'Vous avez besoin d\'expertise technique pour valider vos choix architecturaux',
-    solution: 'Audit complet, recommandations personnalisées, transfert de compétences',
+    title: 'Conseil & Accompagnement',
+    description: 'Audit de vos outils actuels, conseils sur les solutions adaptées à votre activité, accompagnement au choix de logiciels. Une expertise neutre pour vous aider à prendre les bonnes décisions digitales.',
+    problem: 'Vous ne savez pas par où commencer ni quels outils choisir',
+    solution: 'Un regard extérieur expert pour vous guider vers les bonnes solutions',
     icon: <Code className="w-8 h-8" />,
     features: [
-      'Audit de architecture',
-      'Revue de code',
-      'Formation équipe',
-      'Bonnes pratiques',
-      'Plan de migration',
-      'Documentation',
-      'Suivi projet'
+      'Audit complet de votre système actuel',
+      'Recommandations personnalisées sans jargon',
+      'Comparatif des solutions du marché',
+      'Accompagnement au changement',
+      'Formation de vos équipes',
+      'Plan de transformation digitale',
+      'Suivi post-projet'
     ],
     price: 'Sur devis',
     delay: 'Selon disponibilité'
@@ -135,83 +135,91 @@ export default function Services() {
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl sm:text-5xl font-bold text-text-main mb-6">
-              Mes <span className="text-accent">Services</span>
+              Des Solutions qui <span className="text-accent">Impactent</span>
             </h1>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-              Votre partenaire digital pour des solutions web sur mesure. 
-              Chaque service est conçu pour résoudre vos problématiques business et accompagner votre croissance.
+              Chaque projet vise un objectif concret : réduire vos coûts, accélérer vos processus,
+              sécuriser vos données et améliorer votre compétitivité.
             </p>
           </div>
 
-          {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {services.map((service) => (
+          {/* Services Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 perspective-1000">
+            {services.map((service, index) => (
               <motion.div
                 key={service.id}
                 variants={itemVariants}
-                className={`relative card p-6 hover:shadow-xl transition-all duration-300 ${
-                  service.popular ? 'ring-2 ring-accent/20 border-accent/30' : 'border-border-color'
+                className={`relative container-query ${
+                  service.popular ? 'md:col-span-2 lg:col-span-1 lg:row-span-2' : ''
                 }`}
-                whileHover={{ y: -5 }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
                 onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                {service.popular && (
-                  <div className="absolute -top-3 -right-3 bg-accent text-white text-xs px-3 py-1 rounded-full font-semibold">
-                    Populaire
+                <div className={`card-bento h-full cursor-pointer group ${
+                  service.popular ? 'ring-2 ring-accent/30 border-accent/40' : ''
+                }`}>
+                  {service.popular && (
+                    <div className="absolute -top-3 -right-3 bg-gradient-to-r from-accent to-primary text-white text-xs px-3 py-1 rounded-full font-semibold shadow-lg z-10">
+                      Populaire
+                    </div>
+                  )}
+                  
+                  <div className="flex items-center mb-5">
+                    <div className="w-14 h-14 bg-gradient-to-br from-accent/20 to-primary/10 rounded-xl flex items-center justify-center text-accent mr-4 shadow-glow group-hover:shadow-glow-animated transition-all duration-500">
+                      {service.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-text-main group-hover:text-accent transition-colors">{service.title}</h3>
+                      <p className="text-sm text-text-secondary">{service.delay}</p>
+                    </div>
                   </div>
-                )}
-                
-                <div className="flex items-center mb-4">
-                  <div className="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center text-accent mr-4">
-                    {service.icon}
+
+                  <p className="text-text-secondary mb-5 leading-relaxed text-sm">
+                    {service.description}
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-3 mb-5">
+                    <div className="p-3 rounded-lg bg-red-500/5 border border-red-500/10">
+                      <div className="text-xs font-semibold text-red-400 mb-1">❌ Problème</div>
+                      <p className="text-xs text-text-muted line-clamp-2">{service.problem}</p>
+                    </div>
+                    <div className="p-3 rounded-lg bg-green-500/5 border border-green-500/10">
+                      <div className="text-xs font-semibold text-green-400 mb-1">✅ Solution</div>
+                      <p className="text-xs text-text-muted line-clamp-2">{service.solution}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-text-main">{service.title}</h3>
-                    <p className="text-sm text-text-secondary">{service.delay}</p>
+
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-xl font-bold text-gradient-static">{service.price}</div>
+                    <div className="text-sm text-text-secondary bg-bg-secondary/50 px-3 py-1 rounded-full">{service.delay}</div>
                   </div>
+
+                  {selectedService === service.id && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="border-t border-border-color/50 pt-4 mt-4"
+                    >
+                      <h4 className="font-semibold text-text-main mb-3 text-sm">Ce qui est inclus :</h4>
+                      <ul className="space-y-2">
+                        {service.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start text-sm text-text-secondary">
+                            <CheckCircle className="w-4 h-4 text-accent mr-2 flex-shrink-0 mt-0.5" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+
+                  <button className="w-full btn btn-secondary mt-4 text-sm">
+                    {selectedService === service.id ? 'Masquer les détails' : 'Voir les détails'}
+                  </button>
                 </div>
-
-                <p className="text-text-secondary mb-4 leading-relaxed">
-                  {service.description}
-                </p>
-
-                <div className="mb-4">
-                  <div className="text-sm font-semibold text-red-400 mb-1">❌ Problème résolu</div>
-                  <p className="text-xs text-text-muted">{service.problem}</p>
-                </div>
-                
-                <div className="mb-4">
-                  <div className="text-sm font-semibold text-green-400 mb-1">✅ Solution apportée</div>
-                  <p className="text-xs text-text-muted">{service.solution}</p>
-                </div>
-
-                <div className="mb-4">
-                  <div className="text-lg font-semibold text-accent mb-2">{service.price}</div>
-                  <div className="text-sm text-text-secondary">{service.delay}</div>
-                </div>
-
-                {selectedService === service.id && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="border-t border-border-color pt-4 mt-4"
-                  >
-                    <h4 className="font-semibold text-text-main mb-3">Ce qui est inclus :</h4>
-                    <ul className="space-y-2">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start text-sm text-text-secondary">
-                          <CheckCircle className="w-4 h-4 text-accent mr-2 flex-shrink-0 mt-0.5" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )}
-
-                <button className="w-full btn mt-4">
-                  {selectedService === service.id ? 'Masquer les détails' : 'Voir les détails'}
-                </button>
               </motion.div>
             ))}
           </div>
@@ -246,22 +254,26 @@ export default function Services() {
           {/* CTA Section */}
           <div className="text-center">
             <h2 className="text-2xl font-bold text-text-main mb-4">
-              Prêt à <span className="text-accent">démarrer</span> votre projet ?
+              Prêt à <span className="text-accent">améliorer</span> vos performances ?
             </h2>
             <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
-              Discutons de vos besoins et définissons ensemble la solution digitale idéale pour votre entreprise. 
-              Chaque projet commence par un échange gratuit pour comprendre vos enjeux.
+              Discutons de vos objectifs business et identifions ensemble les leviers digitaux pour 
+              augmenter votre productivité et réduire vos coûts. Premier échange gratuit et sans engagement.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/contact" 
-                className="btn px-8 py-3 text-lg"
+              <motion.a
+                href="/contact"
+                className="btn btn-primary px-10 py-5 text-lg font-bold group shadow-glow-animated"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Prendre rendez-vous
-              </a>
-              <a 
-                href="mailto:a.elfarouahDEV@outlook.com" 
-                className="btn btn-secondary px-8 py-3 text-lg"
+                <Rocket className="w-6 h-6 mr-2" />
+                Démarrer mon projet
+                <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-2 transition-transform" />
+              </motion.a>
+              <a
+                href="mailto:abde.elfarouah@gmail.com"
+                className="btn btn-secondary px-8 py-4 text-base font-medium"
               >
                 <Mail className="w-5 h-5 mr-2" />
                 Email direct

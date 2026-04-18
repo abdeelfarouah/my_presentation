@@ -17,48 +17,45 @@ export default function About() {
 
         <div className="max-w-3xl mx-auto text-lg text-text-secondary leading-relaxed font-body">
 
-          {/* INTRO */}
+          {/* INTRO - Accessible aux commerçants et artisans */}
           <p className="mb-4" itemProp="description">
-            <strong>Développeur web freelance basé à Mantes-la-Jolie dans les Yvelines (78)</strong>, je conçois des 
-            applications modernes, rapides et robustes en combinant <strong>Angular, TypeScript et Laravel</strong> avec 
-            une expertise avancée des systèmes <strong>IBM i (AS400)</strong>. J'interviens dans toute la région 
-            <strong>Île-de-France</strong> pour accompagner les entreprises dans leur transformation digitale.
+            <strong>Créateur de solutions digitaux basé à Mantes-la-Jolie dans les Yvelines (78)</strong>, j'aide 
+            les <strong>commerçants, artisans, professions libérales et administrations</strong> de l'<strong>Île-de-France</strong> 
+            à gagner du temps et à améliorer leur efficacité avec des outils simples et performants.
           </p>
 
           <p className="mb-4">
-            J'aide les entreprises des <strong>Yvelines, du Val-d'Oise et de l'Île-de-France</strong> à 
-            <strong>moderniser leurs applications métiers</strong>, améliorer leurs performances et garantir la 
-            pérennité de leur système d'information. Spécialisé dans l'<strong>interopérabilité entre systèmes 
-            legacy AS400 et applications web modernes</strong>.
+            Que vous ayez une <strong>boutique, un atelier, un cabinet ou un bureau</strong> à 
+            <strong>Mantes-la-Jolie, Versailles, Saint-Germain-en-Laye</strong> ou ailleurs en Île-de-France, 
+            je conçois des <strong>logiciels sur mesure</strong> qui répondent exactement à vos besoins : 
+            gestion clients, stocks, devis, factures, ou tout autre outil qui vous fait gagner du temps au quotidien.
           </p>
 
           <p className="mb-6">
-            Mon approche : <strong>allier legacy et modernité</strong> pour créer des solutions fiables, évolutives 
-            et parfaitement adaptées à vos enjeux techniques et business. Que vous soyez à 
-            <strong>Mantes-la-Jolie, Versailles, Saint-Germain-en-Laye</strong> ou ailleurs en Île-de-France, 
-            je vous accompagne avec réactivité et expertise sur vos projets <strong>Angular, Laravel et 
-            développement web fullstack</strong>.
+            Mon approche : <strong>pas de jargon technique</strong>, juste des solutions concrètes qui fonctionnent. 
+            Je m'adapte à votre façon de travailler et vous accompagne de A à Z, de la première idée jusqu'à ce que 
+            vous soyez parfaitement autonome avec votre nouvel outil.
           </p>
 
-          <meta itemProp="jobTitle" content="Développeur Web Freelance Angular Laravel - Mantes-la-Jolie (78)" />
+          <meta itemProp="jobTitle" content="Créateur de Solutions Digitaux pour Commerçants et Artisans - Mantes-la-Jolie (78)" />
           <meta itemProp="url" content="https://www.abderrahmane-elfarouahfreelance.com" />
 
-          {/* POINTS FORTS */}
+          {/* POINTS FORTS - Langage simple */}
           <div className="mb-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
 
-            <div className="card">
-              <p className="font-semibold text-text-main">⚡ Performance</p>
-              <p className="text-sm">Applications rapides et optimisées</p>
+            <div className="card-bento">
+              <p className="font-semibold text-text-main text-lg mb-2">⚡ Gain de Temps Immédiat</p>
+              <p className="text-sm text-text-secondary">Finis les tâches répétitives : votre nouvel outil travaille pour vous</p>
             </div>
 
-            <div className="card">
-              <p className="font-semibold text-text-main">🔗 Interopérabilité</p>
-              <p className="text-sm">AS400 ↔ Applications Angular/Laravel</p>
+            <div className="card-bento">
+              <p className="font-semibold text-text-main text-lg mb-2">� Sur Mesure</p>
+              <p className="text-sm text-text-secondary">Un outil adapté à VOTRE métier, pas un logiciel générique imposé</p>
             </div>
 
-            <div className="card">
-              <p className="font-semibold text-text-main">🧩 Sur-mesure</p>
-              <p className="text-sm">Solutions adaptées à vos besoins</p>
+            <div className="card-bento">
+              <p className="font-semibold text-text-main text-lg mb-2">🤝 Accompagnement Humain</p>
+              <p className="text-sm text-text-secondary">Je vous forme et reste disponible, pas de hotline robotisée</p>
             </div>
 
           </div>
@@ -140,7 +137,7 @@ export default function About() {
               <li>
                 GitHub :
                 <a
-                  href="https://github.com/abdeelfarouah/"
+                  href="https://github.com/abderrahmaneelfarouah/"
                   target="_blank"
                   rel="noopener noreferrer"
                   itemProp="sameAs"
@@ -152,12 +149,12 @@ export default function About() {
 
             </ul>
 
-            <p className="mt-6 text-text-main font-medium">
-              Développeur Fullstack Angular & Laravel — disponible pour vos projets
+            <p className="mt-6 text-text-main font-medium text-lg">
+              Votre partenaire digital de proximité — disponible dans les Yvelines et l'Île-de-France
             </p>
 
             <p className="text-sm text-text-secondary">
-              Applications web performantes • UX/UI • API robustes
+              Commerçants • Artisans • Professions libérales • Administrations • Associations
             </p>
 
           </div>
