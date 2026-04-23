@@ -67,13 +67,11 @@ const pageSEO: Record<string, PageSEOMeta> = {
     title: 'Mentions Légales | Abderrahmane El Farouah',
     description:
       "Mentions légales du site portfolio d'Abderrahmane El Farouah, développeur web freelance.",
-    noIndex: true,
   },
   '/cgv': {
     title: 'Conditions Générales de Vente | Développeur Web Freelance',
     description:
       "Conditions générales de vente pour les prestations de développement web freelance d'Abderrahmane El Farouah.",
-    noIndex: true,
   },
 };
 
