@@ -2,6 +2,31 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteCompression from 'vite-plugin-compression';
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get current directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// SEO generation hook
+function generateSEOFiles() {
+  try {
+    // Import SEO utilities dynamically
+    import('./src/utils/seo.ts').then(({ generateSitemap, generateRobotsTxt }) => {
+      const sitemap = generateSitemap();
+      const robots = generateRobotsTxt();
+      
+      fs.writeFileSync(path.join(__dirname, 'dist/sitemap.xml'), sitemap);
+      fs.writeFileSync(path.join(__dirname, 'dist/robots.txt'), robots);
+      
+      console.log('✅ SEO files updated automatically!');
+    }).catch(err => console.error('❌ SEO generation error:', err));
+  } catch (error) {
+    console.error('❌ SEO files error:', error);
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,7 +45,13 @@ export default defineConfig({
       ext: '.gz',
       threshold: 10240,
       deleteOriginFile: false
-    })
+    }),
+    {
+      name: 'seo-generator',
+      writeBundle() {
+        generateSEOFiles();
+      }
+    }
   ],
   build: {
     outDir: 'dist',
