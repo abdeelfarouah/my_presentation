@@ -23,9 +23,28 @@ interface Service {
 
 const services: Service[] = [
   {
+    id: 'site-vitrine',
+    title: 'Site Vitrine',
+    description: 'Site web professionnel pour présenter votre activité : pages d\'accueil, services, présentation, contact. Design moderne, responsive et optimisé SEO. Parfait pour commerçants, artisans et professions libérales.',
+    problem: 'Vous n\'avez pas de présence en ligne et les clients ne peuvent pas vous trouver facilement',
+    solution: 'Une vitrine digitale professionnelle qui attire et convertit les visiteurs',
+    icon: <Rocket className="w-8 h-8" />,
+    features: [
+      'Design moderne et responsive',
+      'Pages : Accueil, Services, Présentation, Contact',
+      'Formulaire de contact fonctionnel',
+      'Optimisé pour Google et mobile',
+      'Hébergement inclus 1 an',
+      'Formation à l\'administration',
+      'Support 3 mois'
+    ],
+    price: '300 à 400€',
+    delay: '3 à 5 jours'
+  },
+  {
     id: 'web-app',
     title: 'Logiciel Métier sur Mesure',
-    description: 'Application web personnalisée pour votre activité : gestion de clients, devis, factures, planning, stock ou tout autre besoin spécifique. Solution clé en main adaptée aux commerçants, artisans et professions libérales en Île-de-France.',
+    description: 'Application web personnalisée pour votre activité : gestion de clients, devis, factures, planning, stock ou tout autre besoin spécifique. Solution clé en main adaptée aux commerçants, artisans et professions libérales.',
     problem: 'Vous perdez du temps avec des tableurs Excel, des papiers et des tâches répétitives',
     solution: 'Un outil unique qui centralise tout et automatise vos tâches chronophages',
     icon: <Globe className="w-8 h-8" />,
@@ -44,7 +63,7 @@ const services: Service[] = [
   {
     id: 'ecommerce',
     title: 'Boutique en Ligne',
-    description: 'Création de votre boutique en ligne professionnelle pour vendre vos produits ou services 24h/24. Paiement sécurisé par carte bancaire, gestion des commandes et des stocks simplifiée. Idéal pour commerçants, artisans et créateurs des Yvelines.',
+    description: 'Création de votre boutique en ligne professionnelle pour vendre vos produits ou services 24h/24. Paiement sécurisé par carte bancaire, gestion des commandes et des stocks simplifiée. Idéal pour commerçants, artisans et créateurs.',
     problem: 'Vous manquez de visibilité et vos clients ne peuvent pas acheter en dehors de vos horaires',
     solution: 'Une vitrine en ligne qui vend pour vous, même quand vous dormez',
     icon: <ShoppingCart className="w-8 h-8" />,
@@ -53,7 +72,7 @@ const services: Service[] = [
       'Paiement sécurisé par carte bancaire',
       'Gestion simple des commandes et stocks',
       'Relances clients automatiques',
-      'Visible sur Google dans votre région',
+      'Visible sur Google et optimisé SEO',
       'Formation à l\'administration',
       'Support 6 mois'
     ],
@@ -63,7 +82,7 @@ const services: Service[] = [
   {
     id: 'saas',
     title: 'Plateforme pour Pros',
-    description: 'Solution multi-utilisateurs pour structures plus importantes : plusieurs collaborateurs, niveaux d\'accès différenciés, abonnements clients, statistiques de suivi. Parfait pour les entreprises en croissance dans les Yvelines et l\'Île-de-France.',
+    description: 'Solution multi-utilisateurs pour structures plus importantes : plusieurs collaborateurs, niveaux d\'accès différenciés, abonnements clients, statistiques de suivi. Parfait pour les entreprises en croissance.',
     problem: 'Votre activité grandit et vos outils actuels ne suivent plus',
     solution: 'Une plateforme complète qui évolue avec vous et structure votre organisation',
     icon: <Users className="w-8 h-8" />,
@@ -82,7 +101,7 @@ const services: Service[] = [
   {
     id: 'maintenance',
     title: 'Maintenance & Assistance',
-    description: 'Je garde votre site ou application en parfait état de marche : mises à jour, sécurité, sauvegardes et corrections. Vous concentrez-vous sur votre métier, je m\'occupe de la technique. Service disponible pour tous les professionnels en Île-de-France.',
+    description: 'Je garde votre site ou application en parfait état de marche : mises à jour, sécurité, sauvegardes et corrections. Vous concentrez-vous sur votre métier, je m\'occupe de la technique. Service disponible pour tous les professionnels.',
     problem: 'Vous ne savez pas comment maintenir votre outil à jour et sécurisé',
     solution: 'Tranquillité d\'esprit avec une surveillance proactive et des interventions rapides',
     icon: <Shield className="w-8 h-8" />,
@@ -101,9 +120,9 @@ const services: Service[] = [
   {
     id: 'consulting',
     title: 'Conseil & Accompagnement',
-    description: 'Audit de vos outils actuels, conseils sur les solutions adaptées à votre activité, accompagnement au choix de logiciels. Une expertise neutre pour vous aider à prendre les bonnes décisions digitales.',
+    description: 'Audit de vos outils actuels, conseils sur les solutions adaptées à votre activité, accompagnement au choix de logiciels. Un regard extérieur professionnel pour vous aider à prendre les bonnes décisions digitales.',
     problem: 'Vous ne savez pas par où commencer ni quels outils choisir',
-    solution: 'Un regard extérieur expert pour vous guider vers les bonnes solutions',
+    solution: 'Un regard extérieur professionnel pour vous guider vers les bonnes solutions',
     icon: <Code className="w-8 h-8" />,
     features: [
       'Audit complet de votre système actuel',
@@ -144,27 +163,18 @@ export default function Services() {
           </div>
 
           {/* Services Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 perspective-1000">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
                 variants={itemVariants}
-                className={`relative container-query ${
-                  service.popular ? 'md:col-span-2 lg:col-span-1 lg:row-span-2' : ''
-                }`}
+                className="relative"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
                 onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className={`card-bento h-full cursor-pointer group ${
-                  service.popular ? 'ring-2 ring-accent/30 border-accent/40' : ''
-                }`}>
-                  {service.popular && (
-                    <div className="absolute -top-3 -right-3 bg-gradient-to-r from-accent to-primary text-white text-xs px-3 py-1 rounded-full font-semibold shadow-lg z-10">
-                      Populaire
-                    </div>
-                  )}
+                <div className="card-bento h-full cursor-pointer group">
                   
                   <div className="flex items-center mb-5">
                     <div className="w-14 h-14 bg-gradient-to-br from-accent/20 to-primary/10 rounded-xl flex items-center justify-center text-accent mr-4 shadow-glow group-hover:shadow-glow-animated transition-all duration-500">
@@ -180,19 +190,42 @@ export default function Services() {
                     {service.description}
                   </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-5">
-                    <div className="p-3 rounded-lg bg-red-500/5 border border-red-500/10">
-                      <div className="text-xs font-semibold text-red-400 mb-1">❌ Problème</div>
-                      <p className="text-xs text-text-muted line-clamp-2">{service.problem}</p>
+                  <div className="space-y-3 mb-5">
+                    {/* Infobulle Problème */}
+                    <div className="relative group cursor-pointer">
+                      <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-xl blur-sm opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                      <div className="relative bg-white dark:bg-gray-900 rounded-xl border border-red-200 dark:border-red-800 p-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                        <div className="flex items-start gap-3">
+                          <div className="flex-shrink-0 w-8 h-8 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center">
+                            <span className="text-red-500 text-sm font-bold">❌</span>
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-sm font-bold text-red-600 dark:text-red-400 mb-1">Problème</div>
+                            <p className="text-sm text-text-main leading-relaxed">{service.problem}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="p-3 rounded-lg bg-green-500/5 border border-green-500/10">
-                      <div className="text-xs font-semibold text-green-400 mb-1">✅ Solution</div>
-                      <p className="text-xs text-text-muted line-clamp-2">{service.solution}</p>
+
+                    {/* Infobulle Solution */}
+                    <div className="relative group cursor-pointer">
+                      <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 to-green-600/20 rounded-xl blur-sm opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                      <div className="relative bg-white dark:bg-gray-900 rounded-xl border border-green-200 dark:border-green-800 p-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                        <div className="flex items-start gap-3">
+                          <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                            <span className="text-green-500 text-sm font-bold">✅</span>
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-sm font-bold text-green-600 dark:text-green-400 mb-1">Solution</div>
+                            <p className="text-sm text-text-main leading-relaxed">{service.solution}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between mb-4">
-                    <div className="text-xl font-bold text-gradient-static">{service.price}</div>
+                    <div className="text-xl font-bold text-gradient">{service.price}</div>
                     <div className="text-sm text-text-secondary bg-bg-secondary/50 px-3 py-1 rounded-full">{service.delay}</div>
                   </div>
 

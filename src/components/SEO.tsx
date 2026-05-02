@@ -32,15 +32,15 @@ interface PageSEOMeta {
 const pageSEO: Record<string, PageSEOMeta> = {
   '/': {
     title:
-      'Développeur Angular Freelance Île-de-France | Expert Laravel & Fullstack',
+      'Développeur Angular Freelance Île-de-France | Spécialiste Laravel & Fullstack',
     description:
-      "Développeur web freelance expert à Mantes-la-Jolie. Spécialisé Angular, Laravel, TypeScript. Création d'applications sur mesure pour PME et startups.",
+      "Développeur web freelance à Mantes-la-Jolie. Spécialisé Angular, Laravel, TypeScript. Création d'applications sur mesure pour PME et startups.",
   },
   '/about': {
     title:
       'À Propos | Développeur Freelance Angular Laravel Mantes-la-Jolie (78)',
     description:
-      "Développeur web freelance Angular & Laravel basé à Mantes-la-Jolie, Yvelines (78). Expertise fullstack, interopérabilité AS400, transformation digitale en Île-de-France.",
+      "Développeur web freelance Angular & Laravel basé à Mantes-la-Jolie, Yvelines (78). Développement fullstack, interopérabilité AS400, transformation digitale en Île-de-France.",
   },
   '/services': {
     title:
@@ -56,7 +56,17 @@ const pageSEO: Record<string, PageSEOMeta> = {
   '/experience': {
     title: 'Expérience Développeur Fullstack Freelance Angular Laravel',
     description:
-      "Parcours et expertise en développement web fullstack pour projets complexes.",
+      "Parcours et expérience en développement web fullstack pour projets complexes.",
+  },
+  '/faq': {
+    title: 'FAQ Développeur Angular Freelance | Tarifs, Délais & Services',
+    description:
+      "Questions fréquentes sur les tarifs d'un développeur Angular freelance, délais de création d'applications web, et services proposés en Île-de-France.",
+  },
+  '/zones-intervention': {
+    title: 'Zones d\'intervention | Développeur Web Angular Île-de-France',
+    description:
+      "Développeur Angular freelance intervenant à Mantes-la-Jolie, Versailles, Saint-Germain-en-Laye et toute l'Île-de-France. Télétravail ou déplacements.",
   },
   '/contact': {
     title: 'Contact Développeur Freelance Angular Laravel',
@@ -82,24 +92,41 @@ function buildCanonical(pathname: string): string {
   return `${BASE_URL}${clean}`;
 }
 
-function buildBreadcrumbStructuredData(finalTitle: string, canonicalUrl: string) {
+// Breadcrumb mapping pour navigation hiérarchique complète
+const breadcrumbMap: Record<string, Array<{ name: string; path: string }>> = {
+  '/': [{ name: 'Accueil', path: '/' }],
+  '/services': [{ name: 'Accueil', path: '/' }, { name: 'Services', path: '/services' }],
+  '/projects': [{ name: 'Accueil', path: '/' }, { name: 'Réalisations', path: '/projects' }],
+  '/faq': [{ name: 'Accueil', path: '/' }, { name: 'FAQ', path: '/faq' }],
+  '/zones-intervention': [{ name: 'Accueil', path: '/' }, { name: 'Zones d\'intervention', path: '/zones-intervention' }],
+  '/about': [{ name: 'Accueil', path: '/' }, { name: 'À propos', path: '/about' }],
+  '/experience': [{ name: 'Accueil', path: '/' }, { name: 'Expérience', path: '/experience' }],
+  '/contact': [{ name: 'Accueil', path: '/' }, { name: 'Contact', path: '/contact' }],
+  '/mentions-legales': [{ name: 'Accueil', path: '/' }, { name: 'Mentions légales', path: '/mentions-legales' }],
+  '/cgv': [{ name: 'Accueil', path: '/' }, { name: 'CGV', path: '/cgv' }],
+};
+
+function buildBreadcrumbStructuredData(pathname: string) {
+  const crumbs = breadcrumbMap[pathname] || [{ name: 'Accueil', path: '/' }, { name: 'Page', path: pathname }];
+  
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Accueil",
-        item: BASE_URL
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: finalTitle,
-        item: canonicalUrl
-      }
-    ]
+    itemListElement: crumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.path === '/' ? BASE_URL : `${BASE_URL}${crumb.path}`
+    }))
+  };
+}
+
+// Speakable pour AI voice search
+function buildSpeakableSpecification() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SpeakableSpecification",
+    cssSelector: [".ai-speakable-headline", ".ai-speakable-summary"]
   };
 }
 
@@ -289,13 +316,15 @@ export default function SEO({
       name: SITE_NAME
     };
 
-    const breadcrumb = buildBreadcrumbStructuredData(finalTitle, canonicalUrl);
+    const breadcrumb = buildBreadcrumbStructuredData(pathname);
+    const speakable = buildSpeakableSpecification();
 
     return [
       structuredData ?? professionalService,
       person,
       website,
       breadcrumb,
+      speakable,
       pageStructuredData[pathname as keyof typeof pageStructuredData]
     ].filter(Boolean);
 

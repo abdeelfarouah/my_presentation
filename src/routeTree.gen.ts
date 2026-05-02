@@ -9,15 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ZonesInterventionRouteImport } from './routes/zones-intervention'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CgvRouteImport } from './routes/cgv'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ZonesInterventionRoute = ZonesInterventionRouteImport.update({
+  id: '/zones-intervention',
+  path: '/zones-intervention',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -31,6 +38,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
 const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
   id: '/mentions-legales',
   path: '/mentions-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExperienceRoute = ExperienceRouteImport.update({
@@ -65,9 +77,11 @@ export interface FileRoutesByFullPath {
   '/cgv': typeof CgvRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/faq': typeof FaqRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
+  '/zones-intervention': typeof ZonesInterventionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -75,9 +89,11 @@ export interface FileRoutesByTo {
   '/cgv': typeof CgvRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/faq': typeof FaqRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
+  '/zones-intervention': typeof ZonesInterventionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -86,9 +102,11 @@ export interface FileRoutesById {
   '/cgv': typeof CgvRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/faq': typeof FaqRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
+  '/zones-intervention': typeof ZonesInterventionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -98,9 +116,11 @@ export interface FileRouteTypes {
     | '/cgv'
     | '/contact'
     | '/experience'
+    | '/faq'
     | '/mentions-legales'
     | '/projects'
     | '/services'
+    | '/zones-intervention'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -108,9 +128,11 @@ export interface FileRouteTypes {
     | '/cgv'
     | '/contact'
     | '/experience'
+    | '/faq'
     | '/mentions-legales'
     | '/projects'
     | '/services'
+    | '/zones-intervention'
   id:
     | '__root__'
     | '/'
@@ -118,9 +140,11 @@ export interface FileRouteTypes {
     | '/cgv'
     | '/contact'
     | '/experience'
+    | '/faq'
     | '/mentions-legales'
     | '/projects'
     | '/services'
+    | '/zones-intervention'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -129,13 +153,22 @@ export interface RootRouteChildren {
   CgvRoute: typeof CgvRoute
   ContactRoute: typeof ContactRoute
   ExperienceRoute: typeof ExperienceRoute
+  FaqRoute: typeof FaqRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
+  ZonesInterventionRoute: typeof ZonesInterventionRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/zones-intervention': {
+      id: '/zones-intervention'
+      path: '/zones-intervention'
+      fullPath: '/zones-intervention'
+      preLoaderRoute: typeof ZonesInterventionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -155,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/mentions-legales'
       fullPath: '/mentions-legales'
       preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/experience': {
@@ -201,9 +241,11 @@ const rootRouteChildren: RootRouteChildren = {
   CgvRoute: CgvRoute,
   ContactRoute: ContactRoute,
   ExperienceRoute: ExperienceRoute,
+  FaqRoute: FaqRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
+  ZonesInterventionRoute: ZonesInterventionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

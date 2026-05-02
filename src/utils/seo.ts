@@ -7,7 +7,9 @@ const routes = [
   { path: '/services', priority: '0.9', changeFreq: 'weekly' },
   { path: '/projects', priority: '0.9', changeFreq: 'weekly' },
   { path: '/contact', priority: '0.9', changeFreq: 'weekly' },
-  { path: '/about', priority: '0.6', changeFreq: 'monthly' }, // Page secondaire
+  { path: '/faq', priority: '0.8', changeFreq: 'monthly' }, // Featured snippets
+  { path: '/zones-intervention', priority: '0.8', changeFreq: 'monthly' }, // SEO local
+  { path: '/about', priority: '0.6', changeFreq: 'monthly' },
   { path: '/experience', priority: '0.5', changeFreq: 'monthly' },
   { path: '/mentions-legales', priority: '0.3', changeFreq: 'yearly' },
   { path: '/cgv', priority: '0.3', changeFreq: 'yearly' },

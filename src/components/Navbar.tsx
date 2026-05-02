@@ -22,71 +22,81 @@ export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
     { id: 'home', label: 'Accueil', path: '/' },
     { id: 'services', label: 'Services', path: '/services' },
     { id: 'realisations', label: 'Réalisations', path: '/projects' },
+    { id: 'faq', label: 'FAQ', path: '/faq' },
+    { id: 'zones', label: 'Zones', path: '/zones-intervention' },
     { id: 'contact', label: 'Contact', path: '/contact' },
   ];
 
   const activeTab = useMemo(() => {
     if (activeTabProp) return activeTabProp;
-    return location.pathname.split('/').filter(Boolean)[0] || 'home';
+    const path = location.pathname.split('/').filter(Boolean)[0] || 'home';
+    // Map special paths to nav item ids
+    if (path === 'zones-intervention') return 'zones';
+    return path;
   }, [activeTabProp, location.pathname]);
 
   return (
-    <nav className={`glass sticky top-0 border-b border-border-color/50 ${isOpen ? 'z-[1000]' : ''}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo + titre */}
-          <div className="flex items-center space-x-4">
-            <div className="flex-shrink-0">
-              <img 
-                src={NAV_IMAGE} 
-                alt="Abderrahmane El Farouah" 
-                width="48"
-                height="48"
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover shadow-md border border-border-color/20 hover:shadow-lg transition-all duration-200"
-              />
-            </div>
-            <div className="hidden sm:block">
-              <div className="text-sm md:text-base lg:text-lg font-semibold text-text-main leading-tight">
-                Abderrahmane <span className="text-text-secondary">El Farouah</span>
+    <>
+      <nav role="navigation" aria-label="Navigation principale" className={`glass sticky top-0 border-b border-border-color/50 ${isOpen ? 'z-[1000]' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo + titre */}
+            <div className="flex items-center space-x-4">
+              <div className="flex-shrink-0">
+                <img 
+                  src={NAV_IMAGE} 
+                  alt="Abderrahmane El Farouah" 
+                  width="48"
+                  height="48"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover shadow-md border border-border-color/20 hover:shadow-lg transition-all duration-200"
+                />
               </div>
-              <p className="text-xs md:text-sm text-text-secondary font-medium">
-                Votre Partenaire Digital
-              </p>
+              <div className="hidden sm:block">
+                <div className="text-sm md:text-base lg:text-lg font-semibold text-text-main leading-tight">
+                  Abderrahmane <span className="text-text-secondary">El Farouah</span>
+                </div>
+                <p className="text-xs md:text-sm text-text-secondary font-medium">
+                  Votre Partenaire Digital
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="hidden lg:flex items-center justify-center flex-1 px-8">
-            <div className="flex items-center gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.id}
-                  to={item.path}
-                  className={`touch-area focus-visible inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
-                    ${activeTab === item.id
-                      ? 'text-accent bg-accent/10 shadow-sm'
-                      : 'text-text-secondary hover:text-text-main hover:bg-bg-secondary/50'
-                    }`}
-                  aria-current={activeTab === item.id ? 'page' : undefined}
-                >
-                  {item.label}
-                </Link>
-              ))}
+            {/* Navigation desktop */}
+            <div className="hidden lg:flex items-center justify-center flex-1 px-8">
+              <div className="flex items-center gap-1">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.id}
+                    to={item.path}
+                    className={`touch-area focus-visible inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                      ${activeTab === item.id
+                        ? 'text-accent bg-accent/10 shadow-sm'
+                        : 'text-text-secondary hover:text-text-main hover:bg-bg-secondary/50'
+                      }`}
+                    aria-current={activeTab === item.id ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Toggle + Theme */}
-          <div className="flex items-center space-x-3">
-            <ThemeToggle />
-            <button
-              aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
-              onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden touch-area focus-visible inline-flex items-center justify-center p-2 rounded-lg text-text-secondary hover:text-text-main hover:bg-bg-secondary/50 transition-all duration-200 ${isOpen ? 'relative z-[2000]' : ''}`}
-            >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
+
+            {/* Toggle + Theme */}
+            <div className="flex items-center space-x-3">
+              <ThemeToggle />
+              <button
+                aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                onClick={() => setIsOpen(!isOpen)}
+                className={`lg:hidden touch-area focus-visible inline-flex items-center justify-center p-2 rounded-lg text-text-secondary hover:text-text-main hover:bg-bg-secondary/50 transition-all duration-200 ${isOpen ? 'relative z-[2000]' : ''}`}
+              >
+                {isOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </nav>
+
 
       {/* Sidebar menu */}
       {isOpen && (
@@ -123,6 +133,6 @@ export default function Navbar({ activeTab: activeTabProp }: NavbarProps) {
           </div>
         </>
       )}
-    </nav>
+    </>
   );
 }

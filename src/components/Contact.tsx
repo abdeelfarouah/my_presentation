@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Calendar, ArrowRight, Sparkles, CheckCircle } from 'lucide-react';
+import { Github, Linkedin, Mail, Calendar, ArrowRight, Sparkles, CheckCircle, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DatePicker, { registerLocale } from 'react-datepicker';
@@ -184,6 +184,17 @@ export default function Contact() {
               <div className="flex items-center gap-3 p-3 rounded-xl bg-accent/10">
                 <CheckCircle className="w-5 h-5 text-green-500" />
                 <span className="text-text-secondary">Réponse sous 24h</span>
+              </div>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-green-500/10">
+                <MessageCircle className="w-5 h-5 text-green-500" />
+                <a 
+                  href="https://wa.me/33760751350" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-text-secondary hover:text-green-500 transition-colors font-medium"
+                >
+                  Chat WhatsApp
+                </a>
               </div>
             </div>
             

@@ -8,7 +8,7 @@
       "développeur fullstack Angular Laravel freelance France",
       "développeur web freelance Angular Paris",
       "développeur application web Laravel freelance",
-      "freelance Angular TypeScript expert France",
+      "freelance Angular TypeScript France",
       "développeur API Laravel freelance",
       "développeur web sur mesure Angular Laravel",
       "freelance création application métier Angular",
@@ -87,14 +87,14 @@
       "application de gestion stock Laravel",
       "développer application B2B web sur mesure"
     ],
-    "expertise": [
-      "expert Angular freelance France",
-      "expert Laravel freelance Île-de-France",
+    "competences": [
+      "developpeur Angular freelance France",
+      "developpeur Laravel freelance Île-de-France",
       "développeur Angular senior freelance",
-      "développeur Laravel expert backend",
-      "freelance TypeScript expert Angular",
+      "développeur Laravel backend",
+      "freelance TypeScript Angular",
       "développeur web spécialisé Angular Laravel",
-      "expert développement application web sur mesure",
+      "developpeur application web sur mesure",
       "consultant Angular freelance France",
       "consultant Laravel backend freelance",
       "développeur fullstack senior freelance France"
@@ -121,7 +121,7 @@
   },
   "content_pillars": [
     {
-      "pillar": "Expertise Technique Angular/Laravel",
+      "pillar": "Compétences Techniques Angular/Laravel",
       "keywords": ["Angular", "Laravel", "TypeScript", "fullstack", "API", "performance"],
       "target": "Décision technique"
     },
@@ -132,7 +132,7 @@
     },
     {
       "pillar": "Services Freelance",
-      "keywords": ["freelance", "indépendant", "sur mesure", "expert", "senior", "disponible"],
+      "keywords": ["freelance", "indépendant", "sur mesure", "specialiste", "senior", "disponible"],
       "target": "Choix prestataire"
     },
     {

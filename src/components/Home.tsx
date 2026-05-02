@@ -48,27 +48,27 @@ const Home = () => {
           </motion.div>
           
           <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
+            className="ai-speakable-headline text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
             variants={fadeInUp}
           >
-            <span className="text-text-main">Des Applications qui </span>
-            <span className="text-gradient">Performent</span>
+            <span className="text-text-main">Développeur Web Angular </span>
+            <span className="text-gradient">Freelance Mantes-la-Jolie</span>
           </motion.h1>
           
           <motion.h2 
-            className="text-xl md:text-2xl mb-8 text-text-secondary font-medium"
+            className="ai-speakable-headline text-xl md:text-2xl mb-8 text-text-secondary font-medium"
             variants={fadeInUp}
           >
-            Développeur freelance • Mantes-la-Jolie, Yvelines (78) • Île-de-France
+            Spécialiste Angular, Laravel & React • Yvelines (78) • Télétravail France entière
           </motion.h2>
           
           <motion.p 
-            className="text-lg mb-12 max-w-2xl mx-auto text-text-secondary leading-relaxed"
+            className="ai-speakable-summary text-lg mb-12 max-w-2xl mx-auto text-text-secondary leading-relaxed"
             variants={fadeInUp}
           >
-            J'aide les entreprises des <strong className="text-accent">Yvelines, du Val-d'Oise et de l'Île-de-France</strong> 
-            à <strong>transformer leurs processus métiers</strong> avec des applications sur mesure. Gain de temps, 
-            réduction des coûts, productivité accrue : des résultats concrets et mesurables.
+            Je crée des <strong>applications web performantes</strong> avec Angular et Laravel pour les 
+            <strong className="text-accent">entreprises des Yvelines et d'Île-de-France</strong>. 
+            Sites vitrines, applications métier, e-commerce : des solutions digitales sur mesure, 100% télétravail.
           </motion.p>
           
           <motion.div 
@@ -110,7 +110,7 @@ const Home = () => {
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium mb-6">
               <Zap className="w-4 h-4 text-accent" />
-              <span>Expertises</span>
+              <span>Compétences</span>
             </span>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-main">
               Mes <span className="text-gradient">Services</span>

@@ -148,6 +148,22 @@ export const pageStructuredData = {
       url: 'https://www.abderrahmane-elfarouahfreelance.com/services'
     }
   }),
+  '/faq': generateStructuredData({
+    type: 'WebPage',
+    data: {
+      title: 'FAQ | Questions fréquentes développeur Angular freelance',
+      description: 'Trouvez les réponses à vos questions sur les tarifs, délais et services de développement web Angular. FAQ complète pour les clients en Île-de-France.',
+      url: 'https://www.abderrahmane-elfarouahfreelance.com/faq'
+    }
+  }),
+  '/zones-intervention': generateStructuredData({
+    type: 'WebPage',
+    data: {
+      title: 'Zones d\'intervention | Développeur Angular Mantes-la-Jolie & Île-de-France',
+      description: 'Développeur web Angular freelance intervenant à Mantes-la-Jolie, Versailles, Saint-Germain-en-Laye et dans tout l\'ouest parisien. Télétravail disponible.',
+      url: 'https://www.abderrahmane-elfarouahfreelance.com/zones-intervention'
+    }
+  }),
   '/contact': generateStructuredData({
     type: 'WebPage',
     data: {
@@ -220,7 +236,7 @@ export const servicesStructuredData = {
     type: 'Service',
     data: {
       name: 'Consulting Technique',
-      description: 'Expertise technique pour vos projets, audit de code et accompagnement équipe. Audit d\'architecture et formation inclus.',
+      description: 'Conseil technique pour vos projets, audit de code et accompagnement équipe. Audit d\'architecture et formation inclus.',
       url: 'https://www.abderrahmane-elfarouahfreelance.com/services#consulting',
       priceRange: '800€/jour',
       serviceType: 'Conseil en développement web'
