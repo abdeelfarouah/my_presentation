@@ -41,32 +41,7 @@
       ]
     }
   ],
-  "builds": [
-    {
-      "src": "api/check-digicode.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "api/appointments.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "api/send-email.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "api/test-email.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
+    "routes": [
     {
       "src": "/api/check-digicode",
       "dest": "/api/check-digicode.js"
