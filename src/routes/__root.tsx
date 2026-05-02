@@ -31,7 +31,7 @@ function RootComponent() {
         <footer role="contentinfo" className="mt-4 sm:mt-6 md:mt-8 py-6 sm:py-8 text-center rounded-2xl glass-strong transition-all duration-300">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="tracking-normal font-medium text-sm sm:text-base mb-3 text-text-secondary">
-              &copy; {new Date().getFullYear()} Abderrahmane El Farouah. Tous droits réservés.
+            &copy; 2025 -  {new Date().getFullYear()} Abderrahmane El Farouah. Tous droits réservés.
             </p>
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
               <Link

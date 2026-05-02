@@ -16,7 +16,7 @@ const faqData: FAQItem[] = [
   },
   {
     question: "Combien de temps faut-il pour créer une application web ?",
-    answer: "Le délai de création d'une application web dépend de sa complexité. Un site vitrine professionnel prend 2 à 3 semaines, une application métier Angular/Laravel nécessite 1 à 3 mois, et une plateforme SaaS complète peut demander 3 à 6 mois. Je travaille en méthodologie agile avec des livraisons régulières pour vous permettre de suivre l'avancement.",
+    answer: "Le délai de création d'une application web dépend de sa complexité. Un site vitrine professionnel prend 3 à 5 jours, une application métier Angular/Laravel nécessite 1 à 3 mois, et une plateforme SaaS complète peut demander 3 à 6 mois. Je travaille en méthodologie agile avec des livraisons régulières pour vous permettre de suivre l'avancement.",
     keywords: ["délai création application web", "temps développement angular", "durée projet web"]
   },
   {

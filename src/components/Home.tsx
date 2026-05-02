@@ -77,7 +77,7 @@ const Home = () => {
           >
             <motion.a
               href="/contact"
-              className="relative inline-flex items-center gap-3 px-12 py-6 text-xl font-bold bg-white text-accent rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] border-2 border-white/50 hover:border-white transition-all duration-300 group overflow-hidden"
+              className="relative inline-flex items-center gap-3 px-12 py-6 text-xl font-bold bg-white dark:bg-gray-900 text-accent rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.3)] dark:shadow-[0_0_40px_rgba(0,0,0,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] dark:hover:shadow-[0_0_60px_rgba(0,0,0,0.5)] border-2 border-white/50 dark:border-gray-700 hover:border-white dark:hover:border-gray-600 transition-all duration-300 group overflow-hidden"
               whileHover={{ scale: 1.08, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >

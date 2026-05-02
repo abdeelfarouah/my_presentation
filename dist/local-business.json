@@ -49,7 +49,8 @@
     },
     {
       "@type": "Country",
-      "name": "France"
+      "name": "France entière",
+      "addressCountry": "FR"
     }
   ],
   "serviceType": "Développement web fullstack",

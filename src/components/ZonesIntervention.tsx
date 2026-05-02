@@ -131,7 +131,7 @@ export default function ZonesIntervention() {
           <span className="text-sm font-medium text-accent">Zones d'intervention</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-display font-bold text-text-main mb-4">
-          Développeur Web Angular & solutions IA<span className="text-accent">Mantes-la-Jolie</span> & Île-de-France
+          Développeur Web Angular & solutions IA <span className="text-accent">Mantes-la-Jolie</span> & Île-de-France
         </h1>
         <h2 className="text-xl text-text-secondary font-body mb-4">
           Freelance Angular & Laravel en télétravail - Disponible à Versailles, Saint-Germain-en-Laye, Le Vésinet, Chatou

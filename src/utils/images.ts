@@ -7,7 +7,7 @@ export const getImagePath = (path: string) => {
 };
 
 // Local images
-export const PROFILE_IMAGE = getImagePath('images/cv.jpg');
+export const PROFILE_IMAGE = getImagePath('images/profile.jpg');
 export const NAV_IMAGE = getImagePath('images/profile.jpg');
 
 // Remote project images

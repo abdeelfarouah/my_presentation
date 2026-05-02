@@ -1,19 +1,10 @@
-import { Github, Linkedin, Mail, FileText, ArrowDown } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
 import { PROFILE_IMAGE } from '../utils/images';
 import { SOCIAL_LINKS } from '../utils/constants';
 import Container from './shared/Container';
-import { useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
-  const handleDownloadCV = useCallback(() => {
-    const link = document.createElement('a');
-    link.href = SOCIAL_LINKS.CV_URL;
-    link.download = 'abderrahmane-elfarouah_cv.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }, []);
 
   return (
     <header className="h-full py-4 sm:py-8 md:py-16 px-4 w-full max-w-full mx-auto">
@@ -92,13 +83,6 @@ export default function Hero() {
           >
             <Linkedin className="w-6 h-6 group-hover:scale-110 transition-transform" />
           </a>
-          <button
-            onClick={handleDownloadCV}
-            className="touch-area focus-ring w-14 h-14 flex items-center justify-center rounded-2xl btn-primary transition-all duration-300 group"
-            title="Télécharger mon CV"
-          >
-            <FileText className="w-6 h-6 group-hover:scale-110 transition-transform" />
-          </button>
           <a
             href={`mailto:${SOCIAL_LINKS.EMAIL}`}
             className="touch-area focus-ring w-14 h-14 flex items-center justify-center rounded-2xl btn-primary transition-all duration-300 group"
